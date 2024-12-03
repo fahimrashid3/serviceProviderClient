@@ -1,0 +1,6 @@
+.featured_item {
+  background-image: url("../../../assets/home/featured.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+}
