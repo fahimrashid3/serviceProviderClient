@@ -4,7 +4,7 @@ const useProviders = () => {
   const [providers, setProviders] = useState([]);
   const [loading, setLoading] = useState(true);
   useEffect(() => {
-    fetch("http://localhost:5000/providers")
+    fetch("http://localhost:5001/providers")
       .then((res) => res.json())
       .then((data) => {
         setProviders(data);

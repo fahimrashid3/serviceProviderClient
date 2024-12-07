@@ -74,7 +74,7 @@ const NavLinks = () => {
               viewTransitionName: isTransitioning ? "slide" : "",
             };
           }}
-          to="/appointment"
+          to="/bookAppointment"
         >
           Appointment
         </NavLink>

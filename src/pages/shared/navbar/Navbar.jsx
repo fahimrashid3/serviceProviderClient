@@ -89,9 +89,11 @@ const Navbar = () => {
               <div
                 tabIndex={0}
                 role="button"
-                className=" pr-5 text-4xl dark:text-dark-900 dark:hover:text-dark-700 text-white hover:text-gray-300"
+                className="pr-5 text-4xl dark:text-dark-900 dark:hover:text-dark-700 text-white hover:text-gray-300"
               >
-                <CgProfile />
+                <div className="text-white">
+                  <CgProfile />
+                </div>
               </div>
               <ul
                 tabIndex={0}
@@ -101,7 +103,7 @@ const Navbar = () => {
                   <Link to="/userProfile">
                     <span className="text-2xl">
                       <CgProfile />
-                    </span>{" "}
+                    </span>
                     Profile
                   </Link>
                 </li>
@@ -109,11 +111,19 @@ const Navbar = () => {
                   <Link to="/dashboard/myAppointment">
                     <span className="text-2xl">
                       <FaRegCalendarCheck />
-                    </span>{" "}
+                    </span>
                     My Appointment
                     <div className="badge badge-secondary">
                       {appointment.length}
                     </div>
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/dashboard/profile">
+                    <span className="text-2xl">
+                      <FaRegCalendarCheck />
+                    </span>
+                    Dashboard
                   </Link>
                 </li>
 
@@ -121,14 +131,14 @@ const Navbar = () => {
                   {user ? (
                     <p onClick={handelLogout}>
                       <span className="text-2xl font-semibold">
-                        <CiLogout />{" "}
+                        <CiLogout />
                       </span>
                       logout
                     </p>
                   ) : (
                     <Link to="/login">
                       <span className="text-2xl">
-                        <FiLogIn />{" "}
+                        <FiLogIn />
                       </span>
                       Login
                     </Link>
