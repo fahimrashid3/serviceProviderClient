@@ -33,7 +33,7 @@ const Categories = () => {
             <Link to={`/providers/${category.serviceProviderType}`}>
               <SwiperSlide key={category._id} className="cursor-pointer">
                 <img src={category.serviceImg} alt="" />
-                <h3 className="text-4xl uppercase text-center text-primary -mt-16">
+                <h3 className="text-4xl uppercase text-center text-primary-400 -mt-16">
                   {category.serviceProviderType}
                 </h3>
               </SwiperSlide>

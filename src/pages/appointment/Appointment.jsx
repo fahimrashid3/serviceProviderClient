@@ -98,7 +98,7 @@ const Appointment = () => {
   };
 
   return (
-    <div className="pt-28">
+    <div className="pt-28 bg-primary-100">
       <div className="-mt-20 min-h-screen">
         <Helmet>
           <title>ServiceFinder | Appointment</title>
@@ -111,116 +111,206 @@ const Appointment = () => {
           heading={"Book an appointment"}
           subHeading={"Find your requirements"}
         ></SectionTitle>
-
-        {/* Booking category */}
-        <div className="text-center mb-5">
-          {!selectedCategory ? (
-            <p className=" text-red-500 text-xl font-semibold">
-              Select a category
-            </p>
-          ) : (
-            ""
-          )}
-        </div>
-        <div className="flex gap-5 justify-center">
-          {categories.map((category) => (
-            <div
-              key={category._id}
-              onClick={() =>
-                handleCategoryClick(category._id, category.serviceProviderType)
-              }
-              className={`border-2 p-4 rounded-lg cursor-pointer transition-all duration-200 ${
-                selectedCategory === category._id ? "bg-primary text-white" : ""
-              }`}
-            >
-              <p className="text-2xl font-bold">
-                {category.serviceProviderType}
-              </p>
+        <div className="md:flex md:flex-row-reverse">
+          <div className="w-1/4 bg-white  p-10 rounded-lg shadow-lg max-w-[90%] mx-auto space-y-6">
+            <div className="flex justify-between text-xl font-semibold">
+              <p>details</p>
+              <p>details</p>
             </div>
-          ))}
-        </div>
-
-        {/* Booking slots */}
-        <div className="text-center mb-5">
-          {!slotIndex && selectedCategory ? (
-            <p className=" text-red-500 text-xl font-semibold">Select Date</p>
-          ) : (
-            ""
-          )}
-        </div>
-        <div>
-          {selectedCategory ? (
-            <div className="flex gap-3 items-center justify-center w-full overflow-x-scroll mt-4">
-              {timeSlot.length > 0 &&
-                timeSlot.map((item, index) => (
-                  <div
-                    onClick={() => setSlotIndex(index)}
-                    className={`text-center py-6 min-w-16 rounded-full cursor-pointer ${
-                      slotIndex === index
-                        ? "bg-primary text-white border-gray-500"
-                        : "border border-gray-500"
-                    }`}
-                    key={index}
-                  >
-                    <p>
-                      {item[0]?.dateTime &&
-                        daysOfWeek[item[0].dateTime.getDay()]}
-                    </p>
-                    <p>{item[0]?.dateTime && item[0].dateTime.getDate()}</p>
-                  </div>
-                ))}
+            <div className="flex justify-between text-xl font-semibold">
+              <p>details</p>
+              <p>details</p>
             </div>
-          ) : (
-            ""
-          )}
-        </div>
+            <div className="flex justify-between text-xl font-semibold">
+              <p>details</p>
+              <p>details</p>
+            </div>
+            <div className="flex justify-between text-xl font-semibold">
+              <p>details</p>
+              <p>details</p>
+            </div>
+            <div className="flex justify-between text-xl font-semibold">
+              <p>details</p>
+              <p>details</p>
+            </div>
+            <div className="flex justify-between text-xl font-semibold">
+              <p>details</p>
+              <p>details</p>
+            </div>
+            <div className="flex justify-between text-xl font-semibold">
+              <p>details</p>
+              <p>details</p>
+            </div>
+            <div className="flex justify-between text-xl font-semibold">
+              <p>details</p>
+              <p>details</p>
+            </div>
+            <div className="flex justify-between text-xl font-semibold">
+              <p>details</p>
+              <p>details</p>
+            </div>
+            <div className="flex justify-between text-xl font-semibold">
+              <p>details</p>
+              <p>details</p>
+            </div>
+            <div className="flex justify-between text-xl font-semibold">
+              <p>details</p>
+              <p>details</p>
+            </div>
 
-        {/* Booking time */}
-        {!slotTime && slotIndex ? (
-          <div className="text-center mb-5">
-            <p className=" text-red-500 text-xl font-semibold">
-              Select a time slot
-            </p>
+            <div className="mx-auto flex justify-center mt-10">
+              {slotTime ? (
+                <button
+                  onClick={handelAppointment}
+                  className="
+               btn border-b-8 font-semibold text-primary-900 hover:text-white 
+                hover:border-primary-600  border-primary-700 bg-primary-300 hover:bg-primary-500
+                 transition-all duration-200 w-full"
+                >
+                  Book now
+                </button>
+              ) : (
+                <button
+                  onClick={handelAppointment}
+                  disabled
+                  className="
+                btn border-b-8 font-semibold text-primary-900 hover:text-white 
+                 hover:border-primary-600  border-primary-700 bg-primary-300 hover:bg-primary-500
+                  transition-all duration-200 w-full"
+                >
+                  Book now
+                </button>
+              )}
+            </div>
           </div>
-        ) : (
-          ""
-        )}
-        <div className="mx-auto max-w-[90%] mt-10">
-          {slotIndex ? (
-            <div>
-              <div className="grid lg:grid-cols-6 md:grid-cols-4 grid-cols-3 gap-5 sm:my-4 w-full mt-4">
-                {timeSlot.length &&
-                  timeSlot[slotIndex].map((item, index) => (
-                    <p
-                      onClick={() => setSlotTime(item.time)}
-                      className={`flex-shrink-0 px-5 py-2 rounded-full cursor-pointer text-center ${
-                        item.time === slotTime
-                          ? "bg-primary text-white"
-                          : "border border-gray-500"
-                      }`}
-                      key={index}
-                    >
-                      {item.time.toLowerCase()}
-                    </p>
-                  ))}
-              </div>
+          <div className="w-3/4 md:px-20 px-6">
+            {/* Booking category */}
+            <div className=" mb-5">
+              {!selectedCategory ? (
+                <p className=" text-red-500 text-xl font-semibold">
+                  Select a category
+                </p>
+              ) : (
+                ""
+              )}
             </div>
-          ) : (
-            ""
-          )}
-        </div>
+            <p className="font-bold text-3xl pt-16 text-primary-600">
+              Select Category
+            </p>
+            <div className="flex gap-5 justify-start mt-5">
+              {categories.map((category) => (
+                <div
+                  key={category._id}
+                  onClick={() =>
+                    handleCategoryClick(
+                      category._id,
+                      category.serviceProviderType
+                    )
+                  }
+                  className={`border-2 p-4 rounded-lg cursor-pointer transition-all duration-200 shadow-lg hover:shadow-2xl hover:shadow-primary-400 ${
+                    selectedCategory === category._id
+                      ? "bg-primary-300 text-primary-800 border-primary-800"
+                      : "bg-white text-dark-600 border-gray-200"
+                  }`}
+                >
+                  <p className="text-2xl font-bold">
+                    {category.serviceProviderType}
+                  </p>
+                </div>
+              ))}
+            </div>
 
-        <div className="mx-auto flex justify-center mt-10">
-          {slotTime ? (
-            <button
-              onClick={handelAppointment}
-              className="btn btn-warning btn-outline border-1 border-b-8 w-[70%] md:w-[20%]"
-            >
-              Book now
-            </button>
-          ) : (
-            ""
-          )}
+            {/* Booking slots */}
+            <p className="font-bold text-3xl pt-16 text-primary-600">
+              Select Date
+            </p>
+            <div className=" mb-5">
+              {!slotIndex && selectedCategory ? (
+                <p className=" text-red-500 text-xl font-semibold">
+                  Select Date
+                </p>
+              ) : (
+                ""
+              )}
+            </div>
+            <div>
+              {selectedCategory ? (
+                <div className="flex gap-3 items-center justify-start w-full overflow-x-scroll mt-4">
+                  {timeSlot.length > 0 &&
+                    timeSlot.map((item, index) => (
+                      <div
+                        onClick={() => setSlotIndex(index)}
+                        className={` mb-4 text-center text-xl font-semibold py-6 min-w-32 rounded-xl cursor-pointer border shadow-lg hover:shadow-2xl hover:shadow-primary-400 ${
+                          slotIndex === index
+                            ? "bg-primary-300 text-primary-800 border-primary-800"
+                            : "bg-white text-dark-600 border-gray-200"
+                        }`}
+                        key={index}
+                      >
+                        <p>
+                          {item[0]?.dateTime &&
+                            daysOfWeek[item[0].dateTime.getDay()]}
+                        </p>
+                        <p>{item[0]?.dateTime && item[0].dateTime.getDate()}</p>
+                      </div>
+                    ))}
+                </div>
+              ) : (
+                ""
+              )}
+            </div>
+
+            {/* Booking time */}
+            {!slotTime && slotIndex ? (
+              <div className=" mb-5">
+                <p className=" text-red-500 text-xl font-semibold">
+                  Select a time slot
+                </p>
+              </div>
+            ) : (
+              ""
+            )}
+            <p className="font-bold text-3xl pt-16 text-primary-600">
+              Select Time
+            </p>
+            <div className="mt-10">
+              {slotIndex ? (
+                <div>
+                  <div className="grid lg:grid-cols-6 md:grid-cols-4 grid-cols-3 gap-5 sm:my-4 w-full mt-4">
+                    {timeSlot.length &&
+                      timeSlot[slotIndex].map((item, index) => (
+                        <p
+                          onClick={() => setSlotTime(item.time)}
+                          className={`flex-shrink-0 py-2 rounded-full cursor-pointer text-center border shadow-lg hover:shadow-2xl hover:shadow-primary-400 ${
+                            item.time === slotTime
+                              ? "bg-primary-300 text-primary-800 border-primary-800"
+                              : "bg-white text-dark-600 border-gray-200"
+                          }`}
+                          key={index}
+                        >
+                          {item.time.toLowerCase()}
+                        </p>
+                      ))}
+                  </div>
+                </div>
+              ) : (
+                ""
+              )}
+            </div>
+
+            {/* <div className="mx-auto flex justify-center mt-10">
+              {slotTime ? (
+                <button
+                  onClick={handelAppointment}
+                  className="btn border-b-8 hover:border-primary-600 font-semibold border-primary-700 text-primary-900 bg-primary-300 hover:bg-primary-500 hover:text-white transition-all duration-200 rounded-lg w-[70%] md:w-[20%]"
+                >
+                  Book now
+                </button>
+              ) : (
+                ""
+              )}
+            </div> */}
+          </div>
         </div>
       </div>
     </div>

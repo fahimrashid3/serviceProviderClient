@@ -7,6 +7,7 @@ import { CgProfile } from "react-icons/cg";
 import { FaRegCalendarCheck } from "react-icons/fa6";
 import Swal from "sweetalert2";
 import useAppointment from "../../../hooks/useAppointment";
+import { LuLayoutDashboard } from "react-icons/lu";
 
 const Navbar = () => {
   const [appointment] = useAppointment();
@@ -103,6 +104,14 @@ const Navbar = () => {
                       <CgProfile />
                     </span>{" "}
                     Profile
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/dashboard">
+                    <span className="text-2xl">
+                      <LuLayoutDashboard />
+                    </span>{" "}
+                    DashBoard
                   </Link>
                 </li>
                 <li>
