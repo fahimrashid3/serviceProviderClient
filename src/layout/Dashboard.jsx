@@ -12,50 +12,78 @@ import { IoMdPersonAdd } from "react-icons/io";
 import { BsEnvelopeExclamation } from "react-icons/bs";
 
 const DashBoard = () => {
-  // TODO : get isAdmin value from database
-  const isAdmin = true;
+  const isAdmin = true; // TODO: Get isAdmin value from the database
+
   return (
-    <div className="flex">
-      {/* dashboard side bar */}
-      <div className="w-96 min-h-screen bg-primary-300 p-5 pt-10">
-        <ul className="menu text-lg">
+    <div className="drawer lg:drawer-open">
+      <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
+      <div className="drawer-content flex flex-col">
+        {/* Button for small screens */}
+        <label htmlFor="my-drawer-2">
+          <div
+            tabIndex={0}
+            role="button"
+            className="btn btn-ghost text-yellow lg:hidden"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="h-5 w-5"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+                d="M4 6h16M4 12h8m-8 6h16"
+              />
+            </svg>
+          </div>
+        </label>
+        {/* Main Content */}
+        <div className="flex-grow p-10 overflow-y-auto h-screen">
+          <Outlet></Outlet>
+        </div>
+      </div>
+      <div className="drawer-side">
+        <label
+          htmlFor="my-drawer-2"
+          aria-label="close sidebar"
+          className="drawer-overlay"
+        ></label>
+        <ul className="menu bg-base-200 text-base-content min-h-full w-80 p-4">
+          {/* Sidebar content */}
           {isAdmin ? (
             <>
               <li>
                 <NavLink to="/dashboard/adminHome">
-                  <FaHome></FaHome>
-                  Admin Home
+                  <FaHome /> Admin Home
                 </NavLink>
               </li>
               <li>
                 <NavLink to="/dashboard/addProviders">
-                  <IoMdPersonAdd />
-                  add Providers
+                  <IoMdPersonAdd /> Add Providers
                 </NavLink>
               </li>
               <li>
                 <NavLink to="/dashboard/manageProviders">
-                  <MdOutlineMenuOpen></MdOutlineMenuOpen>
-                  Manage Providers
+                  <MdOutlineMenuOpen /> Manage Providers
                 </NavLink>
               </li>
               <li>
                 <NavLink to="/dashboard/manageReviews">
-                  <BsEnvelopeExclamation />
-                  Manage Reviews
+                  <BsEnvelopeExclamation /> Manage Reviews
                 </NavLink>
               </li>
-
               <li>
                 <NavLink to="/dashboard/manageAppointments">
-                  <FaCalendarCheck />
-                  Manage Appointments
+                  <FaCalendarCheck /> Manage Appointments
                 </NavLink>
               </li>
               <li>
-                <NavLink to="/dashboard/AllUsers">
-                  <FaUsers />
-                  All Users
+                <NavLink to="/dashboard/allUsers">
+                  <FaUsers /> All Users
                 </NavLink>
               </li>
             </>
@@ -63,62 +91,49 @@ const DashBoard = () => {
             <>
               <li>
                 <NavLink to="/dashboard/userHome">
-                  <FaHome></FaHome>
-                  User Home
+                  <FaHome /> User Home
                 </NavLink>
               </li>
               <li>
                 <NavLink to="/dashboard/myAppointment">
-                  <FaCalendar></FaCalendar>
-                  My Appointments
+                  <FaCalendar /> My Appointments
                 </NavLink>
               </li>
               <li>
                 <NavLink to="/dashboard/paymentHistory">
-                  <FaDollarSign></FaDollarSign>
-                  Payment History
+                  <FaDollarSign /> Payment History
                 </NavLink>
               </li>
               <li>
                 <NavLink to="/dashboard/Reviews">
-                  <BsEnvelopeExclamation />
-                  Reviews
+                  <BsEnvelopeExclamation /> Reviews
                 </NavLink>
               </li>
             </>
           )}
           <div className="divider"></div>
-          {/* shared nav */}
+          {/* Shared Nav */}
           <li>
             <NavLink to="/">
-              <FaHome></FaHome>
-              Home
+              <FaHome /> Home
             </NavLink>
           </li>
           <li>
             <NavLink to="/ourServices">
-              <MdOutlineMenuOpen />
-              Our Service
+              <MdOutlineMenuOpen /> Our Service
             </NavLink>
           </li>
           <li>
             <NavLink to="/appointment">
-              <FaCalendar></FaCalendar>
-              Appointment
+              <FaCalendar /> Appointment
             </NavLink>
           </li>
           <li>
             <NavLink to="/contact">
-              <FaPhone></FaPhone>
-              Contact
+              <FaPhone /> Contact
             </NavLink>
           </li>
         </ul>
-      </div>
-      {/* dashboard content */}
-      {/* <div className="flex-grow md:p-10"> */}
-      <div className="flex-grow p-10 overflow-y-auto h-screen">
-        <Outlet></Outlet>
       </div>
     </div>
   );

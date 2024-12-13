@@ -6,24 +6,64 @@ import "react-tabs/style/react-tabs.css";
 import { FaEdit, FaEye } from "react-icons/fa";
 import SectionTitle from "../../components/SectionTitle";
 import { AiTwotoneDelete } from "react-icons/ai";
+import Swal from "sweetalert2";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
+import { useNavigate } from "react-router-dom";
+
 const AllUser = () => {
   const [users, loading] = useUser();
   const [providers, providersLoading] = useProviders();
-  if (loading || providersLoading)
+  const axiosSecure = useAxiosSecure();
+  const navigate = useNavigate();
+
+  if (loading || providersLoading) {
     return (
       <div className="text-center pt-[40%] h-screen">
-        <span className="loading loading-ball w-[80px] text-primary-400 "></span>
+        <span className="loading loading-ball w-[80px] text-primary-400"></span>
       </div>
     );
+  }
+
+  const manageChangeRole = (user) => {
+    Swal.fire({
+      title: "Change Role",
+      text: "Choose an option for the user role",
+      icon: "info",
+      showCancelButton: true,
+      confirmButtonText: "Make Admin",
+      cancelButtonText: "Cancel",
+      showDenyButton: true,
+      denyButtonText: "Make Provider",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        // Make Admin
+        axiosSecure.patch(`user/admin/${user._id}`).then((res) => {
+          if (res.data.modifiedCount > 0) {
+            Swal.fire({
+              position: "top-end",
+              icon: "success",
+              title: `${user.name} is now an Admin.`,
+              showConfirmButton: false,
+              timer: 1500,
+            });
+          }
+        });
+      } else if (result.isDenied) {
+        // Redirect to the provider role change page
+        navigate(`/changeRole/${user._id}`);
+      } else {
+        // Cancel clicked
+        Swal.fire("No changes made", "", "info");
+      }
+    });
+  };
+
   return (
     <div className="-mt-20">
       <Helmet>
         <title>All User</title>
       </Helmet>
-      <SectionTitle
-        heading={"AllUser"}
-        subHeading={"Manage User"}
-      ></SectionTitle>
+      <SectionTitle heading={"All User"} subHeading={"Manage User"} />
       <Tabs>
         <div className="text-center">
           <TabList>
@@ -32,9 +72,9 @@ const AllUser = () => {
           </TabList>
         </div>
 
+        {/* All Users */}
         <TabPanel>
           <table className="table table-zebra">
-            {/* head */}
             <thead>
               <tr>
                 <th>#</th>
@@ -46,42 +86,44 @@ const AllUser = () => {
               </tr>
             </thead>
             <tbody>
-              {users.map((item, index) => (
-                <tr key={index}>
+              {users.map((user, index) => (
+                <tr key={user._id}>
                   <th>{index + 1}</th>
                   <td>
-                    <div className="flex items-center gap-3">
-                      <div className="avatar">
-                        <div className="mask mask-squircle h-12 w-12">
-                          <img
-                            src={item.photoUrl}
-                            alt="Avatar Tailwind CSS Component"
-                          />
-                        </div>
+                    <div className="avatar">
+                      <div className="mask mask-squircle h-12 w-12">
+                        <img src={user.photoUrl} alt="User Avatar" />
                       </div>
                     </div>
                   </td>
-                  <td>{item.name}</td>
-
-                  <td>{item.email}</td>
+                  <td>{user.name}</td>
+                  <td>{user.email}</td>
                   <td>
-                    <button className="btn  btn-ghost btn-outline btn-success text-2xl">
+                    <button className="btn btn-ghost btn-outline btn-success text-2xl">
                       <FaEye />
                     </button>
                   </td>
                   <td>
-                    <button className="btn  btn-ghost btn-outline btn-warning text-2xl">
-                      <FaEdit />
-                    </button>
+                    {user.role === "admin" ? (
+                      <p>admin</p>
+                    ) : (
+                      <button
+                        className="btn btn-ghost btn-outline btn-warning text-2xl"
+                        onClick={() => manageChangeRole(user)}
+                      >
+                        <FaEdit />
+                      </button>
+                    )}
                   </td>
                 </tr>
               ))}
             </tbody>
           </table>
         </TabPanel>
+
+        {/* All Providers */}
         <TabPanel>
           <table className="table table-zebra">
-            {/* head */}
             <thead>
               <tr>
                 <th>#</th>
@@ -89,37 +131,29 @@ const AllUser = () => {
                 <th>Name</th>
                 <th>Email</th>
                 <th>Profile</th>
-                <th>Change Role</th>
+                <th>Delete</th>
               </tr>
             </thead>
             <tbody>
-              {providers.map((item, index) => (
-                <tr key={index}>
+              {providers.map((provider, index) => (
+                <tr key={provider._id}>
                   <th>{index + 1}</th>
                   <td>
-                    <div className="flex items-center gap-3">
-                      <div className="avatar">
-                        <div className="mask mask-squircle h-12 w-12">
-                          <img
-                            src={item.userImg}
-                            alt="Avatar Tailwind CSS Component"
-                          />
-                        </div>
+                    <div className="avatar">
+                      <div className="mask mask-squircle h-12 w-12">
+                        <img src={provider.userImg} alt="Provider Avatar" />
                       </div>
                     </div>
                   </td>
-                  <td>{item.name}</td>
-
-                  <td>{item.email}</td>
+                  <td>{provider.name}</td>
+                  <td>{provider.email}</td>
                   <td>
-                    {/* TODO:view full profile */}
-                    <button className="btn  btn-ghost btn-outline btn-success text-2xl">
+                    <button className="btn btn-ghost btn-outline btn-success text-2xl">
                       <FaEye />
                     </button>
                   </td>
                   <td>
-                    {/* TODO:delete user */}
-                    <button className="btn  btn-ghost btn-outline btn-error text-2xl">
+                    <button className="btn btn-ghost btn-outline btn-error text-2xl">
                       <AiTwotoneDelete />
                     </button>
                   </td>

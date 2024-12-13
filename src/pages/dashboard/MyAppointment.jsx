@@ -38,7 +38,7 @@ const MyAppointment = () => {
     <div>
       <SectionTitle
         heading="Appointments"
-        subHeading="MyAppointment"
+        subHeading="My Appointment"
       ></SectionTitle>
       <div>
         <p className="lg:text-4xl md:text-3xl text-2xl md:font-bold font-semibold md:my-5 my-3">
