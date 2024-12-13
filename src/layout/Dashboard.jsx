@@ -9,10 +9,11 @@ import {
 } from "react-icons/fa";
 import { MdOutlineMenuOpen } from "react-icons/md";
 import { IoMdPersonAdd } from "react-icons/io";
+import { BsEnvelopeExclamation } from "react-icons/bs";
 
 const DashBoard = () => {
-  // todo : get isAdmin value from database
-  const isAdmin = false;
+  // TODO : get isAdmin value from database
+  const isAdmin = true;
   return (
     <div className="flex">
       {/* dashboard side bar */}
@@ -38,6 +39,12 @@ const DashBoard = () => {
                   Manage Providers
                 </NavLink>
               </li>
+              <li>
+                <NavLink to="/dashboard/manageReviews">
+                  <BsEnvelopeExclamation />
+                  Manage Reviews
+                </NavLink>
+              </li>
 
               <li>
                 <NavLink to="/dashboard/manageAppointments">
@@ -46,7 +53,7 @@ const DashBoard = () => {
                 </NavLink>
               </li>
               <li>
-                <NavLink to="/dashboard/users">
+                <NavLink to="/dashboard/AllUsers">
                   <FaUsers />
                   All Users
                 </NavLink>
@@ -70,6 +77,12 @@ const DashBoard = () => {
                 <NavLink to="/dashboard/paymentHistory">
                   <FaDollarSign></FaDollarSign>
                   Payment History
+                </NavLink>
+              </li>
+              <li>
+                <NavLink to="/dashboard/Reviews">
+                  <BsEnvelopeExclamation />
+                  Reviews
                 </NavLink>
               </li>
             </>

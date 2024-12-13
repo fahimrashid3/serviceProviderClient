@@ -11,6 +11,7 @@ import Registration from "../pages/authentication/Registration";
 import PrivetRoute from "./PrivetRoute";
 import Dashboard from "../layout/Dashboard";
 import MyAppointment from "../pages/dashboard/MyAppointment";
+import AllUser from "../pages/dashboard/AllUser";
 export const router = createBrowserRouter([
   {
     path: "/",
@@ -56,11 +57,20 @@ export const router = createBrowserRouter([
   },
   {
     path: "dashboard",
-    element: <Dashboard></Dashboard>,
+    element: (
+      <PrivetRoute>
+        <Dashboard></Dashboard>
+      </PrivetRoute>
+    ),
     children: [
       {
         path: "myAppointment",
         element: <MyAppointment></MyAppointment>,
+      },
+      // admin routs
+      {
+        path: "AllUsers",
+        element: <AllUser></AllUser>,
       },
     ],
   },
