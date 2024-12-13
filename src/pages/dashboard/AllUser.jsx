@@ -9,9 +9,11 @@ import { AiTwotoneDelete } from "react-icons/ai";
 import Swal from "sweetalert2";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import { useNavigate } from "react-router-dom";
+import useUsers from "../../hooks/useUser";
 
 const AllUser = () => {
   const [users, loading] = useUser();
+  const [, , refetch] = useUsers();
   const [providers, providersLoading] = useProviders();
   const axiosSecure = useAxiosSecure();
   const navigate = useNavigate();
@@ -39,6 +41,7 @@ const AllUser = () => {
         // Make Admin
         axiosSecure.patch(`user/admin/${user._id}`).then((res) => {
           if (res.data.modifiedCount > 0) {
+            refetch();
             Swal.fire({
               position: "top-end",
               icon: "success",
