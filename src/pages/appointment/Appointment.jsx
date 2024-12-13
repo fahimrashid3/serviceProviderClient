@@ -34,10 +34,6 @@ const Appointment = () => {
     setSubmittedCategory(categoryName);
     setSubmittedPrice(categoryPrice);
     setSubmittedTime(categoryTime);
-    // Reset date and time when category changes
-    // setSlotIndex(null);
-    // setSlotTime("");
-    // setSelectedDate("");
   };
 
   const getAvailableSlot = () => {
@@ -129,7 +125,7 @@ const Appointment = () => {
           subHeading={"Find your requirements"}
         />
         <div className="md:flex md:flex-row-reverse">
-          <div className="w-1/4 bg-white p-10 rounded-lg shadow-lg max-w-[90%] mx-auto space-y-6">
+          <div className="md:w-1/4 bg-white md:p-10 p-5 rounded-lg max-w-[90%] mx-auto space-y-6 flex flex-col justify-evenly shadow-primary-400 shadow-2xl">
             <div className="flex justify-between text-xl font-semibold">
               <p>Category :</p>
               <p>{selectedCategory ? submittedCategory : "Select category"}</p>
@@ -150,21 +146,22 @@ const Appointment = () => {
               <p>Time :</p>
               <p>{slotTime || "Select Time"}</p>
             </div>
-            <div className="mx-auto flex justify-center mt-10">
-              <button
-                onClick={handleAppointment}
-                disabled={!selectedCategory || !selectedDate || !slotTime}
-                className={`btn border-b-8 font-semibold text-primary-900 hover:text-white hover:border-primary-600 border-primary-700 bg-primary-300 hover:bg-primary-500 transition-all duration-200 w-full ${
-                  !selectedCategory || !selectedDate || !slotTime
-                    ? "opacity-50 cursor-not-allowed"
-                    : ""
-                }`}
-              >
-                Book now
-              </button>
-            </div>
+            <div className="mx-auto flex justify-center mt-10"></div>
+            <button
+              onClick={handleAppointment}
+              disabled={!selectedCategory || !selectedDate || !slotTime}
+              className={`btn border-b-8 font-semibold 
+                  text-primary-900 hover:text-white hover:border-primary-600 border-primary-700 bg-primary-300 hover:bg-primary-500 
+                  transition-all duration-200 w-full ${
+                    !selectedCategory || !selectedDate || !slotTime
+                      ? "opacity-50 cursor-not-allowed"
+                      : ""
+                  }`}
+            >
+              Book now
+            </button>
           </div>
-          <div className="w-3/4 md:px-20 px-6">
+          <div className="md:w-3/4 md:px-20 px-6">
             <p className="font-bold text-3xl pt-16 text-primary-600">
               Select Category
             </p>
@@ -180,7 +177,7 @@ const Appointment = () => {
                       category.time
                     )
                   }
-                  className={`border-2 p-4 rounded-lg cursor-pointer transition-all duration-200 shadow-lg hover:shadow-2xl ${
+                  className={`border-2 p-4 rounded-lg cursor-pointer transition-all duration-200 shadow-lg hover:shadow-primary-500 hover:shadow-2xl ${
                     selectedCategory === category._id
                       ? "bg-primary-300 text-primary-800 border-primary-800"
                       : "bg-white text-dark-600 border-gray-200"
@@ -195,11 +192,11 @@ const Appointment = () => {
             <p className="font-bold text-3xl pt-16 text-primary-600">
               Select Date
             </p>
-            <div className="flex gap-3 items-center justify-start w-full overflow-x-scroll mt-4">
+            <div className="grid lg:grid-cols-6 md:grid-cols-4 grid-cols-3 gap-5 sm:my-4 w-full mt-4">
               {timeSlot.map((item, index) => (
                 <div
                   onClick={() => handleDateClick(index)}
-                  className={`mb-4 text-center text-xl font-semibold py-6 min-w-32 rounded-xl cursor-pointer border shadow-lg hover:shadow-2xl ${
+                  className={`mb-4 text-center text-xl font-semibold py-6 min-w-32 rounded-xl cursor-pointer border shadow-lg hover:shadow-primary-500  hover:shadow-2xl ${
                     slotIndex === index
                       ? "bg-primary-300 text-primary-800 border-primary-800"
                       : "bg-white text-dark-600 border-gray-200"
@@ -218,10 +215,11 @@ const Appointment = () => {
             </p>
             <div className="grid lg:grid-cols-6 md:grid-cols-4 grid-cols-3 gap-5 sm:my-4 w-full mt-4">
               {timeSlot.length &&
+                selectedCategory &&
                 timeSlot[slotIndex]?.map((item, index) => (
                   <p
                     onClick={() => handleTimeClick(item.time)}
-                    className={`py-2 rounded-full cursor-pointer text-center border shadow-lg ${
+                    className={`py-2 rounded-full cursor-pointer text-center border shadow-lg hover:shadow-primary-400 hover:shadow-xl ${
                       item.time === slotTime
                         ? "bg-primary-300 text-primary-800 border-primary-800"
                         : "bg-white text-dark-600 border-gray-200"

@@ -13,7 +13,7 @@ const ShortProfile = () => {
   const [category, setCategory] = useState(null);
 
   useEffect(() => {
-    axiosPublic.get(`/user/${_id}`).then((res) => {
+    axiosPublic.get(`/providers/${_id}`).then((res) => {
       const data = res.data;
       setProvider(data);
       setCategoryName(data.category);
@@ -32,19 +32,19 @@ const ShortProfile = () => {
   if (!provider || !category)
     return (
       <div className="text-center pt-[40%] h-screen">
-        <span className="loading loading-ball w-[80px] text-primary-400 "></span>
+        <span className="loading loading-ball w-[80px] text-primary "></span>
       </div>
     );
 
   return (
-    <div className="-mt-20 mb-20 dark:bg-dark-700 text-dark-900 dark:text-white">
+    <div className="-mt-20 mb-20 dark:bg-dark-700 text-dark-900 dark:text-white md:pt6">
       <SectionBanner
         img={category.serviceImg}
         title={category.serviceProviderType}
       ></SectionBanner>
       <SectionTitle
-        heading={provider.category}
-        subHeading="Have a Look"
+        heading={provider.name}
+        subHeading={provider.category}
       ></SectionTitle>
       <div className="flex gap-10">
         <div className="flex-1">
