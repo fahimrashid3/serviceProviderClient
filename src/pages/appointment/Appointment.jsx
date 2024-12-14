@@ -7,8 +7,10 @@ import Swal from "sweetalert2";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import useAuth from "../../hooks/useAuth";
 import useAppointment from "../../hooks/useAppointment";
+import { useNavigate } from "react-router-dom";
 
 const Appointment = () => {
+  const navigate = useNavigate();
   const [, refetch] = useAppointment();
   const AxiosSecure = useAxiosSecure();
   const [categories] = useCategories();
@@ -99,6 +101,8 @@ const Appointment = () => {
     AxiosSecure.post("/appointments", appointmentDetails).then((res) => {
       if (res.data.insertedId) {
         refetch();
+        navigate("/");
+        scrollTo(0, 0);
         Swal.fire({
           position: "top-end",
           icon: "success",
@@ -124,7 +128,7 @@ const Appointment = () => {
           heading={"Book an appointment"}
           subHeading={"Find your requirements"}
         />
-        <div className="md:flex md:flex-row-reverse">
+        <div className="md:flex md:flex-row-reverse lg:px-20 md:px-12 px-5">
           <div className="md:w-1/4 bg-white md:p-10 p-5 rounded-lg max-w-[90%] mx-auto space-y-6 flex flex-col justify-evenly shadow-primary-400 shadow-2xl">
             <div className="flex justify-between text-xl font-semibold">
               <p>Category :</p>
@@ -161,7 +165,7 @@ const Appointment = () => {
               Book now
             </button>
           </div>
-          <div className="md:w-3/4 md:px-20 px-6">
+          <div className="md:w-3/4 md:pr-20 pr-5">
             <p className="font-bold text-3xl pt-16 text-primary-600">
               Select Category
             </p>

@@ -14,6 +14,7 @@ import MyAppointment from "../pages/dashboard/MyAppointment";
 import AllUser from "../pages/dashboard/AllUser";
 import ManageAppointment from "../pages/dashboard/ManageAppointment";
 import ManageProviders from "../pages/dashboard/ManageProviders";
+import AdminRoute from "./AdminRoute";
 export const router = createBrowserRouter([
   {
     path: "/",
@@ -61,26 +62,38 @@ export const router = createBrowserRouter([
     path: "dashboard",
     element: (
       <PrivetRoute>
-        <Dashboard></Dashboard>
+        <Dashboard />
       </PrivetRoute>
     ),
     children: [
       {
         path: "myAppointment",
-        element: <MyAppointment></MyAppointment>,
+        element: <MyAppointment />,
       },
       // admin routs
       {
         path: "allUsers",
-        element: <AllUser></AllUser>,
+        element: (
+          <AdminRoute>
+            <AllUser />
+          </AdminRoute>
+        ),
       },
       {
         path: "manageProviders",
-        element: <ManageProviders></ManageProviders>,
+        element: (
+          <AdminRoute>
+            <ManageProviders />
+          </AdminRoute>
+        ),
       },
       {
         path: "manageAppointments",
-        element: <ManageAppointment></ManageAppointment>,
+        element: (
+          <AdminRoute>
+            <ManageAppointment />
+          </AdminRoute>
+        ),
       },
     ],
   },

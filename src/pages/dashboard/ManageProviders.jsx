@@ -21,13 +21,14 @@ const ManageProviders = () => {
       <Helmet>
         <title>All User</title>
       </Helmet>
-      <SectionTitle heading={"All User"} subHeading={"Manage User"} />
+      <SectionTitle heading={"All Providers"} subHeading={"Manage Providers"} />
 
       <table className="table table-zebra">
         <thead>
           <tr>
             <th>#</th>
             <th>Photo</th>
+            <th>category</th>
             <th>Name</th>
             <th>Email</th>
             <th>Profile</th>
@@ -45,6 +46,7 @@ const ManageProviders = () => {
                   </div>
                 </div>
               </td>
+              <td>{provider.category}</td>
               <td>{provider.name}</td>
               <td>{provider.email}</td>
               <td>
