@@ -13,6 +13,7 @@ import Dashboard from "../layout/Dashboard";
 import MyAppointment from "../pages/dashboard/MyAppointment";
 import AllUser from "../pages/dashboard/AllUser";
 import ManageAppointment from "../pages/dashboard/ManageAppointment";
+import ManageProviders from "../pages/dashboard/ManageProviders";
 export const router = createBrowserRouter([
   {
     path: "/",
@@ -72,6 +73,10 @@ export const router = createBrowserRouter([
       {
         path: "allUsers",
         element: <AllUser></AllUser>,
+      },
+      {
+        path: "manageProviders",
+        element: <ManageProviders></ManageProviders>,
       },
       {
         path: "manageAppointments",
