@@ -10,9 +10,10 @@ import {
 import { MdOutlineMenuOpen } from "react-icons/md";
 import { IoMdPersonAdd } from "react-icons/io";
 import { BsEnvelopeExclamation } from "react-icons/bs";
+import useAdmin from "../hooks/useAdmin";
 
 const DashBoard = () => {
-  const isAdmin = true; // TODO: Get isAdmin value from the database
+  const [isAdmin] = useAdmin();
 
   return (
     <div className="drawer lg:drawer-open">
