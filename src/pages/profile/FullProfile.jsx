@@ -77,7 +77,8 @@ const FullProfile = () => {
               </TabList>
             </div>
             <div className="mt-10">
-              <TabPanel key={category._id}>
+              {/* over view section */}
+              <TabPanel>
                 <div className="max-w-[95%] md:max-w-[90%] mx-auto">
                   <p className="font-bold text-xl mb-2">About Me</p>
                   <p>{provider.about}</p>
@@ -140,17 +141,20 @@ const FullProfile = () => {
                   </div>
                 </div>
               </TabPanel>
-              <TabPanel key={category._id}>
+              {/* location section */}
+              <TabPanel>
                 <div>
                   <p>Location</p>
                 </div>
               </TabPanel>
-              <TabPanel key={category._id}>
+              {/* TODO: save provider review and display here */}
+              <TabPanel>
                 <div>
                   <p>Reviews</p>
                 </div>
               </TabPanel>
-              <TabPanel key={category._id}>
+              {/* business hours */}
+              <TabPanel>
                 <div>
                   <p>Business Hours</p>
                 </div>

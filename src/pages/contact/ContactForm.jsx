@@ -1,5 +1,6 @@
 import { FaPaperPlane } from "react-icons/fa6";
 import { useForm } from "react-hook-form";
+import useAuth from "../../hooks/useAuth";
 
 const ContactForm = () => {
   const {
@@ -8,7 +9,9 @@ const ContactForm = () => {
     // watch,
     formState: { errors },
   } = useForm();
+  // TODO: save the data in the data base
   const onSubmit = (data) => console.log(data);
+  const { user } = useAuth();
 
   return (
     <form
@@ -50,9 +53,11 @@ const ContactForm = () => {
           <span className="label-text">Email address</span>
         </div>
         <input
-          {...register("email", { required: true })}
+          disabled
+          {...register("email")}
           type="email"
           placeholder="Email address"
+          value={user.email}
           className="input input-bordered w-full "
         />
         {errors.email && (
@@ -77,7 +82,7 @@ const ContactForm = () => {
       <div className="flex justify-center lg:px-36 md:px-20 px-5 mx-auto">
         <button
           type="submit"
-          className="btn btn-warning btn-outline flex gap-3 md:text-xl text-lg w-full "
+          className="btn bg-transparent border-primary-600 text-primary-600 hover:bg-primary-600 hover:text-white hover:border-primary-600 flex gap-3 md:text-xl text-lg w-full"
         >
           <FaPaperPlane />
           Sent Message

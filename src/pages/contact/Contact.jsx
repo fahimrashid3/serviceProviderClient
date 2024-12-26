@@ -14,16 +14,18 @@ const Contact = () => {
         img={"https://i.ibb.co.com/gVxQNWv/contact-Us.jpg"}
         title="Contact Us"
       ></SectionBanner>
-      <SectionTitle
+      <div className="mt-6 md:mt-10">
+        {/* <SectionTitle
         subHeading={"Visit Us"}
         heading={"Our Location"}
-      ></SectionTitle>
-      <Information></Information>
-      <SectionTitle
-        heading="Contact Form"
-        subHeading={"Sent Us a Message"}
-      ></SectionTitle>
-      <ContactForm></ContactForm>
+      ></SectionTitle> */}
+        <Information></Information>
+        <SectionTitle
+          heading="Contact Form"
+          subHeading={"Sent Us a Message"}
+        ></SectionTitle>
+        <ContactForm></ContactForm>
+      </div>
     </div>
   );
 };

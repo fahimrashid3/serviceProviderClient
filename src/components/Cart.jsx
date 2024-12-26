@@ -22,13 +22,13 @@ const Cart = ({ provider }) => {
             <Link
               to="/appointment"
               state={{ bookingBtnCategory: category }}
-              className="btn btn-success btn-outline"
+              className="btn bg-transparent border-1 border-b-4 border-primary-600 text-primary-600 hover:bg-primary-600 hover:text-white hover:border-primary-600 flex gap-3 text-lg"
             >
               Book Now
             </Link>
             <Link
               to={`/shortProfile/${_id}`}
-              className="btn btn-success btn-outline"
+              className="btn bg-transparent border-1 border-b-4 border-primary-600 text-primary-600 hover:bg-primary-600 hover:text-white hover:border-primary-600 flex gap-3 text-lg"
             >
               View Profile
             </Link>

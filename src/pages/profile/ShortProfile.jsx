@@ -2,7 +2,7 @@ import { Link, useParams } from "react-router-dom";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
 import { useEffect, useState } from "react";
 import SectionBanner from "../../components/SectionBanner";
-import SectionTitle from "../../components/SectionTitle";
+// import SectionTitle from "../../components/SectionTitle";
 
 const ShortProfile = () => {
   const { _id } = useParams();
@@ -37,16 +37,16 @@ const ShortProfile = () => {
     );
 
   return (
-    <div className="-mt-20 mb-20 dark:bg-dark-700 text-dark-900 dark:text-white md:pt6">
+    <div className="-mt-20 mb-20 dark:bg-dark-700 text-dark-900 dark:text-white">
       <SectionBanner
         img={category.serviceImg}
         title={category.serviceProviderType}
       ></SectionBanner>
-      <SectionTitle
+      {/* <SectionTitle
         heading={provider.name}
         subHeading={provider.category}
-      ></SectionTitle>
-      <div className="flex gap-10">
+      ></SectionTitle> */}
+      <div className="flex gap-10 max-w-[95%] md:max-w-[90%] mx-auto mt-6 md:mt-10">
         <div className="flex-1">
           <img className="rounded-lg " src={provider.userImg} alt="" />
         </div>
@@ -55,7 +55,7 @@ const ShortProfile = () => {
             Our Services
           </p>
           <div className=" rounded-lg p-5 bg-dark-200 dark:bg-dark-700">
-            <p>{provider.name}</p>
+            <p className="font-bold text-lg">{provider.name}</p>
             <p>{provider.qualification}</p>
             <p>{provider.location}</p>
           </div>

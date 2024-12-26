@@ -33,42 +33,44 @@ const OurServices = () => {
           img={img}
           alt="Section banner"
         ></SectionBanner>
-        <SectionTitle
-          heading="All Providers"
-          subHeading="Browse what you need"
-        ></SectionTitle>
-        {/* <p className="text-2xl font-semibold text-center my-10 dark:text-white text-dark-900">
+        <div className="max-w-[95%] md:max-w-[90%] mx-auto">
+          <SectionTitle
+            heading="All Providers"
+            subHeading="Browse what you need"
+          ></SectionTitle>
+          {/* <p className="text-2xl font-semibold text-center my-10 dark:text-white text-dark-900">
           Browse through the Provider categories
         </p> */}
-        <div>
-          <Tabs
-            defaultIndex={tabIndex}
-            onSelect={(index) => setTabIndex(index)}
-          >
-            <div className="text-center">
-              <TabList>
-                {categories.map((category, index) => (
-                  <Tab key={index}>{category.serviceProviderType}</Tab>
+          <div>
+            <Tabs
+              defaultIndex={tabIndex}
+              onSelect={(index) => setTabIndex(index)}
+            >
+              <div className="text-center">
+                <TabList>
+                  {categories.map((category, index) => (
+                    <Tab key={index}>{category.serviceProviderType}</Tab>
+                  ))}
+                </TabList>
+              </div>
+              <div className="mt-10">
+                {categories.map((category) => (
+                  <TabPanel key={category._id}>
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
+                      {providers
+                        .filter(
+                          (provider) =>
+                            provider.category === category.serviceProviderType
+                        )
+                        .map((item) => (
+                          <Cart key={item._id} provider={item}></Cart>
+                        ))}
+                    </div>
+                  </TabPanel>
                 ))}
-              </TabList>
-            </div>
-            <div className="mt-10">
-              {categories.map((category) => (
-                <TabPanel key={category._id}>
-                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
-                    {providers
-                      .filter(
-                        (provider) =>
-                          provider.category === category.serviceProviderType
-                      )
-                      .map((item) => (
-                        <Cart key={item._id} provider={item}></Cart>
-                      ))}
-                  </div>
-                </TabPanel>
-              ))}
-            </div>
-          </Tabs>
+              </div>
+            </Tabs>
+          </div>
         </div>
       </div>
     </div>

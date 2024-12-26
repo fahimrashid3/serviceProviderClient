@@ -21,12 +21,12 @@ const PopularServicesProviders = () => {
           <ShortProfileCart key={user._id} user={user}></ShortProfileCart>
         ))}
       </div>
-      <div className="mx-auto text-center">
+      <div className="flex justify-center">
         <button
           onClick={() => {
             navigate("/ourServices"), scrollTo(0, 0);
           }}
-          className="btn btn-outline btn-primary border-0 border-b-4"
+          className="btn bg-transparent border-1 border-b-4 border-primary-600 text-primary-600 hover:bg-primary-600 hover:text-white hover:border-primary-600 flex gap-3 text-lg"
         >
           Show all
         </button>
