@@ -15,6 +15,7 @@ import AllUser from "../pages/dashboard/AllUser";
 import ManageAppointment from "../pages/dashboard/ManageAppointment";
 import ManageProviders from "../pages/dashboard/ManageProviders";
 import AdminRoute from "./AdminRoute";
+import FullProfile from "../pages/profile/FullProfile";
 export const router = createBrowserRouter([
   {
     path: "/",
@@ -47,6 +48,10 @@ export const router = createBrowserRouter([
       {
         path: "/shortProfile/:_id",
         element: <ShortProfile />,
+      },
+      {
+        path: "/fullProfile/:_id",
+        element: <FullProfile />,
       },
       {
         path: "/login",

@@ -67,8 +67,7 @@ const ShortProfile = () => {
           <p className="text-lg">{provider.about}</p>
           <Link
             to={`/fullProfile/${_id}`}
-            provider={provider}
-            category={category}
+            state={{ provider, category }}
             className="btn btn-success btn-outline"
           >
             View Full Profile
