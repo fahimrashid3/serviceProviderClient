@@ -2,6 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import { AiTwotoneDelete } from "react-icons/ai";
 import SectionTitle from "../../components/SectionTitle";
+import { Helmet } from "react-helmet";
 
 const ManageAppointment = () => {
   const axiosSecure = useAxiosSecure();
@@ -16,6 +17,9 @@ const ManageAppointment = () => {
   });
   return (
     <div>
+      <Helmet>
+        <title>Manage Appointment</title>
+      </Helmet>
       <SectionTitle
         heading="Manage Appointment"
         subHeading="All Appointment"

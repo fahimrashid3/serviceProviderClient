@@ -118,7 +118,7 @@ const Appointment = () => {
     <div className="pt-28 bg-primary-100">
       <div className="-mt-20 min-h-screen">
         <Helmet>
-          <title>ServiceFinder | Appointment</title>
+          <title>Appointment</title>
         </Helmet>
         <SectionBanner
           img={"https://i.ibb.co.com/6bm34g2/appointment.jpg"}

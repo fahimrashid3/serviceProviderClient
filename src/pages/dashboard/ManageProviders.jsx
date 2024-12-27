@@ -4,9 +4,12 @@ import "react-tabs/style/react-tabs.css";
 import { FaEye } from "react-icons/fa";
 import SectionTitle from "../../components/SectionTitle";
 import { AiTwotoneDelete } from "react-icons/ai";
+import { Link } from "react-router-dom";
 
 const ManageProviders = () => {
   const [providers, providersLoading] = useProviders();
+
+  // const navigate = useNavigate();
 
   if (providersLoading) {
     return (
@@ -16,10 +19,14 @@ const ManageProviders = () => {
     );
   }
 
+  // const handelViewProfile = (_id) => {
+  //   navigate(`/fullProfile/${_id}`);
+  // };
+
   return (
     <div className="-mt-20">
       <Helmet>
-        <title>All User</title>
+        <title>Manage Providers</title>
       </Helmet>
       <SectionTitle heading={"All Providers"} subHeading={"Manage Providers"} />
 
@@ -50,9 +57,12 @@ const ManageProviders = () => {
               <td>{provider.name}</td>
               <td>{provider.email}</td>
               <td>
-                <button className="btn btn-ghost btn-outline btn-success text-2xl">
+                <Link
+                  to={`/shortProfile/${provider._id}`}
+                  className="btn btn-ghost btn-outline btn-success text-2xl"
+                >
                   <FaEye />
-                </button>
+                </Link>
               </td>
               <td>
                 <button className="btn btn-ghost btn-outline btn-error text-2xl">
