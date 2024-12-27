@@ -30,7 +30,7 @@ const Categories = () => {
       >
         {categories.map((category) => (
           <SwiperSlide key={category._id} className="cursor-pointer">
-            <Link to={`/providers/${category.serviceProviderType}`}>
+            <Link to={`/ourServices/${category.serviceProviderType}`}>
               <SwiperSlide key={category._id} className="cursor-pointer">
                 <img src={category.serviceImg} alt="" />
                 <h3 className="text-4xl uppercase text-center text-primary-400 -mt-16">

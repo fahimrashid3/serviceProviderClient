@@ -144,7 +144,23 @@ const FullProfile = () => {
               {/* location section */}
               <TabPanel>
                 <div>
-                  <p>Location</p>
+                  <h2 className="text-lg font-bold text-center">Location</h2>
+                  <p className="text-sm text-dark-600 text-center">
+                    {provider.location}
+                  </p>
+                  <div className="max-w-[95%] md:max-w-[90%] mx-auto mt-5 md:mt-10">
+                    {/* Embed Google Maps iframe  */}
+                    <iframe
+                      src={`https://www.google.com/maps?q=${encodeURIComponent(
+                        provider.location
+                      )}&output=embed`}
+                      width="100%"
+                      height="600"
+                      allowFullScreen=""
+                      loading="lazy"
+                      title="Provider Location"
+                    ></iframe>
+                  </div>
                 </div>
               </TabPanel>
               {/* TODO: save provider review and display here */}
@@ -155,8 +171,22 @@ const FullProfile = () => {
               </TabPanel>
               {/* business hours */}
               <TabPanel>
-                <div>
-                  <p>Business Hours</p>
+                <div className="w-[95%] md:max-w-[50%] mx-auto">
+                  <h2 className="text-lg font-bold text-center">
+                    Business Hours
+                  </h2>
+
+                  {Object.entries(provider.timeTable).map(
+                    ([day, timing], index) => (
+                      <div
+                        key={index}
+                        className="flex justify-between py-2 border-b"
+                      >
+                        <p className="font-medium">{day}</p>
+                        <p>{timing}</p>
+                      </div>
+                    )
+                  )}
                 </div>
               </TabPanel>
             </div>

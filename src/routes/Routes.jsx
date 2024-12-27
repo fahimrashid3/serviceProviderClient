@@ -30,6 +30,10 @@ export const router = createBrowserRouter([
         element: <OurServices />,
       },
       {
+        path: "/ourServices/:category",
+        element: <OurServices />,
+      },
+      {
         path: "/about",
         element: <About />,
       },
