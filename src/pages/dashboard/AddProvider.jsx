@@ -1,6 +1,10 @@
+import axios from "axios";
+import { Helmet } from "react-helmet";
 import { useForm, useFieldArray } from "react-hook-form";
 
 export default function AddProvider() {
+  const cloud_name = import.meta.env.VITE_CLOUD_NAME;
+  const preset_key = import.meta.env.VITE_PRESET_KEY;
   const {
     register,
     control,
@@ -30,12 +34,59 @@ export default function AddProvider() {
     name: "rewards",
   });
 
-  const onSubmit = (data) => {
-    console.log(data);
+  const onSubmit = async (data) => {
+    const { image } = data;
+    // Get the image file
+    const file = image[0];
+
+    // Prepare form data for image upload to Cloudinary
+    const formData = new FormData();
+    formData.append("file", file);
+    formData.append("upload_preset", preset_key);
+
+    // Upload the image to Cloudinary
+    const res = await axios.post(
+      `https://api.cloudinary.com/v1_1/${cloud_name}/image/upload`,
+      formData
+    );
+
+    // Get the secure URL of the uploaded image
+    const userImg = res.data.secure_url;
+    console.log(userImg);
+
+    // Create the providerInfo object
+    const providerInfo = {
+      name: data.name,
+      email: data.email,
+      userImg: userImg, // The uploaded image URL
+      qualification: data.qualification,
+      category: data.category,
+      location: data.location,
+      about: data.about,
+      education: data.education || [],
+      workingExperience: data.workingExperience || [],
+      services: data.services || [],
+      rewards: data.rewards || [],
+      contactNumber: data.contactNumber,
+      timeTable: {
+        Monday: data.timeTable.Monday || "",
+        Tuesday: data.timeTable.Tuesday || "",
+        Wednesday: data.timeTable.Wednesday || "",
+        Thursday: data.timeTable.Thursday || "",
+        Friday: data.timeTable.Friday || "",
+        Saturday: data.timeTable.Saturday || "",
+        Sunday: data.timeTable.Sunday || "",
+      },
+    };
+
+    console.log(providerInfo);
   };
 
   return (
     <div className="p-4">
+      <Helmet>
+        <title>Add Provider</title>
+      </Helmet>
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
         <div className="border p-4 rounded">
           <h2 className="text-lg font-semibold mb-4">Personal Information</h2>
@@ -108,7 +159,7 @@ export default function AddProvider() {
             <label className="label">
               <span className="label-text">Profile Image</span>
             </label>
-            <input type="file" {...register("userImg", { required: true })} />
+            <input type="file" {...register("image", { required: true })} />
           </div>
         </div>
         <div className="border p-4 rounded">
