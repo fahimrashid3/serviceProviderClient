@@ -1,10 +1,17 @@
 import axios from "axios";
 import { Helmet } from "react-helmet";
 import { useForm, useFieldArray } from "react-hook-form";
+import useCategories from "../../hooks/useCategories";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
+import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 
 export default function AddProvider() {
   const cloud_name = import.meta.env.VITE_CLOUD_NAME;
   const preset_key = import.meta.env.VITE_PRESET_KEY;
+  const [categories, categoriesLoading] = useCategories();
+  const AxiosSecure = useAxiosSecure();
+  const navigate = useNavigate();
   const {
     register,
     control,
@@ -52,22 +59,23 @@ export default function AddProvider() {
 
     // Get the secure URL of the uploaded image
     const userImg = res.data.secure_url;
-    console.log(userImg);
+    // console.log(userImg);
 
     // Create the providerInfo object
     const providerInfo = {
-      name: data.name,
-      email: data.email,
-      userImg: userImg, // The uploaded image URL
-      qualification: data.qualification,
-      category: data.category,
-      location: data.location,
-      about: data.about,
+      name: data.name || "",
+      email: data.email || "",
+      userImg: userImg || "",
+      qualification: data.qualification || "",
+      category: data.category || "",
+      rating: { $numberDouble: 0 },
+      location: data.location || "",
+      about: data.about || "",
       education: data.education || [],
       workingExperience: data.workingExperience || [],
       services: data.services || [],
       rewards: data.rewards || [],
-      contactNumber: data.contactNumber,
+      contactNumber: data.contactNumber || "",
       timeTable: {
         Monday: data.timeTable.Monday || "",
         Tuesday: data.timeTable.Tuesday || "",
@@ -77,10 +85,31 @@ export default function AddProvider() {
         Saturday: data.timeTable.Saturday || "",
         Sunday: data.timeTable.Sunday || "",
       },
+      totalReview: { $numberDouble: 0 },
     };
 
-    console.log(providerInfo);
+    // console.log(providerInfo);
+    AxiosSecure.post("/providers", providerInfo).then((res) => {
+      if (res.data.insertedId) {
+        navigate("/");
+        scrollTo(0, 0);
+        Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: "Appointment booked successfully!",
+          showConfirmButton: false,
+          timer: 1000,
+        });
+      }
+    });
   };
+
+  if (categoriesLoading)
+    return (
+      <div className="text-center pt-[40%] h-screen">
+        <span className="loading loading-ball w-[80px] text-primary-400 "></span>
+      </div>
+    );
 
   return (
     <div className="p-4">
@@ -186,14 +215,16 @@ export default function AddProvider() {
               <select
                 defaultValue="default"
                 {...register("category", { required: true })}
-                className="select select-bordered w-full "
+                className="select select-bordered w-full"
               >
                 <option disabled value="default">
-                  Select a item
+                  Select an item
                 </option>
-                <option value="dessert">Doctor</option>
-                <option value="pizza">Teacher</option>
-                <option value="salad">Lawyer</option>
+                {categories.map((category, index) => (
+                  <option key={index} value={category.serviceProviderType}>
+                    {category.serviceProviderType}
+                  </option>
+                ))}
               </select>
             </div>
           </div>

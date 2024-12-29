@@ -127,6 +127,11 @@ const Navbar = () => {
                       </Link>
                     </li>
                     <li>
+                      <Link to="/dashboard/manageContact">
+                        <BsEnvelopeExclamation /> Manage Contacts
+                      </Link>
+                    </li>
+                    <li>
                       <Link to="/dashboard/manageAppointments">
                         <FaCalendarCheck /> Manage Appointments
                       </Link>

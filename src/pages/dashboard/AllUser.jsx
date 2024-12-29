@@ -49,7 +49,7 @@ const AllUser = () => {
         });
       } else if (result.isDenied) {
         // Redirect to the provider role change page
-        navigate(`/changeRole/${user._id}`);
+        navigate(`/dashboard/addProvider/${user._id}`);
       } else {
         // Cancel clicked
         Swal.fire("No changes made", "", "info");

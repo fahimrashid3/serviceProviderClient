@@ -8,7 +8,7 @@ import "swiper/css/pagination";
 import { Pagination } from "swiper/modules";
 import SectionTitle from "../../components/SectionTitle";
 import { Link } from "react-router-dom";
-import useCategories from "../../hooks/useCategory";
+import useCategories from "../../hooks/useCategories";
 
 const Categories = () => {
   const [categories] = useCategories();

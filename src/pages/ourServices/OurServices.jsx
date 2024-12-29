@@ -3,11 +3,12 @@ import { Tab, TabList, TabPanel, Tabs } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
 import SectionBanner from "../../components/SectionBanner";
 import useProviders from "../../hooks/useProviders";
-import useCategories from "../../hooks/useCategory";
+
 import { useState } from "react";
 import Cart from "../../components/Cart";
 import img from "../../assets/services/doctorSectionBanner.png";
 import SectionTitle from "../../components/SectionTitle";
+import useCategories from "../../hooks/useCategories";
 
 const OurServices = () => {
   const [providers, providersLoading] = useProviders();

@@ -17,6 +17,8 @@ import AddProvider from "../pages/dashboard/AddProvider";
 import ManageProviders from "../pages/dashboard/ManageProviders";
 import AdminRoute from "./AdminRoute";
 import FullProfile from "../pages/profile/FullProfile";
+import ManageContact from "../pages/dashboard/ManageContact";
+import ManageReviews from "../pages/dashboard/ManageReviews";
 export const router = createBrowserRouter([
   {
     path: "/",
@@ -110,6 +112,22 @@ export const router = createBrowserRouter([
         element: (
           <AdminRoute>
             <ManageAppointment />
+          </AdminRoute>
+        ),
+      },
+      {
+        path: "manageContact",
+        element: (
+          <AdminRoute>
+            <ManageContact />
+          </AdminRoute>
+        ),
+      },
+      {
+        path: "manageReviews",
+        element: (
+          <AdminRoute>
+            <ManageReviews />
           </AdminRoute>
         ),
       },

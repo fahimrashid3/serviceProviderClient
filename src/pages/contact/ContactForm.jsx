@@ -1,8 +1,14 @@
 import { FaPaperPlane } from "react-icons/fa6";
 import { useForm } from "react-hook-form";
 import useAuth from "../../hooks/useAuth";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
+import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 
 const ContactForm = () => {
+  const { user } = useAuth();
+  const AxiosSecure = useAxiosSecure();
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
@@ -10,8 +16,30 @@ const ContactForm = () => {
     formState: { errors },
   } = useForm();
   // TODO: save the data in the data base
-  const onSubmit = (data) => console.log(data);
-  const { user } = useAuth();
+  const onSubmit = (data) => {
+    const contactSMSInfo = data;
+    console.log(contactSMSInfo);
+    AxiosSecure.post("/contacts", contactSMSInfo).then((res) => {
+      if (res.data.insertedId) {
+        navigate("/");
+        scrollTo(0, 0);
+        Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: "Message sent successfully!",
+          showConfirmButton: false,
+          timer: 1000,
+        });
+      }
+    });
+  };
+  if (!user) {
+    return (
+      <div className="text-center pt-[40%] h-screen">
+        <span className="loading loading-ball w-[80px] text-primary-400"></span>
+      </div>
+    );
+  }
 
   return (
     <form

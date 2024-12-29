@@ -11,7 +11,11 @@ const Cart = ({ provider }) => {
     >
       <div className="card card-compact bg-base-100 shadow-xl">
         <figure>
-          <img src={userImg} alt={category} />
+          <img
+            className="w-full h-96 object-cover object-center max-h-96"
+            src={userImg}
+            alt={category}
+          />
         </figure>
         <div className="card-body">
           <p className="text-green-500">Available</p>

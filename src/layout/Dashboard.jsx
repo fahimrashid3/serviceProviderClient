@@ -78,6 +78,11 @@ const DashBoard = () => {
                 </NavLink>
               </li>
               <li>
+                <NavLink to="/dashboard/manageContact">
+                  <BsEnvelopeExclamation /> Manage Contact
+                </NavLink>
+              </li>
+              <li>
                 <NavLink to="/dashboard/manageAppointments">
                   <FaCalendarCheck /> Manage Appointments
                 </NavLink>

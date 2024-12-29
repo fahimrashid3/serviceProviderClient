@@ -10,7 +10,7 @@ const FullProfile = () => {
   const tabName = ["Overview", "Location", "Review", "Business Hours"];
   const location = useLocation();
   const { provider, category } = location.state || {};
-  console.log(provider.totalReview);
+  // console.log(provider.totalReview);
   if (!provider || !category)
     return (
       <div className="text-center pt-[40%] h-screen">
@@ -32,7 +32,7 @@ const FullProfile = () => {
           <div className="hero-content flex-col lg:flex-row">
             <img
               src={provider.userImg}
-              className="max-w-sm rounded-lg shadow-2xl"
+              className="max-w-sm max-h-96 min-w-64 min-h-80 rounded-lg shadow-2xl"
             />
             <div>
               <h1 className="text-5xl font-bold text-center md:text-left">

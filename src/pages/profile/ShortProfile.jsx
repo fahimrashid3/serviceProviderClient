@@ -19,16 +19,19 @@ const ShortProfile = () => {
       setCategoryName(data.category);
     });
   }, [_id, axiosPublic]);
+
   useEffect(() => {
     axiosPublic
       .get("/category", { params: { category: categoryName } })
       .then((res) => {
-        console.log(res.data);
+        // console.log(res.data);
         setCategory(res.data);
       });
   }, [axiosPublic, categoryName]);
-  console.log(provider);
-  console.log(category);
+
+  // console.log(provider);
+  // console.log(category);
+
   if (!provider || !category)
     return (
       <div className="text-center pt-[40%] h-screen">
@@ -48,21 +51,25 @@ const ShortProfile = () => {
       ></SectionTitle> */}
       <div className="flex gap-10 max-w-[95%] md:max-w-[90%] mx-auto mt-6 md:mt-10">
         <div className="flex-1">
-          <img className="rounded-lg " src={provider.userImg} alt="" />
+          <img
+            className="w-full sm:h-auto md:h-[750px] object-cover rounded-lg"
+            src={provider.userImg}
+            alt={provider.name}
+          />
         </div>
         <div className="flex-1 lg:space-y-5">
           <p className="font-semibold lg:text-3xl md:text-2xl text-xl">
             Our Services
           </p>
-          <div className=" rounded-lg p-5 bg-dark-200 dark:bg-dark-700">
+          <div className="rounded-lg p-5 bg-dark-200 dark:bg-dark-700">
             <p className="font-bold text-lg">{provider.name}</p>
             <p>{provider.qualification}</p>
             <p>{provider.location}</p>
           </div>
           <img
-            className="w-full h-[200px] rounded-lg"
+            className="w-full h-96 object-cover rounded-lg"
             src={category.serviceImg}
-            alt=""
+            alt={category.serviceProviderType}
           />
           <p className="text-lg">{provider.about}</p>
           <Link

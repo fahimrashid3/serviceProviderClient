@@ -15,14 +15,17 @@ import "swiper/css/navigation";
 import { Autoplay, Navigation } from "swiper/modules";
 import { Rating } from "@smastrom/react-rating";
 import "@smastrom/react-rating/style.css";
+import useAxiosPublic from "../../hooks/useAxiosPublic";
 
 const Reviews = () => {
+  const axiosPublic = useAxiosPublic();
   const [reviews, setReviews] = useState([]);
   useEffect(() => {
-    fetch("http://localhost:8000/reviews")
-      .then((res) => res.json())
-      .then((data) => setReviews(data));
-  }, []);
+    axiosPublic.get("reviews").then((res) => {
+      setReviews(res.data);
+    });
+  }, [axiosPublic]);
+
   return (
     <section>
       <SectionTitle

@@ -16,7 +16,7 @@ const ManageAppointment = () => {
     },
   });
   return (
-    <div>
+    <div className="-mt-20">
       <Helmet>
         <title>Manage Appointment</title>
       </Helmet>

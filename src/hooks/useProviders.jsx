@@ -1,16 +1,16 @@
 import { useEffect, useState } from "react";
+import useAxiosPublic from "./useAxiosPublic";
 
 const useProviders = () => {
   const [providers, setProviders] = useState([]);
   const [providersLoading, setProvidersLoading] = useState(true);
+  const axiosPublic = useAxiosPublic();
   useEffect(() => {
-    fetch("http://localhost:8000/providers")
-      .then((res) => res.json())
-      .then((data) => {
-        setProviders(data);
-        setProvidersLoading(false);
-      });
-  }, []);
+    axiosPublic.get("providers").then((res) => {
+      setProviders(res.data);
+      setProvidersLoading(false);
+    });
+  }, [axiosPublic]);
   return [providers, providersLoading];
 };
 

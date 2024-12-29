@@ -1,7 +1,7 @@
 import { Helmet } from "react-helmet";
 import SectionTitle from "../../components/SectionTitle";
 import SectionBanner from "../../components/SectionBanner";
-import useCategories from "../../hooks/useCategory";
+import useCategories from "../../hooks/useCategories";
 import { useEffect, useState } from "react";
 import Swal from "sweetalert2";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
