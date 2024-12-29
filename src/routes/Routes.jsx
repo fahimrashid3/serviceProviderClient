@@ -13,6 +13,7 @@ import Dashboard from "../layout/Dashboard";
 import MyAppointment from "../pages/dashboard/MyAppointment";
 import AllUser from "../pages/dashboard/AllUser";
 import ManageAppointment from "../pages/dashboard/ManageAppointment";
+import AddProvider from "../pages/dashboard/AddProvider";
 import ManageProviders from "../pages/dashboard/ManageProviders";
 import AdminRoute from "./AdminRoute";
 import FullProfile from "../pages/profile/FullProfile";
@@ -93,6 +94,14 @@ export const router = createBrowserRouter([
         element: (
           <AdminRoute>
             <ManageProviders />
+          </AdminRoute>
+        ),
+      },
+      {
+        path: "addProviders",
+        element: (
+          <AdminRoute>
+            <AddProvider />
           </AdminRoute>
         ),
       },

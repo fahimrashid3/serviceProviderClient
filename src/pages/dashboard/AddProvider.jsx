@@ -1,0 +1,291 @@
+import { useForm, useFieldArray } from "react-hook-form";
+
+export default function AddProvider() {
+  const {
+    register,
+    control,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+
+  const { fields: educationFields, append: addEducation } = useFieldArray({
+    control,
+    name: "education",
+  });
+
+  const { fields: workingFields, append: addWorkingExperience } = useFieldArray(
+    {
+      control,
+      name: "workingExperience",
+    }
+  );
+
+  const { fields: servicesFields, append: addService } = useFieldArray({
+    control,
+    name: "services",
+  });
+
+  const { fields: rewardsFields, append: addReward } = useFieldArray({
+    control,
+    name: "rewards",
+  });
+
+  const onSubmit = (data) => {
+    console.log(data);
+  };
+
+  return (
+    <div className="p-4">
+      <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+        <div className="border p-4 rounded">
+          <h2 className="text-lg font-semibold mb-4">Personal Information</h2>
+          <div className="md:flex gap-5">
+            {/* input name */}
+            <div className="flex-1">
+              <label className="label">
+                <span className="label-text">Name</span>
+              </label>
+              <input
+                placeholder="Name"
+                className="input input-bordered w-full"
+                {...register("name", { required: "Name is required" })}
+              />
+              {errors.name && (
+                <p className="text-red-500">{errors.name.message}</p>
+              )}
+            </div>
+            {/* input email */}
+            <div className="flex-1">
+              <label className="label">
+                <span className="label-text">Email</span>
+              </label>
+              <input
+                placeholder="example@email.com"
+                className="input input-bordered w-full"
+                {...register("email", { required: "Email is required" })}
+              />
+              {errors.email && (
+                <p className="text-red-500">{errors.email.message}</p>
+              )}
+            </div>
+          </div>
+          <div className="md:flex gap-5">
+            {/* contact number */}
+            <div className="flex-1">
+              <label className="label">
+                <span className="label-text">Contact Number</span>
+              </label>
+              <input
+                placeholder="+8801*********"
+                className="input input-bordered w-full"
+                {...register("contactNumber")}
+              />
+            </div>
+            {/* location */}
+            <div className="flex-1">
+              <label className="label">
+                <span className="label-text">Location</span>
+              </label>
+              <input
+                placeholder="Dhaka, bangladesh"
+                className="input input-bordered w-full"
+                {...register("location")}
+              />
+            </div>
+          </div>
+
+          <div className="form-control">
+            <label className="label">
+              <span className="label-text">About</span>
+            </label>
+            <textarea
+              placeholder="Details about You"
+              className="textarea textarea-bordered textarea-md w-full max-w-full"
+              {...register("about")}
+            />
+          </div>
+          <div className="form-control">
+            <label className="label">
+              <span className="label-text">Profile Image</span>
+            </label>
+            <input type="file" {...register("userImg", { required: true })} />
+          </div>
+        </div>
+        <div className="border p-4 rounded">
+          <h2 className="text-lg font-semibold mb-4">
+            Professional Information
+          </h2>
+          <div className="flex gap-5">
+            {/* qualification */}
+            <div className="flex-1">
+              <label className="label">
+                <span className="label-text">Qualification</span>
+              </label>
+              <input
+                placeholder="MSc, PhD"
+                className="input input-bordered w-full"
+                {...register("qualification")}
+              />
+            </div>
+            {/* select category */}
+            <div className="flex-1">
+              <label className="label">
+                <span className="label-text">Category</span>
+              </label>
+              <select
+                defaultValue="default"
+                {...register("category", { required: true })}
+                className="select select-bordered w-full "
+              >
+                <option disabled value="default">
+                  Select a item
+                </option>
+                <option value="dessert">Doctor</option>
+                <option value="pizza">Teacher</option>
+                <option value="salad">Lawyer</option>
+              </select>
+            </div>
+          </div>
+          <div className="mt-4">
+            <label className="label">
+              <span className="label-text">Education</span>
+            </label>
+            {educationFields.map((item, index) => (
+              <div key={item.id} className="space-y-2 md:space-x-3">
+                <input
+                  className="input input-bordered w-full max-w-lg"
+                  placeholder="Degree"
+                  {...register(`education.${index}.degree`)}
+                />
+                <input
+                  className="input input-bordered w-full max-w-lg"
+                  placeholder="Institution"
+                  {...register(`education.${index}.institution`)}
+                />
+                <input
+                  className="input input-bordered w-full max-w-lg"
+                  placeholder="Year"
+                  {...register(`education.${index}.time`)}
+                />
+              </div>
+            ))}
+            <button
+              type="button"
+              onClick={() =>
+                addEducation({ degree: "", institution: "", time: "" })
+              }
+              className="btn btn-sm btn-outline mt-2"
+            >
+              Add Education
+            </button>
+          </div>
+          <div className="mt-4">
+            <label className="label">
+              <span className="label-text">Working Experience</span>
+            </label>
+            {workingFields.map((item, index) => (
+              <div key={item.id} className="space-y-2">
+                <input
+                  className="input input-bordered w-full"
+                  placeholder="Experience"
+                  {...register(`workingExperience.${index}`)}
+                />
+              </div>
+            ))}
+            <button
+              type="button"
+              onClick={() => addWorkingExperience("")}
+              className="btn btn-sm btn-outline mt-2"
+            >
+              Add Experience
+            </button>
+          </div>
+          <div className="mt-4">
+            <label className="label">
+              <span className="label-text">Services</span>
+            </label>
+            {servicesFields.map((item, index) => (
+              <div key={item.id} className="space-y-2">
+                <input
+                  className="input input-bordered w-full"
+                  placeholder="Service"
+                  {...register(`services.${index}`)}
+                />
+              </div>
+            ))}
+            <button
+              type="button"
+              onClick={() => addService("")}
+              className="btn btn-sm btn-outline mt-2"
+            >
+              Add Service
+            </button>
+          </div>
+          <div className="mt-4">
+            <label className="label">
+              <span className="label-text">Rewards</span>
+            </label>
+            {rewardsFields.map((item, index) => (
+              <div key={item.id} className="space-y-2 md:space-x-3">
+                <input
+                  className="input input-bordered w-full max-w-lg"
+                  placeholder="Reward Name"
+                  {...register(`rewards.${index}.name`)}
+                />
+                <input
+                  className="input input-bordered w-full max-w-lg"
+                  placeholder="Date"
+                  {...register(`rewards.${index}.date`)}
+                />
+                <input
+                  className="input input-bordered w-full max-w-lg"
+                  placeholder="Description"
+                  {...register(`rewards.${index}.description`)}
+                />
+              </div>
+            ))}
+            <button
+              type="button"
+              onClick={() => addReward({ name: "", date: "", description: "" })}
+              className="btn btn-sm btn-outline mt-2"
+            >
+              Add Reward
+            </button>
+          </div>
+        </div>
+        <div className="border p-4 rounded">
+          <h2 className="text-lg font-semibold mb-4">Time table</h2>
+          <div className="grid grid-cols-2 gap-4">
+            {[
+              "Monday",
+              "Tuesday",
+              "Wednesday",
+              "Thursday",
+              "Friday",
+              "Saturday",
+              "Sunday",
+            ].map((day) => (
+              <div key={day} className="form-control">
+                <label className="label">
+                  <span className="label-text">{day}</span>
+                </label>
+                <input
+                  className="input input-bordered w-full"
+                  placeholder={`Time for ${day} or close`}
+                  {...register(`timeTable.${day}`)}
+                />
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <button
+          type="submit"
+          className="btn bg-transparent border-1 border-b-4 border-primary-600 text-primary-600 hover:bg-primary-600 hover:text-white hover:border-primary-600 flex gap-3 text-lg w-[95%] mx-auto"
+        >
+          Add Provider
+        </button>
+      </form>
+    </div>
+  );
+}
