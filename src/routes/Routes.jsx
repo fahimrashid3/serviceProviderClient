@@ -42,7 +42,11 @@ export const router = createBrowserRouter([
       },
       {
         path: "/contact",
-        element: <Contact />,
+        element: (
+          <PrivetRoute>
+            <Contact />
+          </PrivetRoute>
+        ),
       },
       {
         path: "/appointment",
