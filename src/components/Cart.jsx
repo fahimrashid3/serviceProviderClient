@@ -6,13 +6,13 @@ const Cart = ({ provider }) => {
   return (
     <div
       className="
-      overflow-hidden  hover:translate-y-[-10px] transition-all duration-500 border rounded-xl
+      overflow-hidden hover:translate-y-[-10px] transition-all duration-500 border rounded-xl
         drop-shadow-lg shadow-dark-900 dark:shadow-dark-200"
     >
       <div className="card card-compact bg-base-100 shadow-xl ">
         <figure>
           <img
-            className="w-full h-48 object-cover object-center"
+            className="w-full h-60 object-cover object-center"
             src={userImg}
             alt={category}
           />
