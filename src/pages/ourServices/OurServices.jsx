@@ -54,10 +54,10 @@ const OurServices = () => {
                   ))}
                 </TabList>
               </div>
-              <div className="mt-10">
+              <div className="my-5">
                 {categories.map((category) => (
                   <TabPanel key={category._id}>
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
+                    <div className="grid gap-5 grid-cols-[repeat(auto-fit,minmax(250px,1fr))]">
                       {providers
                         .filter(
                           (provider) =>
