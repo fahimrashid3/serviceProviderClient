@@ -128,8 +128,12 @@ const Appointment = () => {
           heading={"Book an appointment"}
           subHeading={"Find your requirements"}
         />
-        <div className="md:flex md:flex-row-reverse lg:px-20 md:px-12 px-5">
-          <div className="md:w-1/4 bg-white md:p-10 p-5 rounded-lg max-w-[90%] mx-auto space-y-6 flex flex-col justify-evenly shadow-primary-400 shadow-2xl">
+        <div className="flex flex-col-reverse md:flex-row-reverse lg:px-20 md:px-12 px-5">
+          <div
+            className="
+          md:w-1/4 w-full mt-10  md:mt-0 bg-white md:p-10 p-5 rounded-lg md:max-w-[90%] mx-auto
+           space-y-6 flex flex-col justify-evenly shadow-primary-400 shadow-2xl"
+          >
             <div className="flex justify-between text-xl font-semibold">
               <p>Category :</p>
               <p>{selectedCategory ? submittedCategory : "Select category"}</p>

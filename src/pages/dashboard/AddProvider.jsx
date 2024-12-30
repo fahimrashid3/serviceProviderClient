@@ -112,7 +112,7 @@ export default function AddProvider() {
     );
 
   return (
-    <div className="p-4">
+    <div className="md:p-4">
       <Helmet>
         <title>Add Provider</title>
       </Helmet>
@@ -353,7 +353,7 @@ export default function AddProvider() {
                 </label>
                 <input
                   className="input input-bordered w-full"
-                  placeholder={`Time for ${day} or close`}
+                  placeholder={`Time for ${day}`}
                   {...register(`timeTable.${day}`)}
                 />
               </div>
