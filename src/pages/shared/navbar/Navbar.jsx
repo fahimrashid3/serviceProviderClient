@@ -96,7 +96,7 @@ const Navbar = () => {
               <div
                 tabIndex={0}
                 role="button"
-                className=" pr-5 text-4xl dark:text-dark-900 dark:hover:text-dark-700 text-white hover:text-gray-300"
+                className=" pr-5 text-4xl dark:text-white dark:hover:text-gray-100 text-white hover:text-gray-300"
               >
                 <CgProfile />
               </div>

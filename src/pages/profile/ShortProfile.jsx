@@ -49,13 +49,16 @@ const ShortProfile = () => {
         heading={provider.name}
         subHeading={provider.category}
       ></SectionTitle> */}
-      <div className="flex gap-10 max-w-[95%] md:max-w-[90%] mx-auto mt-6 md:mt-10">
+      <div className="md:flex gap-10 max-w-[95%] md:max-w-[90%] mx-auto mt-6 md:mt-10">
         <div className="flex-1">
-          <img
-            className="w-full sm:h-auto md:h-[750px] object-cover rounded-lg"
-            src={provider.userImg}
-            alt={provider.name}
-          />
+        <div className="h-[700px]">
+  <img
+    className="object-cover rounded-lg w-full h-full"
+    src={provider.userImg}
+    alt={provider.name}
+  />
+</div>
+
         </div>
         <div className="flex-1 lg:space-y-5">
           <p className="font-semibold lg:text-3xl md:text-2xl text-xl">
@@ -67,7 +70,7 @@ const ShortProfile = () => {
             <p>{provider.location}</p>
           </div>
           <img
-            className="w-full h-96 object-cover rounded-lg"
+            className="w-full h-56 object-cover rounded-lg"
             src={category.serviceImg}
             alt={category.serviceProviderType}
           />
@@ -75,7 +78,7 @@ const ShortProfile = () => {
           <Link
             to={`/fullProfile/${_id}`}
             state={{ provider, category }}
-            className="btn btn-success btn-outline"
+            className="btn btn-success btn-outline max-w-40 my-3"
           >
             View Full Profile
           </Link>

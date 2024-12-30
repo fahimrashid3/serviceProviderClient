@@ -27,12 +27,12 @@ const FullProfile = () => {
         heading={provider.name}
         subHeading={provider.category}
       ></SectionTitle> */}
-      <div className="md:max-w-[90%] bg-white md:mx-auto mt-5 md:mt-16">
-        <div className="hero border">
+      <div className="md:max-w-[90%] bg-white dark:bg-dark-900 md:mx-auto mt-5 md:mt-16">
+        <div className="hero border dark:border-dark-500">
           <div className="hero-content flex-col lg:flex-row">
             <img
               src={provider.userImg}
-              className="max-w-sm max-h-96 min-w-64 min-h-80 rounded-lg shadow-2xl"
+              className="max-h-80 min-h-60 rounded-lg shadow-2xl"
             />
             <div>
               <h1 className="text-5xl font-bold text-center md:text-left">

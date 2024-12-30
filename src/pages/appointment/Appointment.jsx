@@ -124,33 +124,34 @@ const Appointment = () => {
           img={"https://i.ibb.co.com/6bm34g2/appointment.jpg"}
           title="Appointment"
         />
-        <SectionTitle
+       <SectionTitle
           heading={"Book an appointment"}
           subHeading={"Find your requirements"}
         />
         <div className="flex flex-col-reverse md:flex-row-reverse lg:px-20 md:px-12 px-5">
+          <div className="md:w-1/4 mt-10 md:mt-0">
           <div
             className="
-          md:w-1/4 w-full mt-10  md:mt-0 bg-white md:p-10 p-5 rounded-lg md:max-w-[90%] mx-auto
-           space-y-6 flex flex-col justify-evenly shadow-primary-400 shadow-2xl"
+           bg-white py-5 px-3 rounded-lg md:max-w-[98%] mx-auto
+           space-y-6 flex flex-col  shadow-primary-400 shadow-2xl"
           >
-            <div className="flex justify-between text-xl font-semibold">
+            <div className="flex justify-between">
               <p>Category :</p>
               <p>{selectedCategory ? submittedCategory : "Select category"}</p>
             </div>
-            <div className="flex justify-between text-xl font-semibold">
+            <div className="flex justify-between">
               <p>Price (taka) :</p>
               <p>{selectedCategory ? submittedPrice : "Select category"}</p>
             </div>
-            <div className="flex justify-between text-xl font-semibold">
+            <div className="flex justify-between">
               <p>Meeting Time :</p>
               <p>{selectedCategory ? submittedTime : "Select category"}</p>
             </div>
-            <div className="flex justify-between text-xl font-semibold">
+            <div className="flex justify-between">
               <p>Date :</p>
               <p>{selectedDate || "Select Date"}</p>
             </div>
-            <div className="flex justify-between text-xl font-semibold">
+            <div className="flex justify-between">
               <p>Time :</p>
               <p>{slotTime || "Select Time"}</p>
             </div>
@@ -169,11 +170,13 @@ const Appointment = () => {
               Book now
             </button>
           </div>
+          </div>
           <div className="md:w-3/4 md:pr-20 pr-5">
             <p className="font-bold text-3xl pt-16 text-primary-600">
               Select Category
             </p>
-            <div className="flex gap-5 justify-start mt-5">
+            {/* category display section */}
+            <div className="grid lg:grid-cols-5 md:grid-cols-3 grid-cols-2 gap-5 justify-start mt-5">
               {categories.map((category) => (
                 <div
                   key={category._id}
@@ -200,7 +203,8 @@ const Appointment = () => {
             <p className="font-bold text-3xl pt-16 text-primary-600">
               Select Date
             </p>
-            <div className="grid lg:grid-cols-6 md:grid-cols-4 grid-cols-3 gap-5 sm:my-4 w-full mt-4">
+            {/* display date section */}
+            <div className="grid lg:grid-cols-5 md:grid-cols-4 grid-cols-3 gap-5 sm:my-4 w-full mt-4">
               {timeSlot.map((item, index) => (
                 <div
                   onClick={() => handleDateClick(index)}
