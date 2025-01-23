@@ -124,52 +124,54 @@ const Appointment = () => {
           img={"https://i.ibb.co.com/6bm34g2/appointment.jpg"}
           title="Appointment"
         />
-       <SectionTitle
+        <SectionTitle
           heading={"Book an appointment"}
           subHeading={"Find your requirements"}
         />
         <div className="flex flex-col-reverse md:flex-row-reverse lg:px-20 md:px-12 px-5">
           <div className="md:w-1/4 mt-10 md:mt-0">
-          <div
-            className="
-           bg-white py-5 px-3 rounded-lg md:max-w-[98%] mx-auto
-           space-y-6 flex flex-col  shadow-primary-400 shadow-2xl"
-          >
-            <div className="flex justify-between">
-              <p>Category :</p>
-              <p>{selectedCategory ? submittedCategory : "Select category"}</p>
-            </div>
-            <div className="flex justify-between">
-              <p>Price (taka) :</p>
-              <p>{selectedCategory ? submittedPrice : "Select category"}</p>
-            </div>
-            <div className="flex justify-between">
-              <p>Meeting Time :</p>
-              <p>{selectedCategory ? submittedTime : "Select category"}</p>
-            </div>
-            <div className="flex justify-between">
-              <p>Date :</p>
-              <p>{selectedDate || "Select Date"}</p>
-            </div>
-            <div className="flex justify-between">
-              <p>Time :</p>
-              <p>{slotTime || "Select Time"}</p>
-            </div>
-            <div className="mx-auto flex justify-center mt-10"></div>
-            <button
-              onClick={handleAppointment}
-              disabled={!selectedCategory || !selectedDate || !slotTime}
-              className={`btn border-b-8 font-semibold 
-                  text-primary-900 hover:text-white hover:border-primary-600 border-primary-700 bg-primary-300 hover:bg-primary-500 
-                  transition-all duration-200 w-full ${
-                    !selectedCategory || !selectedDate || !slotTime
-                      ? "opacity-50 cursor-not-allowed"
-                      : ""
-                  }`}
+            <div
+              className="
+            bg-white py-5 px-3 rounded-lg md:max-w-[98%] mx-auto
+            space-y-6 flex flex-col  shadow-primary-400 shadow-2xl"
             >
-              Book now
-            </button>
-          </div>
+              <div className="flex justify-between">
+                <p>Category :</p>
+                <p>
+                  {selectedCategory ? submittedCategory : "Select category"}
+                </p>
+              </div>
+              <div className="flex justify-between">
+                <p>Price (taka) :</p>
+                <p>{selectedCategory ? submittedPrice : "Select category"}</p>
+              </div>
+              <div className="flex justify-between">
+                <p>Meeting Time :</p>
+                <p>{selectedCategory ? submittedTime : "Select category"}</p>
+              </div>
+              <div className="flex justify-between">
+                <p>Date :</p>
+                <p>{selectedDate || "Select Date"}</p>
+              </div>
+              <div className="flex justify-between">
+                <p>Time :</p>
+                <p>{slotTime || "Select Time"}</p>
+              </div>
+              <div className="mx-auto flex justify-center mt-10"></div>
+              <button
+                onClick={handleAppointment}
+                disabled={!selectedCategory || !selectedDate || !slotTime}
+                className={`btn border-b-8 font-semibold 
+                    text-primary-900 hover:text-white hover:border-primary-600 border-primary-700 bg-primary-300 hover:bg-primary-500 
+                    transition-all duration-200 w-full ${
+                      !selectedCategory || !selectedDate || !slotTime
+                        ? "opacity-50 cursor-not-allowed"
+                        : ""
+                    }`}
+              >
+                Book now
+              </button>
+            </div>
           </div>
           <div className="md:w-3/4 md:pr-20 pr-5">
             <p className="font-bold text-3xl pt-16 text-primary-600">

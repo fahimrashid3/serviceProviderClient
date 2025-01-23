@@ -8,6 +8,7 @@ const Checkout = () => {
   const [categories] = useCategories();
   const [selectedAppointments, setSelectedAppointments] = useState([]); // Track selected items
   const [totalPrice, setTotalPrice] = useState(0);
+
   // Handle checkbox change
   const handleCheckboxChange = (appointmentId, category) => {
     const categoryData = categories.find(
@@ -32,14 +33,14 @@ const Checkout = () => {
   };
 
   return (
-    <div className="-mt-20">
+    <div className="-mt-20 min-h-screen lg:px-20 md:px-16 px-10 bg-gray-50">
       <SectionBanner
         title={"CheckOut "}
         descriptions={"select services from your booked appointment to payment"}
       ></SectionBanner>
       <div>
-        <div className="overflow-x-auto">
-          <table className="table table-zebra">
+        <div className="overflow-x-auto md:flex gap-5">
+          <table className="table table-zebra md:w-2/3 border p-3 md:p-5 lg:p-10 rounded-lg md:rounded-xl">
             {/* head */}
             <thead>
               <tr>
@@ -73,8 +74,8 @@ const Checkout = () => {
                       </label>
                     </th>
                     <td>{app.category}</td>
-                    <td>{app.date}</td>
-                    <td>{app.time}</td>
+                    <td className="text-xs lg:text-md">{app.date}</td>
+                    <td className="text-xs lg:text-md">{app.time}</td>
                     <td>{categoryData?.price || "N/A"}</td>
                     <th>
                       <button className="btn btn-ghost btn-xs">details</button>
@@ -84,20 +85,24 @@ const Checkout = () => {
               })}
             </tbody>
           </table>
-          {/* Display total price */}
-          <div className="text-right mt-4">
-            <p className="font-bold text-lg">
-              Total Price (Selected): ${totalPrice.toFixed(2)}
-            </p>
-          </div>
-          {/* Display selected appointments array */}
-          <div className="mt-4">
-            <p className="font-bold text-md">Selected Appointments:</p>
-            <ul>
-              {selectedAppointments.map((id) => (
-                <li key={id}>{id}</li>
-              ))}
-            </ul>
+          <div className="md:w-1/3 lg:w-1/3 sticky top-4 mt-4 border p-3 md:p-5 lg:p-10 rounded-lg md:rounded-xl bg-white dark:bg-black text-black dark:text-dark-200 shadow-lg max-h-96">
+            <div>
+              <p className="font-bold text-lg">
+                Total Price (Selected): {totalPrice.toFixed(2)} taka
+              </p>
+              <p className="font-bold text-lg">
+                Total Item (Selected): {selectedAppointments.length}
+              </p>
+            </div>
+
+            <button
+              disabled={selectedAppointments == 0}
+              className="btn border-b-8 font-semibold 
+      text-primary-900 hover:text-white hover:border-primary-600 border-primary-700 bg-primary-300 hover:bg-primary-500 
+      transition-all duration-200 w-full "
+            >
+              Pay Now
+            </button>
           </div>
         </div>
       </div>
