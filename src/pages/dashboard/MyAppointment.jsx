@@ -3,6 +3,7 @@ import SectionTitle from "../../components/SectionTitle";
 import useAppointment from "../../hooks/useAppointment";
 import Swal from "sweetalert2";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
+import { Link } from "react-router-dom";
 
 const MyAppointment = () => {
   const [appointment, refetch] = useAppointment();
@@ -41,9 +42,17 @@ const MyAppointment = () => {
         subHeading="My Appointment"
       ></SectionTitle>
       <div>
-        <p className="lg:text-4xl md:text-3xl text-2xl md:font-bold font-semibold md:my-5 my-3">
-          Total appointment : {appointment.length}
-        </p>
+        <div className="md:flex md:items-center md:justify-between text-center mx-auto">
+          <p className="lg:text-4xl md:text-3xl text-2xl md:font-bold font-semibold md:my-5 my-3">
+            Total appointment : {appointment.length}
+          </p>
+          <Link
+            to={"/checkout"}
+            className="btn btn-ghost btn-outline btn-warning"
+          >
+            Pay
+          </Link>
+        </div>
         <div className="overflow-x-auto">
           <table className="table table-zebra">
             {/* head */}
@@ -55,7 +64,6 @@ const MyAppointment = () => {
                 <th>Time</th>
                 <th>Price (Taka)</th>
                 <th>Delete</th>
-                <th>Payment</th>
               </tr>
             </thead>
             <tbody>
@@ -74,12 +82,6 @@ const MyAppointment = () => {
                       className="btn  btn-ghost btn-outline btn-error text-2xl"
                     >
                       <AiTwotoneDelete />
-                    </button>
-                  </td>
-
-                  <td>
-                    <button className="btn btn-ghost btn-outline btn-warning">
-                      Pay
                     </button>
                   </td>
                 </tr>

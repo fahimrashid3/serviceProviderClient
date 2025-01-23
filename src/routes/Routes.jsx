@@ -19,6 +19,7 @@ import AdminRoute from "./AdminRoute";
 import FullProfile from "../pages/profile/FullProfile";
 import ManageContact from "../pages/dashboard/ManageContact";
 import ManageReviews from "../pages/dashboard/ManageReviews";
+import Checkout from "../pages/dashboard/Checkout";
 export const router = createBrowserRouter([
   {
     path: "/",
@@ -71,6 +72,10 @@ export const router = createBrowserRouter([
       {
         path: "/registration",
         element: <Registration />,
+      },
+      {
+        path: "/checkout",
+        element: <Checkout />,
       },
     ],
   },
