@@ -2,9 +2,11 @@ import { useState } from "react";
 import SectionBanner from "../../components/SectionBanner";
 import useAppointment from "../../hooks/useAppointment";
 import useCategories from "../../hooks/useCategories";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
 
 const Checkout = () => {
   const [appointment] = useAppointment();
+  const axiosSecure = useAxiosSecure();
   const [categories] = useCategories();
   const [selectedAppointments, setSelectedAppointments] = useState([]); // Track selected items
   const [totalPrice, setTotalPrice] = useState(0);
@@ -30,6 +32,23 @@ const Checkout = () => {
         return [...prevSelected, appointmentId];
       }
     });
+  };
+
+  const handelCreatePayment = () => {
+    axiosSecure
+      .post("/create-payment", {
+        selectedAppointments,
+        amount: totalPrice,
+        currency: "BDT",
+      })
+      .then((res) => {
+        // console.log(res);
+        const gatewayPageURL = res.data;
+        console.log(gatewayPageURL);
+        if (gatewayPageURL) {
+          window.location.replace(gatewayPageURL);
+        }
+      });
   };
 
   return (
@@ -96,6 +115,7 @@ const Checkout = () => {
             </div>
 
             <button
+              onClick={handelCreatePayment}
               disabled={selectedAppointments == 0}
               className="btn border-b-8 font-semibold 
       text-primary-900 hover:text-white hover:border-primary-600 border-primary-700 bg-primary-300 hover:bg-primary-500 
