@@ -3,7 +3,7 @@ import SectionTitle from "../../components/SectionTitle";
 
 const About = () => {
   return (
-    <div className="pt-5">
+    <div className="pt-16">
       <Helmet>
         <title>About us</title>
       </Helmet>

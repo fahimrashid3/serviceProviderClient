@@ -3,14 +3,23 @@ import SectionBanner from "../../components/SectionBanner";
 import useAppointment from "../../hooks/useAppointment";
 import useCategories from "../../hooks/useCategories";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
+import useUsers from "../../hooks/useUser";
 
 const Checkout = () => {
   const [appointment] = useAppointment();
+  const [users, loading] = useUsers();
   const axiosSecure = useAxiosSecure();
   const [categories] = useCategories();
   const [selectedAppointments, setSelectedAppointments] = useState([]); // Track selected items
   const [totalPrice, setTotalPrice] = useState(0);
 
+  if (loading) {
+    return (
+      <div className="text-center pt-[40%] h-screen">
+        <span className="loading loading-ball w-[80px] text-primary-400"></span>
+      </div>
+    );
+  }
   // Handle checkbox change
   const handleCheckboxChange = (appointmentId, category) => {
     const categoryData = categories.find(
@@ -40,6 +49,8 @@ const Checkout = () => {
         selectedAppointments,
         amount: totalPrice,
         currency: "BDT",
+        customerName: users.name,
+        customerEmail: users.email,
       })
       .then((res) => {
         // console.log(res);
@@ -51,6 +62,8 @@ const Checkout = () => {
       });
   };
 
+  // console.log("user from auth", user);
+  console.log("user from db", users);
   return (
     <div className="-mt-20 min-h-screen lg:px-20 md:px-16 px-10 bg-gray-50">
       <SectionBanner
