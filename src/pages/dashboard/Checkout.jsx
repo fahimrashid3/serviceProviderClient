@@ -5,6 +5,7 @@ import useCategories from "../../hooks/useCategories";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import useUsers from "../../hooks/useUser";
 import { MdOutlineDownloadDone } from "react-icons/md";
+import Loading from "../../components/Loading";
 
 const Checkout = () => {
   const [appointment] = useAppointment();
@@ -16,8 +17,8 @@ const Checkout = () => {
 
   if (loading) {
     return (
-      <div className="text-center pt-[40%] h-screen">
-        <span className="loading loading-ball w-[80px] text-primary-400"></span>
+      <div>
+        <Loading></Loading>
       </div>
     );
   }

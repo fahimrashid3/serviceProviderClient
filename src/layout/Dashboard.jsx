@@ -11,9 +11,23 @@ import { MdOutlineMenuOpen } from "react-icons/md";
 import { IoMdPersonAdd } from "react-icons/io";
 import { BsEnvelopeExclamation } from "react-icons/bs";
 import useAdmin from "../hooks/useAdmin";
+import useProviders from "../hooks/useProviders";
+import Loading from "../components/Loading";
+import useAuth from "../hooks/useAuth";
 
 const DashBoard = () => {
   const [isAdmin] = useAdmin();
+  const [providers, providersLoading] = useProviders();
+  const { user, loading } = useAuth();
+
+  if (loading || providersLoading) {
+    return (
+      <div>
+        <Loading></Loading>
+      </div>
+    );
+  }
+  console.log(user.email, providers);
 
   return (
     <div className="drawer lg:drawer-open">
@@ -54,8 +68,9 @@ const DashBoard = () => {
           className="drawer-overlay"
         ></label>
         <ul className="menu bg-base-200 text-base-content min-h-full w-80 p-4">
-          {/* Sidebar content */}
+          {/* Conditional Navigation */}
           {isAdmin ? (
+            // Admin Navigation
             <>
               <li>
                 <NavLink to="/dashboard/adminHome">
@@ -93,7 +108,27 @@ const DashBoard = () => {
                 </NavLink>
               </li>
             </>
+          ) : providers.some((provider) => provider.email === user.email) ? (
+            // Provider Navigation
+            <>
+              <li>
+                <NavLink to="/dashboard/providerHome">
+                  <FaHome /> Provider Home
+                </NavLink>
+              </li>
+              <li>
+                <NavLink to="/dashboard/myServices">
+                  <MdOutlineMenuOpen /> My Services
+                </NavLink>
+              </li>
+              <li>
+                <NavLink to="/dashboard/manageAppointments">
+                  <FaCalendar /> Manage Appointments
+                </NavLink>
+              </li>
+            </>
           ) : (
+            // General User Navigation
             <>
               <li>
                 <NavLink to="/dashboard/userHome">
@@ -111,14 +146,16 @@ const DashBoard = () => {
                 </NavLink>
               </li>
               <li>
-                <NavLink to="/dashboard/Reviews">
+                <NavLink to="/dashboard/reviews">
                   <BsEnvelopeExclamation /> Reviews
                 </NavLink>
               </li>
             </>
           )}
+
           <div className="divider"></div>
-          {/* Shared Nav */}
+
+          {/* Shared Nav - Always displayed */}
           <li>
             <NavLink to="/">
               <FaHome /> Home

@@ -5,6 +5,7 @@ import { FaEye } from "react-icons/fa";
 import SectionTitle from "../../components/SectionTitle";
 import { AiTwotoneDelete } from "react-icons/ai";
 import { Link } from "react-router-dom";
+import Loading from "../../components/Loading";
 
 const ManageProviders = () => {
   const [providers, providersLoading] = useProviders();
@@ -13,8 +14,8 @@ const ManageProviders = () => {
 
   if (providersLoading) {
     return (
-      <div className="text-center pt-[40%] h-screen">
-        <span className="loading loading-ball w-[80px] text-primary-400"></span>
+      <div>
+        <Loading></Loading>
       </div>
     );
   }

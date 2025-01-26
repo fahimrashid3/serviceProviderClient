@@ -1,23 +1,32 @@
 import { Helmet } from "react-helmet";
-import useUser from "../../hooks/useUser";
 import "react-tabs/style/react-tabs.css";
 import { FaEdit, FaEye } from "react-icons/fa";
 import SectionTitle from "../../components/SectionTitle";
 import Swal from "sweetalert2";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import { useNavigate } from "react-router-dom";
-import useUsers from "../../hooks/useUser";
+import Loading from "../../components/Loading";
+import { useQuery } from "@tanstack/react-query";
 
 const AllUser = () => {
-  const [users, loading] = useUser();
-  const [, , refetch] = useUsers();
   const axiosSecure = useAxiosSecure();
   const navigate = useNavigate();
 
+  const {
+    data: users = [],
+    loading,
+    refetch,
+  } = useQuery({
+    queryKey: ["users"],
+    queryFn: async () => {
+      const res = await axiosSecure.get("/users");
+      return res.data;
+    },
+  });
   if (loading) {
     return (
-      <div className="text-center pt-[40%] h-screen">
-        <span className="loading loading-ball w-[80px] text-primary-400"></span>
+      <div>
+        <Loading></Loading>
       </div>
     );
   }

@@ -4,6 +4,7 @@ import useAuth from "../../hooks/useAuth";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
+import Loading from "../../components/Loading";
 
 const ContactForm = () => {
   const { user } = useAuth();
@@ -35,8 +36,8 @@ const ContactForm = () => {
   };
   if (!user) {
     return (
-      <div className="text-center pt-[40%] h-screen">
-        <span className="loading loading-ball w-[80px] text-primary-400"></span>
+      <div>
+        <Loading></Loading>
       </div>
     );
   }

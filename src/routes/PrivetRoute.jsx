@@ -1,13 +1,14 @@
 import { Navigate, useLocation } from "react-router-dom";
 import useAuth from "../hooks/useAuth";
+import Loading from "../components/Loading";
 
 const PrivetRoute = ({ children }) => {
   const location = useLocation();
   const { user, loading } = useAuth();
   if (loading)
     return (
-      <div className="text-center pt-[40%] h-screen">
-        <span className="loading loading-ball w-[80px] text-primary-400 "></span>
+      <div>
+        <Loading></Loading>
       </div>
     );
 

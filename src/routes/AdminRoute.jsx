@@ -1,6 +1,7 @@
 import { Navigate, useLocation } from "react-router-dom";
 import useAdmin from "../hooks/useAdmin";
 import useAuth from "../hooks/useAuth";
+import Loading from "../components/Loading";
 
 const AdminRoute = ({ children }) => {
   const [isAdmin, isAdminLoading] = useAdmin();
@@ -9,8 +10,8 @@ const AdminRoute = ({ children }) => {
 
   if (isAdminLoading || loading) {
     return (
-      <div className="text-center pt-[40%] h-screen">
-        <span className="loading loading-ball w-[80px] text-primary-400 "></span>
+      <div>
+        <Loading></Loading>
       </div>
     );
   }
