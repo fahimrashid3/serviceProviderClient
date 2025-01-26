@@ -22,6 +22,7 @@ import ManageReviews from "../pages/dashboard/ManageReviews";
 import Checkout from "../pages/dashboard/Checkout";
 import Success from "../pages/payment/Success";
 import Cancel from "../pages/payment/Cancel";
+import MyServices from "../pages/dashboard/MyServices";
 export const router = createBrowserRouter([
   {
     path: "/",
@@ -100,6 +101,11 @@ export const router = createBrowserRouter([
       {
         path: "myAppointment",
         element: <MyAppointment />,
+      },
+      // provider routs
+      {
+        path: "myServices",
+        element: <MyServices />,
       },
       // admin routs
       {

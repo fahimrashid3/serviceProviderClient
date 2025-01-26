@@ -7,15 +7,16 @@ import { CgProfile } from "react-icons/cg";
 import { FaRegCalendarCheck } from "react-icons/fa6";
 import Swal from "sweetalert2";
 import useAppointment from "../../../hooks/useAppointment";
-import { LuLayoutDashboard } from "react-icons/lu";
 import useAdmin from "../../../hooks/useAdmin";
 import { FaCalendarCheck, FaHome, FaUsers } from "react-icons/fa";
 import { BsEnvelopeExclamation } from "react-icons/bs";
 import { MdOutlineMenuOpen } from "react-icons/md";
 import { IoMdPersonAdd } from "react-icons/io";
+import useProvider from "../../../hooks/useProvider";
 
 const Navbar = () => {
   const [isAdmin] = useAdmin();
+  const [isProvider] = useProvider();
   const [appointment] = useAppointment();
   const { user, logOut } = useAuth();
   const handelLogout = () => {
@@ -104,7 +105,7 @@ const Navbar = () => {
                 tabIndex={0}
                 className="dropdown-content menu bg-dark-900 text-white dark:bg-gray-400 dark:text-dark-900  rounded-box z-[1] w-64 p-2 shadow"
               >
-                {isAdmin ? (
+                {isAdmin && (
                   <>
                     <li>
                       <Link to="/dashboard/adminHome">
@@ -141,74 +142,65 @@ const Navbar = () => {
                         <FaUsers /> All Users
                       </Link>
                     </li>
-
+                  </>
+                )}
+                {isProvider && (
+                  <>
                     <li>
-                      {user ? (
-                        <p onClick={handelLogout}>
-                          <span className="text-2xl font-semibold">
-                            <CiLogout />{" "}
-                          </span>
-                          logout
-                        </p>
-                      ) : (
-                        <Link to="/login">
-                          <span className="text-2xl">
-                            <FiLogIn />{" "}
-                          </span>
-                          Login
-                        </Link>
-                      )}
+                      <Link to="/dashboard/providerProfile">
+                        <FaHome /> Provider Profile
+                      </Link>
+                    </li>
+                    <li>
+                      <Link to="/dashboard/providerProfile">
+                        <FaHome /> Provider Profile
+                      </Link>
                     </li>
                   </>
-                ) : (
+                )}
+                {!isProvider && !isAdmin && (
                   <>
                     <li>
                       <Link to="/userProfile">
                         <span className="text-2xl">
                           <CgProfile />
-                        </span>{" "}
+                        </span>
                         Profile
-                      </Link>
-                    </li>
-                    <li>
-                      <Link to="/dashboard">
-                        <span className="text-2xl">
-                          <LuLayoutDashboard />
-                        </span>{" "}
-                        DashBoard
                       </Link>
                     </li>
                     <li>
                       <Link to="/dashboard/myAppointment">
                         <span className="text-2xl">
                           <FaRegCalendarCheck />
-                        </span>{" "}
+                        </span>
                         My Appointment
                         <div className="badge badge-secondary">
                           {appointment.length}
                         </div>
                       </Link>
                     </li>
-
-                    <li>
-                      {user ? (
-                        <p onClick={handelLogout}>
-                          <span className="text-2xl font-semibold">
-                            <CiLogout />{" "}
-                          </span>
-                          logout
-                        </p>
-                      ) : (
-                        <Link to="/login">
-                          <span className="text-2xl">
-                            <FiLogIn />{" "}
-                          </span>
-                          Login
-                        </Link>
-                      )}
-                    </li>
                   </>
                 )}
+
+                <>
+                  <li>
+                    {user ? (
+                      <p onClick={handelLogout}>
+                        <span className="text-2xl font-semibold">
+                          <CiLogout />{" "}
+                        </span>
+                        logout
+                      </p>
+                    ) : (
+                      <Link to="/login">
+                        <span className="text-2xl">
+                          <FiLogIn />{" "}
+                        </span>
+                        Login
+                      </Link>
+                    )}
+                  </li>
+                </>
               </ul>
             </div>
           </div>

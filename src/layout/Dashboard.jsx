@@ -11,23 +11,11 @@ import { MdOutlineMenuOpen } from "react-icons/md";
 import { IoMdPersonAdd } from "react-icons/io";
 import { BsEnvelopeExclamation } from "react-icons/bs";
 import useAdmin from "../hooks/useAdmin";
-import useProviders from "../hooks/useProviders";
-import Loading from "../components/Loading";
-import useAuth from "../hooks/useAuth";
+import useProvider from "../hooks/useProvider";
 
 const DashBoard = () => {
   const [isAdmin] = useAdmin();
-  const [providers, providersLoading] = useProviders();
-  const { user, loading } = useAuth();
-
-  if (loading || providersLoading) {
-    return (
-      <div>
-        <Loading></Loading>
-      </div>
-    );
-  }
-  console.log(user.email, providers);
+  const [isProvider] = useProvider();
 
   return (
     <div className="drawer lg:drawer-open">
@@ -108,7 +96,7 @@ const DashBoard = () => {
                 </NavLink>
               </li>
             </>
-          ) : providers.some((provider) => provider.email === user.email) ? (
+          ) : isProvider ? (
             // Provider Navigation
             <>
               <li>
@@ -121,11 +109,11 @@ const DashBoard = () => {
                   <MdOutlineMenuOpen /> My Services
                 </NavLink>
               </li>
-              <li>
+              {/* <li>
                 <NavLink to="/dashboard/manageAppointments">
                   <FaCalendar /> Manage Appointments
                 </NavLink>
-              </li>
+              </li> */}
             </>
           ) : (
             // General User Navigation

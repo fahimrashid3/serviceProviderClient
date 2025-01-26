@@ -44,7 +44,7 @@ const AllUser = () => {
     }).then((result) => {
       if (result.isConfirmed) {
         // Make Admin
-        axiosSecure.patch(`user/admin/${user._id}`).then((res) => {
+        axiosSecure.patch(`/user/admin/${user._id}`).then((res) => {
           if (res.data.modifiedCount > 0) {
             refetch();
             Swal.fire({
@@ -58,10 +58,17 @@ const AllUser = () => {
         });
       } else if (result.isDenied) {
         // Redirect to the provider role change page
-        navigate(`/dashboard/addProvider/${user._id}`);
+        // Absolute path to avoid issues
+        //TODO: set email auto for each user when click specific user role change button
+        navigate("/dashboard/addProviders");
       } else {
         // Cancel clicked
-        Swal.fire("No changes made", "", "info");
+        Swal.fire({
+          title: "No changes made",
+          icon: "info",
+          timer: 1500,
+          showConfirmButton: false,
+        });
       }
     });
   };
