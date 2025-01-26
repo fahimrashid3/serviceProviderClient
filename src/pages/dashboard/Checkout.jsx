@@ -4,6 +4,7 @@ import useAppointment from "../../hooks/useAppointment";
 import useCategories from "../../hooks/useCategories";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import useUsers from "../../hooks/useUser";
+import { MdOutlineDownloadDone } from "react-icons/md";
 
 const Checkout = () => {
   const [appointment] = useAppointment();
@@ -94,21 +95,28 @@ const Checkout = () => {
                 return (
                   <tr key={index}>
                     <th>
-                      <label>
-                        <input
-                          type="checkbox"
-                          className="checkbox"
-                          onChange={() =>
-                            handleCheckboxChange(app._id, app.category)
-                          }
-                          checked={selectedAppointments.includes(app._id)} // Mark as checked if selected
-                        />
-                      </label>
+                      {app.status !== "paid" ? (
+                        <label>
+                          <input
+                            type="checkbox"
+                            className="checkbox"
+                            onChange={() =>
+                              handleCheckboxChange(app._id, app.category)
+                            }
+                            checked={selectedAppointments.includes(app._id)} // Mark as checked if selected
+                          />
+                        </label>
+                      ) : (
+                        <div className="text-green-500 text-2xl font-bold">
+                          <MdOutlineDownloadDone />
+                        </div>
+                      )}
                     </th>
                     <td>{app.category}</td>
                     <td className="text-xs lg:text-md">{app.date}</td>
                     <td className="text-xs lg:text-md">{app.time}</td>
                     <td>{categoryData?.price || "N/A"}</td>
+                    {/* TODO:show detail of appointment */}
                     <th>
                       <button className="btn btn-ghost btn-xs">details</button>
                     </th>

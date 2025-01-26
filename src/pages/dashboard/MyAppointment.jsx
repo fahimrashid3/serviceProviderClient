@@ -64,6 +64,7 @@ const MyAppointment = () => {
                 <th>date</th>
                 <th>Time</th>
                 <th>Price (Taka)</th>
+                <th>Status</th>
                 <th>Delete</th>
               </tr>
             </thead>
@@ -76,14 +77,27 @@ const MyAppointment = () => {
                   <td>{item.date}</td>
                   <td>{item.time}</td>
                   <td>{item.price}</td>
+                  <td>
+                    {item.status === "paid" ? (
+                      <p className="text-green-500 text-lg font-semibold">
+                        Paid
+                      </p>
+                    ) : (
+                      item.status || "N/A"
+                    )}
+                  </td>
 
                   <td>
-                    <button
-                      onClick={() => handelDeleteAppointment(item._id)}
-                      className="btn  btn-ghost btn-outline btn-error text-2xl"
-                    >
-                      <AiTwotoneDelete />
-                    </button>
+                    {item.status !== "paid" ? (
+                      <button
+                        onClick={() => handelDeleteAppointment(item._id)}
+                        className="btn  btn-ghost btn-outline btn-error text-2xl"
+                      >
+                        <AiTwotoneDelete />
+                      </button>
+                    ) : (
+                      <p>Paid</p>
+                    )}
                   </td>
                 </tr>
               ))}

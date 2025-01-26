@@ -5,11 +5,13 @@ import useCategories from "../../hooks/useCategories";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
+import { useState } from "react";
 
 export default function AddProvider() {
   const cloud_name = import.meta.env.VITE_CLOUD_NAME;
   const preset_key = import.meta.env.VITE_PRESET_KEY;
   const [categories, categoriesLoading] = useCategories();
+  const [response, setResponse] = useState("");
   const AxiosSecure = useAxiosSecure();
   const navigate = useNavigate();
   const {
@@ -91,6 +93,7 @@ export default function AddProvider() {
     // console.log(providerInfo);
     AxiosSecure.post("/providers", providerInfo).then((res) => {
       if (res.data.insertedId) {
+        setResponse("");
         navigate("/");
         scrollTo(0, 0);
         Swal.fire({
@@ -100,6 +103,8 @@ export default function AddProvider() {
           showConfirmButton: false,
           timer: 1000,
         });
+      } else {
+        setResponse(res.data.message);
       }
     });
   };
@@ -367,6 +372,9 @@ export default function AddProvider() {
         >
           Add Provider
         </button>
+        <p className="text-red-700 text-center font-semibold text-lg">
+          {response}
+        </p>
       </form>
     </div>
   );
