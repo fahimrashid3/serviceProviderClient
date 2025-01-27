@@ -23,6 +23,9 @@ import Checkout from "../pages/dashboard/Checkout";
 import Success from "../pages/payment/Success";
 import Cancel from "../pages/payment/Cancel";
 import MyServices from "../pages/dashboard/MyServices";
+import AdminProfile from "../pages/dashboard/profile/AdminProfile";
+import ProviderProfile from "../pages/dashboard/profile/ProviderProfile";
+import UserProfile from "../pages/dashboard/profile/UserProfile";
 export const router = createBrowserRouter([
   {
     path: "/",
@@ -102,11 +105,20 @@ export const router = createBrowserRouter([
         path: "myAppointment",
         element: <MyAppointment />,
       },
+      {
+        path: "userProfile",
+        element: <UserProfile />,
+      },
       // provider routs
       {
         path: "myServices",
         element: <MyServices />,
       },
+      {
+        path: "providerProfile",
+        element: <ProviderProfile />,
+      },
+
       // admin routs
       {
         path: "allUsers",
@@ -124,6 +136,15 @@ export const router = createBrowserRouter([
           </AdminRoute>
         ),
       },
+      {
+        path: "adminHome",
+        element: (
+          <AdminRoute>
+            <AdminProfile />
+          </AdminRoute>
+        ),
+      },
+
       {
         path: "addProviders",
         element: (

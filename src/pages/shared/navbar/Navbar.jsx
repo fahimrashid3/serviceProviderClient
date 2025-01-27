@@ -161,7 +161,7 @@ const Navbar = () => {
                 {!isProvider && !isAdmin && (
                   <>
                     <li>
-                      <Link to="/userProfile">
+                      <Link to="/dashboard/userProfile">
                         <span className="text-2xl">
                           <CgProfile />
                         </span>

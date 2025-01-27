@@ -119,8 +119,8 @@ const DashBoard = () => {
             // General User Navigation
             <>
               <li>
-                <NavLink to="/dashboard/userHome">
-                  <FaHome /> User Home
+                <NavLink to="/dashboard/userProfile">
+                  <FaHome /> My Profile
                 </NavLink>
               </li>
               <li>
