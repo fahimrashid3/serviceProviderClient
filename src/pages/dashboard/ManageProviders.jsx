@@ -6,12 +6,43 @@ import SectionTitle from "../../components/SectionTitle";
 import { AiTwotoneDelete } from "react-icons/ai";
 import { Link } from "react-router-dom";
 import Loading from "../../components/Loading";
+import Swal from "sweetalert2";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
+import useAppointment from "../../hooks/useAppointment";
 
 const ManageProviders = () => {
+  const [, refetch] = useAppointment();
+
   const [providers, providersLoading] = useProviders();
+  const axiosSecure = useAxiosSecure();
 
   // const navigate = useNavigate();
-
+  const handelDeleteProvider = (_id) => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        axiosSecure.delete(`/providers/${_id}`).then((res) => {
+          if (res.data.deletedCount > 0) {
+            refetch();
+            Swal.fire({
+              position: "top-end",
+              icon: "success",
+              title: "Deleted!",
+              showConfirmButton: false,
+              timer: 1500,
+            });
+          }
+        });
+      }
+    });
+  };
   if (providersLoading) {
     return (
       <div>
@@ -66,7 +97,10 @@ const ManageProviders = () => {
                 </Link>
               </td>
               <td>
-                <button className="btn btn-ghost btn-outline btn-error text-2xl">
+                <button
+                  onClick={() => handelDeleteProvider(provider._id)}
+                  className="btn btn-ghost btn-outline btn-error text-2xl"
+                >
                   <AiTwotoneDelete />
                 </button>
               </td>
