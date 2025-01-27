@@ -6,6 +6,7 @@ import { Helmet } from "react-helmet";
 import { Tab, TabList, TabPanel, Tabs } from "react-tabs";
 import { useState } from "react";
 import { FaEdit } from "react-icons/fa";
+import AssignProvider from "../../components/AssignProvider";
 
 const ManageAppointment = () => {
   const axiosSecure = useAxiosSecure();
@@ -126,9 +127,29 @@ const ManageAppointment = () => {
                         <td>{item.time}</td>
                         <td>{item.status || "Paid"}</td>
                         <td>
-                          <button className="btn btn-ghost btn-outline btn-success text-2xl">
+                          <button
+                            className="btn btn-ghost btn-outline btn-success text-2xl"
+                            onClick={() =>
+                              document.getElementById("my_modal_3").showModal()
+                            }
+                          >
                             <FaEdit />
                           </button>
+                          <dialog id="my_modal_3" className="modal">
+                            <div className="modal-box">
+                              <form method="dialog">
+                                {/* if there is a button in form, it will close the modal */}
+                                <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">
+                                  ✕
+                                </button>
+                              </form>
+                              <p className="py-4">
+                                <AssignProvider
+                                  appointment={item}
+                                ></AssignProvider>
+                              </p>
+                            </div>
+                          </dialog>
                         </td>
                       </tr>
                     ))}
@@ -162,9 +183,30 @@ const ManageAppointment = () => {
                         <td>{item.time}</td>
                         <td>{item.status || "Placed"}</td>
                         <td>
-                          <button className="btn btn-ghost btn-outline btn-warning text-2xl">
+                          <button
+                            className="btn btn-ghost btn-outline btn-warning text-2xl"
+                            onClick={() =>
+                              document.getElementById("my_modal_3").showModal()
+                            }
+                          >
                             <FaEdit />
                           </button>
+                          <dialog id="my_modal_3" className="modal">
+                            <div className="modal-box">
+                              <form method="dialog">
+                                {/* if there is a button in form, it will close the modal */}
+                                <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">
+                                  ✕
+                                </button>
+                              </form>
+                              <h3 className="font-bold text-lg">Hello!</h3>
+                              <p className="py-4">
+                                <AssignProvider
+                                  appointment={item}
+                                ></AssignProvider>
+                              </p>
+                            </div>
+                          </dialog>
                         </td>
                       </tr>
                     ))}
