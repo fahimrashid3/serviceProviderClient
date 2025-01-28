@@ -1,31 +1,30 @@
 import Loading from "./Loading";
 import useProviders from "../hooks/useProviders";
-import { Navigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import useAxiosSecure from "../hooks/useAxiosSecure";
 import Swal from "sweetalert2";
 import useAppointments from "../hooks/useAppointments";
 
-const AssignProvider = ({ appointment }) => {
-  const [, refetch] = useAppointments();
-
+const AssignProvider = () => {
+  const { _id } = useParams();
+  const navigate = useNavigate();
+  const [aLLAppointments, refetch] = useAppointments();
   const [providers, providersLoading] = useProviders();
   const axiosSecure = useAxiosSecure();
-  const {
-    register,
-    handleSubmit,
-    reset,
-    // watch,
-    // formState: { errors },
-  } = useForm();
+
+  // Find the specific appointment
+  const appointment = aLLAppointments.find((app) => app._id === _id);
+
+  const { register, handleSubmit, reset } = useForm();
 
   const onSubmit = async (data) => {
-    // Retrieve provider details using the selected value
     const selectedProvider = providers.find(
       (provider) => provider._id === data.selectItem
     );
+
     const appointmentUpdateInfo = {
-      appointmentId: appointment._id,
+      appointmentId: _id,
       status: "placed",
       providerEmail: selectedProvider.email,
     };
@@ -41,22 +40,20 @@ const AssignProvider = ({ appointment }) => {
           showConfirmButton: false,
           timer: 1500,
         });
+        navigate("/dashboard/manageAppointments");
       }
     });
   };
 
-  if (!appointment) {
-    Navigate("/dashboard"); // Adjust this path as needed
-    return null;
+  // Show loading if data is not ready
+  if (!appointment || providersLoading) {
+    return <Loading />;
   }
 
+  // Filter providers based on appointment category
   const requiredProvider = providers.filter(
     (provider) => provider.category === appointment.category
   );
-  console.log(requiredProvider);
-  if (providersLoading) {
-    return <Loading />;
-  }
 
   return (
     <div className="p-5">
@@ -87,7 +84,7 @@ const AssignProvider = ({ appointment }) => {
             htmlFor="providerSelect"
             className="block font-semibold text-lg mb-2"
           >
-            Assign a Provider:{appointment.category}
+            Assign a Provider: {appointment.category}
           </label>
           <select
             id="providerSelect"
@@ -95,21 +92,20 @@ const AssignProvider = ({ appointment }) => {
             {...register("selectItem", { required: true })}
           >
             <option disabled selected>
-              = {appointment.providerEmail || "N/A"}
+              {appointment.providerEmail || appointment.category}
             </option>
             {requiredProvider.map((provider) => (
               <option key={provider._id} value={provider._id}>
-                {`Name:${provider.name} Email:${provider.email} Email:${provider.category}`}
+                {`Name: ${provider.name}, Email: ${provider.email}, Category: ${provider.category}`}
               </option>
             ))}
           </select>
         </div>
         <button
-          className="
-          btn border-b-8 font-semibold text-primary-900 hover:text-white hover:border-primary-600 border-primary-700 bg-primary-300 hover:bg-primary-500 
+          className="btn border-b-8 font-semibold text-primary-900 hover:text-white hover:border-primary-600 border-primary-700 bg-primary-300 hover:bg-primary-500 
                     transition-all duration-200 w-full"
         >
-          Assign {requiredProvider.category}
+          Assign
         </button>
       </form>
     </div>

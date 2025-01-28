@@ -26,6 +26,7 @@ import MyServices from "../pages/dashboard/MyServices";
 import AdminProfile from "../pages/dashboard/profile/AdminProfile";
 import ProviderProfile from "../pages/dashboard/profile/ProviderProfile";
 import UserProfile from "../pages/dashboard/profile/UserProfile";
+import AssignProvider from "../components/AssignProvider";
 export const router = createBrowserRouter([
   {
     path: "/",
@@ -125,6 +126,14 @@ export const router = createBrowserRouter([
         element: (
           <AdminRoute>
             <AllUser />
+          </AdminRoute>
+        ),
+      },
+      {
+        path: "assignProvider/:_id",
+        element: (
+          <AdminRoute>
+            <AssignProvider />
           </AdminRoute>
         ),
       },
