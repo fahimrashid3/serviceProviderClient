@@ -1,24 +1,61 @@
 import Loading from "./Loading";
 import useProviders from "../hooks/useProviders";
 import { Navigate } from "react-router-dom";
+import { useForm } from "react-hook-form";
+import useAxiosSecure from "../hooks/useAxiosSecure";
+import Swal from "sweetalert2";
+import useAppointments from "../hooks/useAppointments";
 
 const AssignProvider = ({ appointment }) => {
-  const [providers, providersLoading] = useProviders();
+  const [, refetch] = useAppointments();
 
-  // Redirect to a default page if `item` is missing
+  const [providers, providersLoading] = useProviders();
+  const axiosSecure = useAxiosSecure();
+  const {
+    register,
+    handleSubmit,
+    reset,
+    // watch,
+    // formState: { errors },
+  } = useForm();
+
+  const onSubmit = async (data) => {
+    // Retrieve provider details using the selected value
+    const selectedProvider = providers.find(
+      (provider) => provider._id === data.selectItem
+    );
+    const appointmentUpdateInfo = {
+      appointmentId: appointment._id,
+      status: "placed",
+      providerEmail: selectedProvider.email,
+    };
+
+    axiosSecure.patch("/appointment", appointmentUpdateInfo).then((res) => {
+      if (res.data.modifiedCount > 0) {
+        reset();
+        refetch();
+        Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: `Appointment Placed to ${selectedProvider.name}`,
+          showConfirmButton: false,
+          timer: 1500,
+        });
+      }
+    });
+  };
+
   if (!appointment) {
     Navigate("/dashboard"); // Adjust this path as needed
     return null;
   }
 
-  // Filter providers based on the item's category
   const requiredProvider = providers.filter(
-    (provider) => provider.status === appointment.serviceProviderType
+    (provider) => provider.category === appointment.category
   );
-  console.log("all provider", providers);
   console.log(requiredProvider);
   if (providersLoading) {
-    return <Loading></Loading>;
+    return <Loading />;
   }
 
   return (
@@ -27,7 +64,6 @@ const AssignProvider = ({ appointment }) => {
         Appointment Details
       </p>
 
-      {/* Display User Details */}
       <div className="flex justify-center gap-10 text-lg">
         <div className="font-semibold">
           <p>Type:</p>
@@ -45,28 +81,37 @@ const AssignProvider = ({ appointment }) => {
         </div>
       </div>
 
-      {/* Dropdown to Select Provider */}
-      <div className="mt-10 text-center">
-        <label
-          htmlFor="providerSelect"
-          className="block font-semibold text-lg mb-2"
-        >
-          Assign a Provider:
-        </label>
-        <select
-          id="providerSelect"
-          className="select select-ghost w-full max-w-xs border border-gray-300 rounded-md p-2"
-        >
-          <option disabled selected>
-            Pick the best {appointment.category || "provider"}
-          </option>
-          {requiredProvider.map((provider) => (
-            <option key={provider._id} value={provider._id}>
-              {`Name:${provider.name} Email:${provider.email}`}
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <div className="mt-10 text-center">
+          <label
+            htmlFor="providerSelect"
+            className="block font-semibold text-lg mb-2"
+          >
+            Assign a Provider:{appointment.category}
+          </label>
+          <select
+            id="providerSelect"
+            className="select select-ghost w-full max-w-lg border border-gray-300 rounded-md p-2"
+            {...register("selectItem", { required: true })}
+          >
+            <option disabled selected>
+              = {appointment.providerEmail || "N/A"}
             </option>
-          ))}
-        </select>
-      </div>
+            {requiredProvider.map((provider) => (
+              <option key={provider._id} value={provider._id}>
+                {`Name:${provider.name} Email:${provider.email} Email:${provider.category}`}
+              </option>
+            ))}
+          </select>
+        </div>
+        <button
+          className="
+          btn border-b-8 font-semibold text-primary-900 hover:text-white hover:border-primary-600 border-primary-700 bg-primary-300 hover:bg-primary-500 
+                    transition-all duration-200 w-full"
+        >
+          Assign {requiredProvider.category}
+        </button>
+      </form>
     </div>
   );
 };

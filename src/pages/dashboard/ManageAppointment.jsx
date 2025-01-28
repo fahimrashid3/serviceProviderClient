@@ -1,5 +1,3 @@
-import { useQuery } from "@tanstack/react-query";
-import useAxiosSecure from "../../hooks/useAxiosSecure";
 import { AiTwotoneDelete } from "react-icons/ai";
 import SectionTitle from "../../components/SectionTitle";
 import { Helmet } from "react-helmet";
@@ -7,30 +5,32 @@ import { Tab, TabList, TabPanel, Tabs } from "react-tabs";
 import { useState } from "react";
 import { FaEdit } from "react-icons/fa";
 import AssignProvider from "../../components/AssignProvider";
+import useAppointments from "../../hooks/useAppointments";
 
 const ManageAppointment = () => {
-  const axiosSecure = useAxiosSecure();
+  // const axiosSecure = useAxiosSecure();
 
   // Fetch appointments data using react-query
-  const { data: appointments = [] } = useQuery({
-    queryKey: ["appointments"],
-    queryFn: async () => {
-      const res = await axiosSecure.get(`/AllAppointments`);
-      return res.data;
-    },
-  });
+  // const { data: appointments = [] } = useQuery({
+  //   queryKey: ["appointments"],
+  //   queryFn: async () => {
+  //     const res = await axiosSecure.get(`/AllAppointments`);
+  //     return res.data;
+  //   },
+  // });
+  const [aLLAppointments] = useAppointments();
 
   // Filter appointments by status
-  const pendingAppointments = appointments.filter(
+  const pendingAppointments = aLLAppointments.filter(
     (item) => item.status === "pending" || !item.status
   );
-  const paidAppointments = appointments.filter(
+  const paidAppointments = aLLAppointments.filter(
     (item) => item.status === "paid"
   );
-  const placedAppointments = appointments.filter(
+  const placedAppointments = aLLAppointments.filter(
     (item) => item.status === "placed"
   );
-  const completeAppointments = appointments.filter(
+  const completeAppointments = aLLAppointments.filter(
     (item) => item.status === "complete"
   );
 
