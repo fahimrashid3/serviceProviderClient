@@ -128,7 +128,7 @@ const ManageAppointment = () => {
                         <td>{item.status || "Paid"}</td>
                         <td>
                           <Link to={`/dashboard/assignProvider/${item._id}`}>
-                            <div className="btn btn-ghost btn-outline btn-warning text-2xl">
+                            <div className="btn btn-ghost btn-outline btn-success text-2xl">
                               <FaEdit />
                             </div>
                           </Link>

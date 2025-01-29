@@ -147,13 +147,13 @@ const Navbar = () => {
                 {isProvider && (
                   <>
                     <li>
-                      <Link to="/dashboard/providerProfile">
-                        <FaHome /> Provider Profile
+                      <Link to="/dashboard/providerHome">
+                        <FaHome /> Provider Home
                       </Link>
                     </li>
                     <li>
-                      <Link to="/dashboard/providerProfile">
-                        <FaHome /> Provider Profile
+                      <Link to="/dashboard/myServices">
+                        <FaHome /> My Services
                       </Link>
                     </li>
                   </>

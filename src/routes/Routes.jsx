@@ -116,7 +116,7 @@ export const router = createBrowserRouter([
         element: <MyServices />,
       },
       {
-        path: "providerProfile",
+        path: "providerHome",
         element: <ProviderProfile />,
       },
 
