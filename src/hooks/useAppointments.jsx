@@ -3,13 +3,13 @@ import useAxiosSecure from "./useAxiosSecure";
 
 const useAppointments = () => {
   const axiosSecure = useAxiosSecure();
-  const { data: aLLAppointments = [], refetch } = useQuery({
+  const { data: allAppointments = [], refetch } = useQuery({
     queryKey: ["appointments"],
     queryFn: async () => {
-      const res = await axiosSecure.get(`/AllAppointments`);
+      const res = await axiosSecure.get(`/allAppointments`);
       return res.data;
     },
   });
-  return [aLLAppointments, refetch];
+  return [allAppointments, refetch];
 };
 export default useAppointments;

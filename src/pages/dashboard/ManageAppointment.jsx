@@ -14,23 +14,23 @@ const ManageAppointment = () => {
   // const { data: appointments = [] } = useQuery({
   //   queryKey: ["appointments"],
   //   queryFn: async () => {
-  //     const res = await axiosSecure.get(`/AllAppointments`);
+  //     const res = await axiosSecure.get(`/allAppointments`);
   //     return res.data;
   //   },
   // });
-  const [aLLAppointments] = useAppointments();
-
+  const [allAppointments] = useAppointments();
+  allAppointments;
   // Filter appointments by status
-  const pendingAppointments = aLLAppointments.filter(
+  const pendingAppointments = allAppointments.filter(
     (item) => item.status === "pending" || !item.status
   );
-  const paidAppointments = aLLAppointments.filter(
+  const paidAppointments = allAppointments.filter(
     (item) => item.status === "paid"
   );
-  const placedAppointments = aLLAppointments.filter(
+  const placedAppointments = allAppointments.filter(
     (item) => item.status === "placed"
   );
-  const completeAppointments = aLLAppointments.filter(
+  const completeAppointments = allAppointments.filter(
     (item) => item.status === "complete"
   );
 

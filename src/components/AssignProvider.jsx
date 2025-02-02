@@ -9,12 +9,12 @@ import useAppointments from "../hooks/useAppointments";
 const AssignProvider = () => {
   const { _id } = useParams();
   const navigate = useNavigate();
-  const [aLLAppointments, refetch] = useAppointments();
+  const [allAppointments, refetch] = useAppointments();
   const [providers, providersLoading] = useProviders();
   const axiosSecure = useAxiosSecure();
 
   // Find the specific appointment
-  const appointment = aLLAppointments.find((app) => app._id === _id);
+  const appointment = allAppointments.find((app) => app._id === _id);
 
   const { register, handleSubmit, reset } = useForm();
 
@@ -28,6 +28,7 @@ const AssignProvider = () => {
       status: "placed",
       providerEmail: selectedProvider.email,
     };
+    console.log("appointment details ", appointmentUpdateInfo);
 
     axiosSecure.patch("/appointment", appointmentUpdateInfo).then((res) => {
       if (res.data.modifiedCount > 0) {

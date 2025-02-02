@@ -110,7 +110,16 @@ const AllUser = () => {
                 </button>
               </td>
               <td>
-                {user.role === "admin" ? (
+                {user.rol || <p>{user.role}</p>}
+                {!user.rol || (
+                  <button
+                    className="btn btn-ghost btn-outline btn-warning text-2xl"
+                    onClick={() => manageChangeRole(user)}
+                  >
+                    <FaEdit />
+                  </button>
+                )}
+                {/* {user.role === "admin" ? (
                   <p>admin</p>
                 ) : (
                   <button
@@ -119,7 +128,7 @@ const AllUser = () => {
                   >
                     <FaEdit />
                   </button>
-                )}
+                )} */}
               </td>
             </tr>
           ))}
