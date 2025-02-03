@@ -1,7 +1,7 @@
 import SectionTitle from "../../components/SectionTitle";
 import useProviderAppointment from "../../hooks/useProviderAppointment";
-import { FaEdit } from "react-icons/fa";
 import Loading from "../../components/Loading";
+import { MdVideoCall } from "react-icons/md";
 
 const MyServices = () => {
   const [providerAppointments, refetch, isLoading] = useProviderAppointment();
@@ -35,7 +35,7 @@ const MyServices = () => {
                 <th>Time</th>
                 <th>Price (Taka)</th>
                 <th>Status</th>
-                <th>Action</th>
+                <th>Call Now</th>
               </tr>
             </thead>
             <tbody>
@@ -62,7 +62,7 @@ const MyServices = () => {
                           onClick={handelVideoCall}
                           className="btn btn-ghost btn-outline btn-error text-2xl"
                         >
-                          <FaEdit />
+                          <MdVideoCall />
                         </button>
                       ) : (
                         <p>Paid</p>
