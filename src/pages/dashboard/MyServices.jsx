@@ -30,7 +30,7 @@ const MyServices = () => {
             <thead>
               <tr>
                 <th>#</th>
-                <th>Item</th>
+                <th>email</th>
                 <th>Date</th>
                 <th>Time</th>
                 <th>Price (Taka)</th>
@@ -43,7 +43,7 @@ const MyServices = () => {
                 providerAppointments.map((item, index) => (
                   <tr key={item._id}>
                     <th>{index + 1}</th>
-                    <td>{item.category}</td>
+                    <td>{item.email}</td>
                     <td>{item.date}</td>
                     <td>{item.time}</td>
                     <td>{item.price}</td>
