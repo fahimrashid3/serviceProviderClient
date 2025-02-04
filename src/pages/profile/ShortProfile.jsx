@@ -51,14 +51,13 @@ const ShortProfile = () => {
       ></SectionTitle> */}
       <div className="md:flex gap-10 max-w-[95%] md:max-w-[90%] mx-auto mt-6 md:mt-10">
         <div className="flex-1">
-        <div className="h-[700px]">
-  <img
-    className="object-cover rounded-lg w-full h-full"
-    src={provider.userImg}
-    alt={provider.name}
-  />
-</div>
-
+          <div className="h-[700px]">
+            <img
+              className="object-cover rounded-lg w-full h-full"
+              src={provider.userImg}
+              alt={provider.name}
+            />
+          </div>
         </div>
         <div className="flex-1 lg:space-y-5">
           <p className="font-semibold lg:text-3xl md:text-2xl text-xl">
@@ -75,13 +74,22 @@ const ShortProfile = () => {
             alt={category.serviceProviderType}
           />
           <p className="text-lg">{provider.about}</p>
-          <Link
-            to={`/fullProfile/${_id}`}
-            state={{ provider, category }}
-            className="btn btn-success btn-outline max-w-40 my-3"
-          >
-            View Full Profile
-          </Link>
+          <div className="flex items-center card-actions">
+            <Link
+              to="/appointment"
+              state={{ bookingBtnCategory: category }}
+              className="btn bg-transparent border-1 border-b-4 border-primary-600 text-primary-600 hover:bg-primary-600 hover:text-white hover:border-primary-600 flex gap-3 text-md"
+            >
+              Book Now
+            </Link>
+            <Link
+              to={`/fullProfile/${_id}`}
+              state={{ provider, category }}
+              className="btn btn-success btn-outline max-w-40 my-3"
+            >
+              View Full Profile
+            </Link>
+          </div>
         </div>
       </div>
     </div>

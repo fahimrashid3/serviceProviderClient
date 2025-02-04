@@ -70,7 +70,7 @@ export default function AddProvider() {
       userImg: userImg || "",
       qualification: data.qualification || "",
       category: data.category || "",
-      rating: { $numberDouble: 0 },
+      rating: 0,
       location: data.location || "",
       about: data.about || "",
       education: data.education || [],
@@ -87,7 +87,7 @@ export default function AddProvider() {
         Saturday: data.timeTable.Saturday || "",
         Sunday: data.timeTable.Sunday || "",
       },
-      totalReview: { $numberDouble: 0 },
+      totalReview: 0,
     };
 
     // console.log(providerInfo);

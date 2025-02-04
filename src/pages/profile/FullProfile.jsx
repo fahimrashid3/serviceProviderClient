@@ -1,4 +1,4 @@
-import { useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 // import SectionTitle from "../../components/SectionTitle";
 import SectionBanner from "../../components/SectionBanner";
 import { Rating } from "@smastrom/react-rating";
@@ -17,6 +17,7 @@ const FullProfile = () => {
         <span className="loading loading-ball w-[80px] text-primary "></span>
       </div>
     );
+  console.log("Provider Data:", provider);
   return (
     <div className="-mt-20 mb-20 dark:bg-dark-700 text-dark-900 dark:text-white bg-gray-200">
       <SectionBanner
@@ -60,6 +61,14 @@ const FullProfile = () => {
                   </p>
                 ))}
               </div>
+              <Link
+                to="/appointment"
+                state={{ bookingBtnCategory: category }}
+                className="
+                btn bg-transparent border-1 border-b-4 border-primary-600 text-primary-600 hover:bg-primary-600 hover:text-white hover:border-primary-600 mt-4 text-md"
+              >
+                Book Now
+              </Link>
             </div>
           </div>
         </div>
