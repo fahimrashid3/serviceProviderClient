@@ -27,6 +27,7 @@ import AdminProfile from "../pages/dashboard/profile/AdminProfile";
 import ProviderProfile from "../pages/dashboard/profile/ProviderProfile";
 import UserProfile from "../pages/dashboard/profile/UserProfile";
 import AssignProvider from "../components/AssignProvider";
+import Room from "../pages/dashboard/Room";
 export const router = createBrowserRouter([
   {
     path: "/",
@@ -91,6 +92,10 @@ export const router = createBrowserRouter([
       {
         path: "/fail",
         element: <Cancel />,
+      },
+      {
+        path: "/room/:roomId",
+        element: <Room />,
       },
     ],
   },

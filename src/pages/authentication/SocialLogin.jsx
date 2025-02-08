@@ -7,42 +7,37 @@ import useAuth from "../../hooks/useAuth";
 
 const SocialLogin = () => {
   const location = useLocation();
-  const form = location.state?.form?.pathname || "/";
+  const from = location.state?.from?.pathname || "/";
   const { googleSignIn } = useAuth();
   const axiosPublic = useAxiosPublic();
   const navigate = useNavigate();
-  const handleGoogleSignIn = () => {
-    googleSignIn()
-      .then((result) => {
-        // This gives you a Google Access Token. You can use it to access the Google API.
-        const credential = GoogleAuthProvider.credentialFromResult(result);
-        const token = credential.accessToken;
-        // The signed-in user info.
-        // IdP data available using getAdditionalUserInfo(result)
-        // ...
-        console.log(token);
-        const userInfo = {
-          email: result?.user?.email,
-          name: result?.user?.displayName,
-          photoUrl: result?.user?.photoURL,
-        };
-        // console.log(userInfo);
-        axiosPublic.post("/users", userInfo).then((res) => {
-          console.log(res.data);
-          navigate(form, { replace: true });
-        });
-      })
-      .catch((error) => {
-        // Handle Errors here.
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        // The email of the user's account used.
-        const email = error.customData.email;
-        // The AuthCredential type that was used.
-        const credential = GoogleAuthProvider.credentialFromError(error);
-        // ...
-        console.log(errorCode, errorMessage, email, credential);
-      });
+
+  const handleGoogleSignIn = async () => {
+    try {
+      const result = await googleSignIn();
+
+      if (!result?.user) {
+        console.error("Google sign-in failed: No user data found.");
+        return;
+      }
+
+      const credential = GoogleAuthProvider.credentialFromResult(result);
+      const token = credential?.accessToken;
+      console.log("Google Access Token:", token);
+
+      const userInfo = {
+        email: result.user.email,
+        name: result.user.displayName,
+        photoUrl: result.user.photoURL,
+      };
+
+      const res = await axiosPublic.post("/users", userInfo);
+      if (res.data) {
+        navigate(from, { replace: true });
+      }
+    } catch (error) {
+      console.error("Google Sign-in Error:", error);
+    }
   };
   return (
     <div className="flex justify-center items-center gap-5 font-bold">
@@ -55,7 +50,7 @@ const SocialLogin = () => {
       <button className="btn btn-outline rounded-full btn-disabled">
         <FaFacebookF />
       </button>
-      <button className="btn btn-outline rounded-full disabled btn-disabled">
+      <button className="btn btn-outline rounded-full btn-disabled">
         <PiGithubLogoFill />
       </button>
     </div>

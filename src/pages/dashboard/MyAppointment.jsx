@@ -8,7 +8,7 @@ import { Link } from "react-router-dom";
 const MyAppointment = () => {
   const [appointment, refetch] = useAppointment();
   const axiosSecure = useAxiosSecure();
-  // TODO: delete appointment automatically if time or date is over
+
   const handelDeleteAppointment = (id) => {
     Swal.fire({
       title: "Are you sure?",
@@ -35,18 +35,20 @@ const MyAppointment = () => {
       }
     });
   };
+
+  const handleJoinMeeting = (meetingLink) => {
+    // Redirect the user to the meeting link
+    window.location.href = meetingLink;
+  };
+
   return (
     <div>
-      <SectionTitle
-        heading="Appointments"
-        subHeading="My Appointment"
-      ></SectionTitle>
+      <SectionTitle heading="Appointments" subHeading="My Appointment" />
       <div>
         <div className="md:flex md:items-center md:justify-between text-center mx-auto">
           <p className="lg:text-4xl md:text-3xl text-2xl md:font-bold font-semibold md:my-5 my-3">
-            Total appointment : {appointment.length}
+            Total appointment: {appointment.length}
           </p>
-          {/*TODO:add button for every appointment to ensure user experience   */}
           <Link
             to={"/checkout"}
             className="btn btn-ghost btn-outline btn-warning"
@@ -56,20 +58,19 @@ const MyAppointment = () => {
         </div>
         <div className="overflow-x-auto">
           <table className="table table-zebra">
-            {/* head */}
+            {/* Table Head */}
             <thead>
               <tr>
                 <th>#</th>
-                <th>item</th>
-                <th>date</th>
+                <th>Item</th>
+                <th>Date</th>
                 <th>Time</th>
                 <th>Price (Taka)</th>
                 <th>Status</th>
-                <th>Delete</th>
+                <th>Actions</th>
               </tr>
             </thead>
             <tbody>
-              {/* row 1 */}
               {appointment.map((item, index) => (
                 <tr key={index}>
                   <th>{index + 1}</th>
@@ -82,16 +83,26 @@ const MyAppointment = () => {
                       <p className="text-green-500 text-lg font-semibold">
                         Paid
                       </p>
+                    ) : item.status === "in-progress" ? (
+                      <p className="text-yellow-500 text-lg font-semibold">
+                        In Progress
+                      </p>
                     ) : (
                       item.status || "N/A"
                     )}
                   </td>
-
                   <td>
-                    {item.status !== "paid" ? (
+                    {item.status === "in-progress" ? (
+                      <button
+                        onClick={() => handleJoinMeeting(item.userMeetingLink)}
+                        className="btn btn-ghost btn-outline btn-info text-2xl"
+                      >
+                        Join
+                      </button>
+                    ) : item.status !== "paid" ? (
                       <button
                         onClick={() => handelDeleteAppointment(item._id)}
-                        className="btn  btn-ghost btn-outline btn-error text-2xl"
+                        className="btn btn-ghost btn-outline btn-error text-2xl"
                       >
                         <AiTwotoneDelete />
                       </button>

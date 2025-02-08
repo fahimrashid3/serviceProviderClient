@@ -19,8 +19,8 @@ const useProviderAppointment = () => {
     enabled: !!user?.email,
   });
 
-  console.log("User email:", user?.email);
-  console.log("Fetched provider appointments:", providerAppointments);
+  // console.log("User email:", user?.email);
+  // console.log("Fetched provider appointments:", providerAppointments);
 
   return [providerAppointments, refetch, isLoading];
 };

@@ -2,22 +2,18 @@ import SectionTitle from "../../components/SectionTitle";
 import useProviderAppointment from "../../hooks/useProviderAppointment";
 import Loading from "../../components/Loading";
 import { MdVideoCall } from "react-icons/md";
+import { Link } from "react-router-dom";
 
 const MyServices = () => {
-  const [providerAppointments, refetch, isLoading] = useProviderAppointment();
+  const [providerAppointments, , isLoading] = useProviderAppointment();
 
-  const handelVideoCall = () => {
-    refetch();
-  };
   if (isLoading) {
-    return <Loading></Loading>;
+    return <Loading />;
   }
+
   return (
     <div>
-      <SectionTitle
-        heading="Appointments"
-        subHeading="My Appointment"
-      ></SectionTitle>
+      <SectionTitle heading="Appointments" subHeading="My Appointment" />
       <div>
         <div>
           <p className="lg:text-4xl md:text-3xl text-2xl md:font-bold font-semibold md:my-5 my-3">
@@ -30,7 +26,7 @@ const MyServices = () => {
             <thead>
               <tr>
                 <th>#</th>
-                <th>email</th>
+                <th>Email</th>
                 <th>Date</th>
                 <th>Time</th>
                 <th>Price (Taka)</th>
@@ -58,12 +54,12 @@ const MyServices = () => {
                     </td>
                     <td>
                       {item.status !== "paid" ? (
-                        <button
-                          onClick={handelVideoCall}
+                        <Link
+                          to={`/room/${item._id}`}
                           className="btn btn-ghost btn-outline btn-error text-2xl"
                         >
                           <MdVideoCall />
-                        </button>
+                        </Link>
                       ) : (
                         <p>Paid</p>
                       )}

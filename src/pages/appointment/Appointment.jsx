@@ -8,6 +8,7 @@ import useAxiosSecure from "../../hooks/useAxiosSecure";
 import useAuth from "../../hooks/useAuth";
 import useAppointment from "../../hooks/useAppointment";
 import { useNavigate } from "react-router-dom";
+import useUsers from "../../hooks/useUser";
 
 const Appointment = () => {
   const navigate = useNavigate();
@@ -25,6 +26,7 @@ const Appointment = () => {
   const [submittedTime, setSubmittedTime] = useState("");
 
   const { user } = useAuth();
+  const [users] = useUsers();
 
   const handleCategoryClick = (
     categoryId,
@@ -96,12 +98,14 @@ const Appointment = () => {
       time: slotTime,
       price: submittedPrice,
       email: user.email,
+      userName: users.name || "null",
+      userId: users._id,
     };
 
     AxiosSecure.post("/appointments", appointmentDetails).then((res) => {
       if (res.data.insertedId) {
         refetch();
-        navigate("/");
+        navigate("/checkout");
         scrollTo(0, 0);
         Swal.fire({
           position: "top-end",
