@@ -37,7 +37,6 @@ const MyAppointment = () => {
   };
 
   const handleJoinMeeting = (meetingLink) => {
-    // Redirect the user to the meeting link
     window.location.href = meetingLink;
   };
 
