@@ -24,7 +24,6 @@ const UserProfile = () => {
         </div>
         <hr />
       </div>
-
       <div>
         <div className="flex justify-between">
           <p className="font-semibold">Email</p>
@@ -43,6 +42,9 @@ const UserProfile = () => {
         </div>
         <hr />
       </div>
+      <button className="btn bg-transparent border-1 border-b-4 mx-auto border-primary-600 text-primary-600 hover:bg-primary-600 hover:text-white hover:border-primary-600 flex gap-3 text-lg">
+        Edit Profile
+      </button>
     </div>
   );
 };

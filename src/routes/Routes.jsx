@@ -28,10 +28,14 @@ import ProviderProfile from "../pages/dashboard/profile/ProviderProfile";
 import UserProfile from "../pages/dashboard/profile/UserProfile";
 import AssignProvider from "../components/AssignProvider";
 import Room from "../pages/dashboard/Room";
+import PaymentHistory from "../pages/dashboard/PaymentHistory";
+import MyReviews from "../pages/dashboard/MyReviews";
+import ErrorPage from "../pages/shared/errorPage/ErrorPage";
 export const router = createBrowserRouter([
   {
     path: "/",
     element: <Main />,
+    errorElement: <ErrorPage />,
     children: [
       {
         path: "/",
@@ -110,6 +114,14 @@ export const router = createBrowserRouter([
       {
         path: "myAppointment",
         element: <MyAppointment />,
+      },
+      {
+        path: "paymentHistory",
+        element: <PaymentHistory />,
+      },
+      {
+        path: "reviews",
+        element: <MyReviews />,
       },
       {
         path: "userProfile",

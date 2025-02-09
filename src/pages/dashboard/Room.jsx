@@ -3,6 +3,7 @@ import { useEffect, useState, useRef } from "react";
 import { ZegoUIKitPrebuilt } from "@zegocloud/zego-uikit-prebuilt";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import useUsers from "../../hooks/useUser";
+import Swal from "sweetalert2";
 
 const Room = () => {
   const { roomId } = useParams();
@@ -15,7 +16,13 @@ const Room = () => {
   useEffect(() => {
     if (!roomId) {
       console.error("Room ID is missing in URL");
-      alert("Invalid room ID.");
+      // alert("Invalid room ID.");
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Invalid room ID.",
+        // footer: '<a href="#">Why do I have this issue?</a>'
+      });
       navigate("/dashboard");
       return;
     }
@@ -25,11 +32,19 @@ const Room = () => {
       .get(`/appointment/${roomId}`)
       .then((res) => {
         setAppointment(res.data);
-        console.log("Fetched appointment:", res.data); // Debugging
+        // console.log("Fetched appointment:", res.data); // Debugging
       })
       .catch((err) => {
-        console.error("Error fetching appointment:", err);
-        alert("Failed to fetch appointment data.");
+        // console.error("Error fetching appointment:", err);
+        // alert("Failed to fetch appointment data.");
+        if (err) {
+          Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: "Failed to fetch appointment data.!",
+            // footer: '<a href="#">Why do I have this issue?</a>'
+          });
+        }
       });
   }, [axiosSecure, roomId, navigate]);
 
@@ -42,7 +57,7 @@ const Room = () => {
     const serverSecret = import.meta.env.VITE_ZIGO_SERVERSECRET;
 
     if (!appID || !serverSecret) {
-      console.error("Zego appID or ServerSecret is missing.");
+      // console.error("Zego appID or ServerSecret is missing.");
       return;
     }
 
@@ -63,8 +78,8 @@ const Room = () => {
         // Send the request to update the appointment status in the database when the provider joins
         const appointmentUpdateInfo = {
           appointmentId: appointment._id,
-          status: "in-progress", // Example: Update status to "in-progress"
-          userMeetingLink: `http://localhost:5173/room/${roomId}`, // Add meeting link for the provider
+          status: "in-progress",
+          userMeetingLink: `http://localhost:5173/room/${roomId}`,
         };
 
         axiosSecure
@@ -98,12 +113,12 @@ const Room = () => {
         if (userMeetingInstance) {
           userMeetingInstance.joinRoom({
             container: meetingContainer.current,
-            sharedLinks: [
-              {
-                name: "Copy Link",
-                url: `http://localhost:5173/room/${roomId}`,
-              },
-            ],
+            // sharedLinks: [
+            //   {
+            //     name: "Copy Link",
+            //     url: `http://localhost:5173/room/${roomId}`,
+            //   },
+            // ],
             scenario: {
               mode: ZegoUIKitPrebuilt.OneONoneCall,
             },
@@ -118,12 +133,12 @@ const Room = () => {
         if (providerMeetingInstance) {
           providerMeetingInstance.joinRoom({
             container: meetingContainer.current,
-            sharedLinks: [
-              {
-                name: "Copy Link",
-                url: `http://localhost:5173/room/${roomId}`,
-              },
-            ],
+            // sharedLinks: [
+            //   {
+            //     name: "Copy Link",
+            //     url: `http://localhost:5173/room/${roomId}`,
+            //   },
+            // ],
             scenario: {
               mode: ZegoUIKitPrebuilt.OneONoneCall,
             },
@@ -147,8 +162,16 @@ const Room = () => {
         console.error("Meeting container not available.");
       }
     } catch (error) {
-      console.error("Error initializing Zego meeting:", error);
-      alert("Failed to initialize meeting.");
+      // console.error("Error initializing Zego meeting:", error);
+      // alert("Failed to initialize meeting.");
+      if (error) {
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "Failed to initialize meeting.",
+          // footer: '<a href="#">Why do I have this issue?</a>'
+        });
+      }
     }
   }, [appointment, roomId, navigate, users, axiosSecure]);
 
@@ -159,7 +182,7 @@ const Room = () => {
   return (
     <div>
       <div ref={meetingContainer} className="w-full h-screen" />
-      <div className="absolute bottom-0 left-0 p-4">
+      {/* <div className="absolute bottom-0 left-0 p-4">
         <button
           onClick={() =>
             alert(
@@ -170,7 +193,7 @@ const Room = () => {
         >
           Share Room Link
         </button>
-      </div>
+      </div> */}
     </div>
   );
 };
