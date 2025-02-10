@@ -31,6 +31,7 @@ import Room from "../pages/dashboard/Room";
 import PaymentHistory from "../pages/dashboard/PaymentHistory";
 import MyReviews from "../pages/dashboard/MyReviews";
 import ErrorPage from "../pages/shared/errorPage/ErrorPage";
+import Blogs from "../pages/blogs/Blogs";
 export const router = createBrowserRouter([
   {
     path: "/",
@@ -68,6 +69,10 @@ export const router = createBrowserRouter([
             <Appointment />
           </PrivetRoute>
         ),
+      },
+      {
+        path: "/blogs",
+        element: <Blogs />,
       },
       {
         path: "/shortProfile/:_id",
