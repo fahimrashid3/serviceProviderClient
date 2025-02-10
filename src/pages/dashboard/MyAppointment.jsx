@@ -4,6 +4,7 @@ import useAppointment from "../../hooks/useAppointment";
 import Swal from "sweetalert2";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import { Link } from "react-router-dom";
+import { MdVideoCall } from "react-icons/md";
 
 const MyAppointment = () => {
   const [appointment, refetch] = useAppointment();
@@ -79,11 +80,9 @@ const MyAppointment = () => {
                   <td>{item.price}</td>
                   <td>
                     {item.status === "paid" ? (
-                      <p className="text-green-500 text-lg font-semibold">
-                        Paid
-                      </p>
+                      <p className="text-yellow-500 font-semibold">Paid</p>
                     ) : item.status === "in-progress" ? (
-                      <p className="text-yellow-500 text-lg font-semibold">
+                      <p className="text-green-500 font-semibold">
                         In Progress
                       </p>
                     ) : (
@@ -94,14 +93,14 @@ const MyAppointment = () => {
                     {item.status === "in-progress" ? (
                       <button
                         onClick={() => handleJoinMeeting(item.userMeetingLink)}
-                        className="btn btn-ghost btn-outline btn-info text-2xl"
+                        className="btn btn-ghost btn-outline btn-info text-2xl "
                       >
-                        Join
+                        <MdVideoCall />
                       </button>
                     ) : item.status !== "paid" ? (
                       <button
                         onClick={() => handelDeleteAppointment(item._id)}
-                        className="btn btn-ghost btn-outline btn-error text-2xl"
+                        className="btn btn-ghost btn-outline btn-error "
                       >
                         <AiTwotoneDelete />
                       </button>

@@ -96,7 +96,11 @@ const Checkout = () => {
                 return (
                   <tr key={index}>
                     <th>
-                      {app.status !== "paid" ? (
+                      {!(
+                        app.status === "paid" ||
+                        app.status === "in-progress" ||
+                        app.status === "complete"
+                      ) ? (
                         <label>
                           <input
                             type="checkbox"
