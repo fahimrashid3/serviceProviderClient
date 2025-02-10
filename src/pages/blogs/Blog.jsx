@@ -2,6 +2,7 @@ import { CiBookmark, CiShare2 } from "react-icons/ci";
 import { RxEyeOpen } from "react-icons/rx";
 import { Link } from "react-router-dom";
 import { Rating } from "@smastrom/react-rating";
+import Swal from "sweetalert2";
 
 const MainNews = ({ blog }) => {
   const {
@@ -17,8 +18,12 @@ const MainNews = ({ blog }) => {
     totalView,
   } = blog;
 
+  const handelSaveButton = () => {
+    Swal.fire("Features not added!");
+  };
+
   return (
-    <div className="mb-24">
+    <div className="mb-24 border p-5 rounded-lg">
       <div className="flex bg-gray-50 text-black justify-between rounded-t-lg">
         <div className="flex">
           <img
@@ -34,20 +39,23 @@ const MainNews = ({ blog }) => {
             </div>
           </div>
         </div>
-        <div className="flex text-xl items-center gap-2 mr-3">
+        <button
+          onClick={handelSaveButton}
+          className="flex text-xl items-center gap-2 mr-3"
+        >
           <CiBookmark />
           <CiShare2 />
-        </div>
+        </button>
       </div>
 
       <div className="space-y-5 mt-5 mb-5">
         <p className="font-bold text-2xl">{title}</p>
-        <img src={img} alt={"Image not available"} />
+        <img className="h-80 mx-auto" src={img} alt={"Image not available"} />
         <p>
           {content.length > 200 ? (
             <p>
               {content.slice(0, 200)}
-              <Link to={`/news/${_id}`} className="text-blue-600">
+              <Link to={`/blog/${_id}`} className="text-blue-600">
                 Read more...
               </Link>
             </p>

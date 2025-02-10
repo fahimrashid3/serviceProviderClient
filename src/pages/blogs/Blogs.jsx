@@ -87,6 +87,7 @@ const Blogs = () => {
 
         {/* Third section - placeholder for additional content */}
         <div className="md:col-span-1 h-[80vh] overflow-y-auto sticky top-16">
+          <h1 className="font-semibold text-xl mb-2">Additional content</h1>
           <h1>we can show anything in this section</h1>
         </div>
       </div>

@@ -32,6 +32,7 @@ import PaymentHistory from "../pages/dashboard/PaymentHistory";
 import MyReviews from "../pages/dashboard/MyReviews";
 import ErrorPage from "../pages/shared/errorPage/ErrorPage";
 import Blogs from "../pages/blogs/Blogs";
+import BlogDetails from "../pages/blogs/BlogDetails";
 export const router = createBrowserRouter([
   {
     path: "/",
@@ -73,6 +74,10 @@ export const router = createBrowserRouter([
       {
         path: "/blogs",
         element: <Blogs />,
+      },
+      {
+        path: "/blog/:_id",
+        element: <BlogDetails />,
       },
       {
         path: "/shortProfile/:_id",
