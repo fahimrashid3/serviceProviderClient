@@ -45,6 +45,7 @@ const BlogDetails = () => {
             <p className="text-lg text-justify">{blog.content}</p>
             {/* Render other details from the blog object */}
             <Link
+              to={"/blogs"}
               className="
             btn bg-transparent border-1 border-b-4 mx-auto
              border-primary-600 text-primary-600 hover:bg-primary-600 hover:text-white
