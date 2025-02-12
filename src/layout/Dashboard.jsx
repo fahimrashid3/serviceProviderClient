@@ -3,6 +3,7 @@ import {
   FaCalendar,
   FaCalendarCheck,
   FaDollarSign,
+  FaEdit,
   FaHome,
   FaPhone,
   FaUsers,
@@ -12,6 +13,7 @@ import { IoMdPersonAdd } from "react-icons/io";
 import { BsEnvelopeExclamation } from "react-icons/bs";
 import useAdmin from "../hooks/useAdmin";
 import useProvider from "../hooks/useProvider";
+import { TbLogs } from "react-icons/tb";
 
 const DashBoard = () => {
   const [isAdmin] = useAdmin();
@@ -101,12 +103,24 @@ const DashBoard = () => {
             <>
               <li>
                 <NavLink to="/dashboard/providerHome">
-                  <FaHome /> Provider Home
+                  <FaHome /> Provider Profile
                 </NavLink>
               </li>
               <li>
                 <NavLink to="/dashboard/myServices">
                   <MdOutlineMenuOpen /> My Services
+                </NavLink>
+              </li>
+              <li>
+                <NavLink to="/dashboard/myBlogs">
+                  <TbLogs />
+                  My blogs
+                </NavLink>
+              </li>
+              <li>
+                <NavLink to="/dashboard/writeBlogs">
+                  <FaEdit />
+                  Write blogs
                 </NavLink>
               </li>
               {/* <li>

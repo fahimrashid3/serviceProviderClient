@@ -119,7 +119,7 @@ const Appointment = () => {
   };
 
   return (
-    <div className="pt-28 bg-primary-100">
+    <div className="pt-28 bg-primary-100 dark:bg-dark-700">
       <div className="-mt-20 min-h-screen">
         <Helmet>
           <title>Appointment</title>

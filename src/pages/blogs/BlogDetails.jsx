@@ -7,8 +7,8 @@ import { IoMdArrowRoundBack } from "react-icons/io";
 const BlogDetails = () => {
   const { _id } = useParams();
   const axiosPublic = useAxiosPublic();
-  const [blog, setBlog] = useState(null); // Initial state as null for loading state
-  const [loading, setLoading] = useState(true); // Loading state
+  const [blog, setBlog] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchBlog = async () => {
@@ -26,11 +26,11 @@ const BlogDetails = () => {
   }, [_id, axiosPublic]);
 
   if (loading) {
-    return <Loading />; // Show loading state
+    return <Loading />;
   }
 
   if (!blog) {
-    return <p>Blog not found</p>; // Error or not found state
+    return <p>Blog not found</p>;
   }
 
   return (

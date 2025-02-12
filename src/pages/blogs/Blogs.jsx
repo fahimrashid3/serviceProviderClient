@@ -17,7 +17,7 @@ const Blogs = () => {
       try {
         const res = await axiosPublic.get("/blogs");
         setBlogs(res.data);
-        setDisplayBlogs(res.data); // Initially display all blogs
+        setDisplayBlogs(res.data);
       } catch (error) {
         console.error("Error fetching blogs:", error);
       }
@@ -27,12 +27,12 @@ const Blogs = () => {
   }, [axiosPublic]);
 
   const handelFilterBlogs = (category) => {
-    setActiveCategory(category); // Set active category
+    setActiveCategory(category);
     if (category === "allCategory") {
-      setDisplayBlogs(blogs); // Show all blogs
+      setDisplayBlogs(blogs);
     } else {
       const filteredBlogs = blogs.filter((blog) => blog.category === category);
-      setDisplayBlogs(filteredBlogs); // Set filtered blogs
+      setDisplayBlogs(filteredBlogs);
     }
   };
 

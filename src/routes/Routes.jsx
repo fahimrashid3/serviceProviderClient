@@ -33,6 +33,10 @@ import MyReviews from "../pages/dashboard/MyReviews";
 import ErrorPage from "../pages/shared/errorPage/ErrorPage";
 import Blogs from "../pages/blogs/Blogs";
 import BlogDetails from "../pages/blogs/BlogDetails";
+import MyBlogs from "../pages/blogs/MyBlogs";
+import WriteBlogs from "../pages/blogs/WriteBlogs";
+import ProviderRout from "./ProviderRoute";
+import MyBlogDetails from "../pages/blogs/MyBlogDetails";
 export const router = createBrowserRouter([
   {
     path: "/",
@@ -139,12 +143,45 @@ export const router = createBrowserRouter([
       },
       // provider routs
       {
+        path: "providerHome",
+        element: (
+          <ProviderRout>
+            <ProviderProfile />
+          </ProviderRout>
+        ),
+      },
+
+      {
         path: "myServices",
-        element: <MyServices />,
+        element: (
+          <ProviderRout>
+            <MyServices />
+          </ProviderRout>
+        ),
       },
       {
-        path: "providerHome",
-        element: <ProviderProfile />,
+        path: "myBlogs",
+        element: (
+          <ProviderRout>
+            <MyBlogs />
+          </ProviderRout>
+        ),
+      },
+      {
+        path: "myBlogDetails/:_id",
+        element: (
+          <ProviderRout>
+            <MyBlogDetails />
+          </ProviderRout>
+        ),
+      },
+      {
+        path: "writeBlogs",
+        element: (
+          <ProviderRout>
+            <WriteBlogs />
+          </ProviderRout>
+        ),
       },
 
       // admin routs

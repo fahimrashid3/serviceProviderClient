@@ -10,7 +10,6 @@ const useProvider = () => {
     enabled: !loading && !!user?.email,
     queryFn: async () => {
       const res = await axiosSecure.get(`/user/provider/${user.email}`);
-      // console.log(res.data);
       return res.data?.provider;
     },
   });

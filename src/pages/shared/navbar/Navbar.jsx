@@ -8,11 +8,12 @@ import { FaRegCalendarCheck } from "react-icons/fa6";
 import Swal from "sweetalert2";
 import useAppointment from "../../../hooks/useAppointment";
 import useAdmin from "../../../hooks/useAdmin";
-import { FaCalendarCheck, FaHome, FaUsers } from "react-icons/fa";
+import { FaCalendarCheck, FaEdit, FaHome, FaUsers } from "react-icons/fa";
 import { BsEnvelopeExclamation } from "react-icons/bs";
 import { MdOutlineMenuOpen } from "react-icons/md";
 import { IoMdPersonAdd } from "react-icons/io";
 import useProvider from "../../../hooks/useProvider";
+import { TbLogs } from "react-icons/tb";
 
 const Navbar = () => {
   const [isAdmin] = useAdmin();
@@ -148,12 +149,25 @@ const Navbar = () => {
                   <>
                     <li>
                       <Link to="/dashboard/providerHome">
-                        <FaHome /> Provider Home
+                        <FaHome />
+                        Provider Profile
                       </Link>
                     </li>
                     <li>
                       <Link to="/dashboard/myServices">
-                        <FaHome /> My Services
+                        <MdOutlineMenuOpen /> My Services
+                      </Link>
+                    </li>
+                    <li>
+                      <Link to="/dashboard/myBlogs">
+                        <TbLogs />
+                        My blogs
+                      </Link>
+                    </li>
+                    <li>
+                      <Link to="/dashboard/writeBlogs">
+                        <FaEdit />
+                        Write blogs
                       </Link>
                     </li>
                   </>

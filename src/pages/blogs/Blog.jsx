@@ -16,7 +16,7 @@ const MainNews = ({ blog }) => {
   useEffect(() => {
     if (authorId) {
       axiosPublic
-        .get(`/providers/${authorId}`)
+        .get(`/providersInBlog/${authorId}`)
         .then((res) => setAuthor(res.data))
         .catch((err) => console.error("Error fetching author:", err));
     }
