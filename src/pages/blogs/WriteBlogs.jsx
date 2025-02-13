@@ -4,9 +4,10 @@ import useUsers from "../../hooks/useUser";
 import Loading from "../../components/Loading";
 import Resizer from "react-image-file-resizer";
 import axios from "axios";
-
+import useAxiosSecure from "../../hooks/useAxiosSecure";
 const WriteBlogs = () => {
   const [users, loading] = useUsers();
+  const axiosSecure=useAxiosSecure()
   // Accessing environment variables
   const cloud_name = import.meta.env.VITE_CLOUD_NAME;
   const preset_key = import.meta.env.VITE_PRESET_KEY;
@@ -105,6 +106,9 @@ const WriteBlogs = () => {
           authorEmail: users.email,
           img: photoUrl, // Save the Cloudinary image URL
         };
+        // post blog to database
+        axiosSecure.post("/blogs",newBlog)
+        .then(res=>console.log(res.data))
         console.log("New Blog Object:", newBlog);
       } catch (error) {
         setError("Error uploading image to Cloudinary.");
