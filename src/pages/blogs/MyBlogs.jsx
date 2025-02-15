@@ -8,24 +8,31 @@ const MyBlogs = () => {
   const [users] = useUsers();
   const axiosPublic = useAxiosPublic();
   const [myBlogs, setMyBlogs] = useState([]);
+  const [loading, setLoading] = useState(true);
 
-  const userId = users?._id;
-  // console.log("User ID:", userId);
+  const userEmail = users?.email; // ✅ Use email instead of _id
 
   useEffect(() => {
-    if (!userId) return;
+    if (!userEmail) return;
 
     const fetchMyBlogs = async () => {
       try {
-        const res = await axiosPublic.get(`/myBlogs/${userId}`);
+        console.log("Fetching blogs for user email:", userEmail);
+        const res = await axiosPublic.get(`/myBlogs/${userEmail}`);
+        console.log("API Response:", res.data);
         setMyBlogs(res.data);
       } catch (error) {
-        console.error("Error fetching blogs:", error);
+        console.error(
+          "Error fetching blogs:",
+          error.response?.data || error.message
+        );
+      } finally {
+        setLoading(false);
       }
     };
 
     fetchMyBlogs();
-  }, [axiosPublic, userId]);
+  }, [axiosPublic, userEmail]);
 
   return (
     <div>
@@ -44,15 +51,21 @@ const MyBlogs = () => {
           delaySpeed={1000}
         />
       </p>
+
       <div className="md:col-span-2 h-[80vh] overflow-y-auto min-h-screen px-5">
-        {myBlogs.length > 0 ? (
+        {loading ? (
+          <p className="text-center text-gray-500 mt-5">Loading blogs...</p>
+        ) : myBlogs.length > 0 ? (
           myBlogs.map((blog) => (
-            <div key={blog._id} className="space-y-5 mt-5 mb-5 border">
+            <div
+              key={blog._id}
+              className="space-y-5 mt-5 mb-5 border p-5 rounded-lg shadow-md"
+            >
               <p className="font-bold text-2xl">{blog.title}</p>
               <img
-                className="h-80 mx-auto"
+                className="h-80 mx-auto rounded-md"
                 src={blog.img}
-                alt={"Image not available"}
+                alt="Blog Image"
               />
               <p>
                 {blog.content.length > 200 ? (
@@ -72,7 +85,7 @@ const MyBlogs = () => {
             </div>
           ))
         ) : (
-          <p>No blogs found</p>
+          <p className="text-center text-gray-500 mt-5">No blogs found</p>
         )}
       </div>
     </div>
