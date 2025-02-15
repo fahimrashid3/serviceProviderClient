@@ -10,6 +10,7 @@ import useAuth from "../../hooks/useAuth";
 import Swal from "sweetalert2";
 import { useState } from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
+import { Typewriter } from "react-simple-typewriter";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -78,9 +79,17 @@ const Login = () => {
         </div>
         <div className="card flex-1 shrink-0">
           <form onSubmit={handleSubmit(onSubmit)} className="card-body">
-            <div className="font-bold text-center lg:text-5xl md:text-4xl text-3xl md:mb-10 mb-5 text-dark-900 dark:text-white">
-              Sign In
-            </div>
+            <p className="font-bold text-center lg:text-4xl md:text-3xl text-2xl md:mb-10 mb-5 text-dark-900 dark:text-white">
+              <Typewriter
+                words={["Welcome Back", " Sign In now"]}
+                loop={Infinity}
+                cursor
+                cursorStyle="_"
+                typeSpeed={100}
+                deleteSpeed={50}
+                delaySpeed={2000}
+              />
+            </p>
             <div className="form-control">
               <label className="label">
                 <span className="label-text">Email</span>

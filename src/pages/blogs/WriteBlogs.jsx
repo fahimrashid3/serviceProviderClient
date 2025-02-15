@@ -5,10 +5,12 @@ import Loading from "../../components/Loading";
 import Resizer from "react-image-file-resizer";
 import axios from "axios";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
+import Swal from "sweetalert2";
+import { useNavigate } from "react-router-dom";
 const WriteBlogs = () => {
   const [users, loading] = useUsers();
-  const axiosSecure=useAxiosSecure()
-  // Accessing environment variables
+  const axiosSecure = useAxiosSecure();
+  const navigate = useNavigate();
   const cloud_name = import.meta.env.VITE_CLOUD_NAME;
   const preset_key = import.meta.env.VITE_PRESET_KEY;
   const {
@@ -107,8 +109,19 @@ const WriteBlogs = () => {
           img: photoUrl, // Save the Cloudinary image URL
         };
         // post blog to database
-        axiosSecure.post("/blogs",newBlog)
-        .then(res=>console.log(res.data))
+        axiosSecure.post("/blogs", newBlog).then((res) => {
+          console.log(res);
+          if (res.data.insertedId) {
+            navigate("/dashboard/myBlogs");
+            Swal.fire({
+              position: "top-end",
+              icon: "success",
+              title: "Blog post successfully ",
+              showConfirmButton: false,
+              timer: 1000,
+            });
+          }
+        });
         console.log("New Blog Object:", newBlog);
       } catch (error) {
         setError("Error uploading image to Cloudinary.");

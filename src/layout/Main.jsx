@@ -7,10 +7,11 @@ const Main = () => {
 
   // Check if the current route includes "/blogs"
   const isBlogsPage = location.pathname.includes("/blogs");
+  const isRoomPage = location.pathname.includes("/room/");
 
   return (
     <div>
-      <Navbar />
+      {!isRoomPage && <Navbar />}
       <Outlet />
       {!isBlogsPage && <Footer />} {/* Conditionally render Footer */}
     </div>
