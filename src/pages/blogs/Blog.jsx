@@ -7,20 +7,29 @@ import { useEffect, useState } from "react";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
 
 const MainNews = ({ blog }) => {
-  const { _id, authorId, time, date, title, content, rating, img, totalView } =
-    blog;
+  const {
+    _id,
+    authorEmail,
+    time,
+    date,
+    title,
+    content,
+    rating,
+    img,
+    totalView,
+  } = blog;
   const axiosPublic = useAxiosPublic();
   const [author, setAuthor] = useState(null);
 
   // Fetch author details
   useEffect(() => {
-    if (authorId) {
+    if (authorEmail) {
       axiosPublic
-        .get(`/providersInBlog/${authorId}`)
+        .get(`/providersInBlog/${authorEmail}`)
         .then((res) => setAuthor(res.data))
         .catch((err) => console.error("Error fetching author:", err));
     }
-  }, [authorId, axiosPublic]);
+  }, [authorEmail, axiosPublic]);
 
   const handleSaveButton = () => {
     Swal.fire("Feature not added!");

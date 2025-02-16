@@ -11,20 +11,20 @@ const BlogDetails = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const fetchBlog = async () => {
-      try {
-        const res = await axiosPublic.get(`/blog/${_id}`);
-        setBlog(res.data);
-      } catch (error) {
-        console.error("Error fetching blog:", error);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchBlog();
+    if (_id) {
+      console.log("Fetching blog for ID:", _id); // ✅ Debugging log
+      axiosPublic
+        .get(`/blog/${_id}`)
+        .then((res) => {
+          console.log("API Response:", res.data); // ✅ Debug API response
+          setBlog(res.data);
+        })
+        .catch((error) => console.error("Error fetching blog:", error))
+        .finally(() => setLoading(false));
+    } else {
+      console.warn("No blog ID found in params");
+    }
   }, [_id, axiosPublic]);
-
   if (loading) {
     return <Loading />;
   }

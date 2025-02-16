@@ -14,6 +14,7 @@ import { MdOutlineMenuOpen } from "react-icons/md";
 import { IoMdPersonAdd } from "react-icons/io";
 import useProvider from "../../../hooks/useProvider";
 import { TbLogs } from "react-icons/tb";
+import { FcServices } from "react-icons/fc";
 
 const Navbar = () => {
   const [isAdmin] = useAdmin();
@@ -155,7 +156,8 @@ const Navbar = () => {
                     </li>
                     <li>
                       <Link to="/dashboard/myServices">
-                        <MdOutlineMenuOpen /> My Services
+                        <FcServices />
+                        My Services
                       </Link>
                     </li>
                     <li>

@@ -1,9 +1,12 @@
+import { useNavigate } from "react-router-dom";
+
 const ShortProfileCart = ({ user }) => {
-  const { name, userImg, qualification, category, rating } = user;
+  const navigate = useNavigate();
+  const { _id, name, userImg, qualification, category, rating } = user;
   return (
     <div
       onClick={() => {
-        scrollTo(0, 0);
+        navigate(`/shortProfile/${_id}`);
       }}
       className="flex justify-between items-center gap-5 border p-4 rounded-lg cursor-pointer hover:translate-y-[-10px] transition-all duration-500"
     >

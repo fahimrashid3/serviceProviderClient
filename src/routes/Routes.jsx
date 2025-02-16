@@ -139,7 +139,11 @@ export const router = createBrowserRouter([
       },
       {
         path: "userProfile",
-        element: <UserProfile />,
+        element: (
+          <PrivetRoute>
+            <UserProfile />
+          </PrivetRoute>
+        ),
       },
       // provider routs
       {

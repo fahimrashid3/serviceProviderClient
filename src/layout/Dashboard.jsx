@@ -14,6 +14,7 @@ import { BsEnvelopeExclamation } from "react-icons/bs";
 import useAdmin from "../hooks/useAdmin";
 import useProvider from "../hooks/useProvider";
 import { TbLogs } from "react-icons/tb";
+import { FcServices } from "react-icons/fc";
 
 const DashBoard = () => {
   const [isAdmin] = useAdmin();
@@ -108,7 +109,8 @@ const DashBoard = () => {
               </li>
               <li>
                 <NavLink to="/dashboard/myServices">
-                  <MdOutlineMenuOpen /> My Services
+                  <FcServices />
+                  My Services
                 </NavLink>
               </li>
               <li>
