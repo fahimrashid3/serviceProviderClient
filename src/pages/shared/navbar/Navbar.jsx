@@ -15,8 +15,10 @@ import { IoMdPersonAdd } from "react-icons/io";
 import useProvider from "../../../hooks/useProvider";
 import { TbLogs } from "react-icons/tb";
 import { FcServices } from "react-icons/fc";
+import useUsers from "../../../hooks/useUser";
 
 const Navbar = () => {
+  const [users] = useUsers();
   const [isAdmin] = useAdmin();
   const [isProvider] = useProvider();
   const [appointment] = useAppointment();
@@ -47,10 +49,11 @@ const Navbar = () => {
     });
   };
 
+  // console.log(user && user.photoURL);
   return (
     <div className="bg-black bg-opacity-70 py-3 w-full z-[50] fixed">
-      <div className=" max-w-7xl mx-auto">
-        <div className="navbar  w-full">
+      <div className="mx-auto max-w-[95%] md:max-w-[90%] lg:max-w-[85%]">
+        <div className="navbar w-full">
           <div className="navbar-start">
             <div className="dropdown">
               <div
@@ -101,7 +104,15 @@ const Navbar = () => {
                 role="button"
                 className=" pr-5 text-4xl dark:text-white dark:hover:text-gray-100 text-white hover:text-gray-300"
               >
-                <CgProfile />
+                {users?.photoUrl ? (
+                  <div className="avatar">
+                    <div className="w-10 rounded-full ring-primary ring-offset-primary-500 ring ring-offset-1">
+                      <img src={users?.photoUrl} />
+                    </div>
+                  </div>
+                ) : (
+                  <CgProfile />
+                )}
               </div>
               <ul
                 tabIndex={0}

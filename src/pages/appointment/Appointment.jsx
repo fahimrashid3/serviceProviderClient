@@ -100,6 +100,7 @@ const Appointment = () => {
       email: user.email,
       userName: users.name || "null",
       userId: users._id,
+      createdAt: new Date(),
     };
 
     AxiosSecure.post("/appointments", appointmentDetails).then((res) => {

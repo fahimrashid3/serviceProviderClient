@@ -6,6 +6,7 @@ import useAxiosSecure from "../../hooks/useAxiosSecure";
 import useUsers from "../../hooks/useUser";
 import { MdOutlineDownloadDone } from "react-icons/md";
 import Loading from "../../components/Loading";
+import { Helmet } from "react-helmet";
 
 const Checkout = () => {
   const [appointment] = useAppointment();
@@ -68,6 +69,9 @@ const Checkout = () => {
   console.log("user from db", users);
   return (
     <div className="-mt-20 min-h-screen lg:px-20 md:px-16 px-10 bg-gray-50">
+      <Helmet>
+        <title>Check out</title>
+      </Helmet>
       <SectionBanner
         title={"CheckOut "}
         descriptions={"select services from your booked appointment to payment"}

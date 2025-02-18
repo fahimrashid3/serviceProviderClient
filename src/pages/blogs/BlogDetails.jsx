@@ -12,11 +12,9 @@ const BlogDetails = () => {
 
   useEffect(() => {
     if (_id) {
-      console.log("Fetching blog for ID:", _id); // ✅ Debugging log
       axiosPublic
         .get(`/blog/${_id}`)
         .then((res) => {
-          console.log("API Response:", res.data); // ✅ Debug API response
           setBlog(res.data);
         })
         .catch((error) => console.error("Error fetching blog:", error))
