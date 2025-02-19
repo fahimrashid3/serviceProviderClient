@@ -30,55 +30,20 @@ const WriteBlogs = () => {
     }
   };
 
+  // Function to resize image
   const resizeFile = (file) =>
     new Promise((resolve) => {
       Resizer.imageFileResizer(
-        file,
-        1280, // Max width
-        720, // Max height
-        "WEBP", // Format: WEBP
-        80, // Initial quality (adjustable)
+        file, // File to resize
+        800, // Max width
+        800, // Max height
+        "WEBP", // Output format
+        75, // Quality (0-100)
         0, // Rotation
         (uri) => {
-          // Convert base64 length to KB
-          const byteSize = (uri.length * (3 / 4)) / 1024; // Base64 length to KB
-
-          // Check if the image size exceeds 300 KB
-          if (byteSize > 300) {
-            // If the image is too large, reduce quality further
-            Resizer.imageFileResizer(
-              file,
-              1280,
-              720,
-              "WEBP",
-              70, // Reduced quality
-              0,
-              (uri) => {
-                // Check size again after resizing
-                const reducedByteSize = (uri.length * (3 / 4)) / 1024;
-                if (reducedByteSize > 300) {
-                  // If it's still too large, further reduce quality or take additional action
-                  Resizer.imageFileResizer(
-                    file,
-                    1280,
-                    720,
-                    "WEBP",
-                    60, // Further reduced quality for even smaller size
-                    0,
-                    (uri) => resolve(uri), // Finally resolve the file
-                    "base64"
-                  );
-                } else {
-                  resolve(uri); // Successfully resized within the limit
-                }
-              },
-              "base64"
-            );
-          } else {
-            resolve(uri); // Return if the image is already under the limit
-          }
+          resolve(uri);
         },
-        "base64"
+        "file" // Output type
       );
     });
 
