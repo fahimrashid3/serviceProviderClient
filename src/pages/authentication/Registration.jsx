@@ -11,6 +11,7 @@ import axios from "axios";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { Typewriter } from "react-simple-typewriter";
+import Resizer from "react-image-file-resizer"; // Import Resizer
 
 const Registration = () => {
   const navigate = useNavigate();
@@ -20,7 +21,7 @@ const Registration = () => {
   const axiosPublic = useAxiosPublic();
   const [showPassword, setShowPassword] = useState(false);
 
-  // show and hide password
+  // Show and hide password
   const handelShowPassword = () => {
     setShowPassword(!showPassword);
   };
@@ -37,6 +38,23 @@ const Registration = () => {
   const cloud_name = import.meta.env.VITE_CLOUD_NAME;
   const preset_key = import.meta.env.VITE_PRESET_KEY;
 
+  // Function to resize image
+  const resizeImage = (file) =>
+    new Promise((resolve) => {
+      Resizer.imageFileResizer(
+        file, // File to resize
+        800, // Max width
+        800, // Max height
+        "WEBP", // Output format
+        75, // Quality (0-100)
+        0, // Rotation
+        (uri) => {
+          resolve(uri);
+        },
+        "file" // Output type
+      );
+    });
+
   const onSubmit = async (data) => {
     setDisabled(true);
     const { name, email, password, confirmPassword, image } = data;
@@ -46,10 +64,13 @@ const Registration = () => {
         throw new Error("Cloudinary configuration is missing");
       }
 
-      // Upload image to Cloudinary
+      // Resize the image
       const file = image[0];
+      const resizedImage = await resizeImage(file);
+
+      // Upload resized image to Cloudinary
       const formData = new FormData();
-      formData.append("file", file);
+      formData.append("file", resizedImage);
       formData.append("upload_preset", preset_key);
 
       const res = await axios.post(
@@ -60,7 +81,6 @@ const Registration = () => {
 
       if (password === confirmPassword) {
         // Create user with Firebase
-        // TODO: verify email after create account
         const userCredential = await createUser(email, password);
         const user = userCredential.user;
 
