@@ -46,7 +46,7 @@ const Registration = () => {
         800, // Max width
         800, // Max height
         "WEBP", // Output format
-        75, // Quality (0-100)
+        90, // Quality (0-100)
         0, // Rotation
         (uri) => {
           resolve(uri);

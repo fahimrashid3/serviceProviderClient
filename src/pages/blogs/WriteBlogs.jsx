@@ -35,10 +35,10 @@ const WriteBlogs = () => {
     new Promise((resolve) => {
       Resizer.imageFileResizer(
         file, // File to resize
-        800, // Max width
-        800, // Max height
+        1080, // Max width
+        720, // Max height
         "WEBP", // Output format
-        75, // Quality (0-100)
+        95, // Quality (0-100)
         0, // Rotation
         (uri) => {
           resolve(uri);

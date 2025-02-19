@@ -30,20 +30,22 @@ const AssignProvider = () => {
     };
     console.log("appointment details ", appointmentUpdateInfo);
 
-    axiosSecure.patch("/appointment", appointmentUpdateInfo).then((res) => {
-      if (res.data.modifiedCount > 0) {
-        reset();
-        refetch();
-        Swal.fire({
-          position: "top-end",
-          icon: "success",
-          title: `Appointment Placed to ${selectedProvider.name}`,
-          showConfirmButton: false,
-          timer: 1500,
-        });
-        navigate("/dashboard/manageAppointments");
-      }
-    });
+    axiosSecure
+      .patch("/appointmentUpdateByAdmin", appointmentUpdateInfo)
+      .then((res) => {
+        if (res.data.modifiedCount > 0) {
+          reset();
+          refetch();
+          Swal.fire({
+            position: "top-end",
+            icon: "success",
+            title: `Appointment Placed to ${selectedProvider.name}`,
+            showConfirmButton: false,
+            timer: 1500,
+          });
+          navigate("/dashboard/manageAppointments");
+        }
+      });
   };
 
   // Show loading if data is not ready

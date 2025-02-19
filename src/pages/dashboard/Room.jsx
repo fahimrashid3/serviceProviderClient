@@ -83,7 +83,7 @@ const Room = () => {
         };
 
         axiosSecure
-          .patch("/appointments", appointmentUpdateInfo)
+          .patch("/appointmentUpdateByProvider", appointmentUpdateInfo)
           .then((response) => {
             console.log("Appointment updated:", response.data);
           })
