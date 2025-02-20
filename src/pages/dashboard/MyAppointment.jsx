@@ -85,6 +85,8 @@ const MyAppointment = () => {
                       <p className="text-green-500 font-semibold">
                         In Progress
                       </p>
+                    ) : item.status === "on-going" ? (
+                      <p className="text-red-500 font-semibold">On going</p>
                     ) : (
                       item.status || "N/A"
                     )}

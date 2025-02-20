@@ -6,6 +6,7 @@ import useAxiosSecure from "../../hooks/useAxiosSecure";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import { useState } from "react";
+import Resizer from "react-image-file-resizer";
 
 export default function AddProvider() {
   const cloud_name = import.meta.env.VITE_CLOUD_NAME;
@@ -43,14 +44,31 @@ export default function AddProvider() {
     name: "rewards",
   });
 
+  const resizeImage = (file) =>
+    new Promise((resolve) => {
+      Resizer.imageFileResizer(
+        file, // File to resize
+        800, // Max width
+        800, // Max height
+        "WEBP", // Output format
+        90, // Quality (0-100)
+        0, // Rotation
+        (uri) => {
+          resolve(uri);
+        },
+        "file" // Output type
+      );
+    });
+
   const onSubmit = async (data) => {
     const { image } = data;
     // Get the image file
     const file = image[0];
+    const resizedImage = await resizeImage(file);
 
     // Prepare form data for image upload to Cloudinary
     const formData = new FormData();
-    formData.append("file", file);
+    formData.append("file", resizedImage);
     formData.append("upload_preset", preset_key);
 
     // Upload the image to Cloudinary

@@ -11,7 +11,7 @@ import axios from "axios";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { Typewriter } from "react-simple-typewriter";
-import Resizer from "react-image-file-resizer"; // Import Resizer
+import Resizer from "react-image-file-resizer";
 
 const Registration = () => {
   const navigate = useNavigate();

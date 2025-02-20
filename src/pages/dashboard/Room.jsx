@@ -83,7 +83,7 @@ const Room = () => {
         };
 
         axiosSecure
-          .patch("/appointmentUpdateByProvider", appointmentUpdateInfo)
+          .patch("/appointmentUpdateWhenJoinRoom", appointmentUpdateInfo)
           .then((response) => {
             console.log("Appointment updated:", response.data);
           })
@@ -100,7 +100,19 @@ const Room = () => {
           users.name
         );
       }
+      const appointmentUpdateInfo = {
+        appointmentId: appointment._id,
+        status: "on-going",
+      };
 
+      axiosSecure
+        .patch("/appointmentUpdateWhenJoinRoom", appointmentUpdateInfo)
+        .then((response) => {
+          console.log("Appointment updated:", response.data);
+        })
+        .catch((error) => {
+          console.error("Error updating appointment:", error);
+        });
       if (meetingContainer.current) {
         const providerMeetingInstance = providerKitToken
           ? ZegoUIKitPrebuilt.create(providerKitToken)

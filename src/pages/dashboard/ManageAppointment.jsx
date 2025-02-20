@@ -30,6 +30,12 @@ const ManageAppointment = () => {
   const placedAppointments = allAppointments.filter(
     (item) => item.status === "placed"
   );
+  const inProgressAppointments = allAppointments.filter(
+    (item) => item.status === "in-progress"
+  );
+  const onGoingAppointments = allAppointments.filter(
+    (item) => item.status === "on-going"
+  );
   const completeAppointments = allAppointments.filter(
     (item) => item.status === "complete"
   );
@@ -57,6 +63,8 @@ const ManageAppointment = () => {
                 <Tab>Pending</Tab>
                 <Tab>Paid</Tab>
                 <Tab>Placed</Tab>
+                <Tab>In progress</Tab>
+                <Tab>On going</Tab>
                 <Tab>Complete</Tab>
               </TabList>
             </div>
@@ -175,38 +183,84 @@ const ManageAppointment = () => {
                     ))}
                   </tbody>
                 </table>
-
-                {/* 
-                
-                        <td>
-                          <button
-                            className="btn btn-ghost btn-outline btn-warning text-2xl"
-                            onClick={() =>
-                              document.getElementById("my_modal_3").showModal()
-                            }
-                          >
-                            <FaEdit />
-                          </button>
-                          <dialog id="my_modal_3" className="modal">
-                            <div className="modal-box">
-                              <form method="dialog">
-                                {/* if there is a button in form, it will close the modal 
-                                <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">
-                                  ✕
-                                </button>
-                              </form>
-                              <h3 className="font-bold text-lg">Hello!</h3>
-                              <p className="py-4">
-                                <AssignProvider
-                                  appointment={item}
-                                ></AssignProvider>
-                              </p>
-                            </div>
-                          </dialog>
-                        </td>
-                
-                */}
               </TabPanel>
+              {/* in progress table */}
+              <TabPanel>
+                <p className="lg:text-4xl md:text-3xl text-2xl md:font-bold font-semibold md:my-5 my-3">
+                  Total placed appointment : {inProgressAppointments.length}
+                </p>
+                <table className="table table-zebra w-full">
+                  <thead>
+                    <tr>
+                      <th>#</th>
+                      <th>Item</th>
+                      <th>User Email</th>
+                      <th>Date</th>
+                      <th>Time</th>
+                      <th>Provider Email</th>
+                      <th>Change provider</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {inProgressAppointments.map((item, index) => (
+                      <tr key={index}>
+                        <th>{index + 1}</th>
+                        <td>{item.category}</td>
+                        <td>{item.email}</td>
+                        <td>{item.date}</td>
+                        <td>{item.time}</td>
+                        <td>{item.providerEmail}</td>
+                        <td>
+                          <Link to={`/dashboard/assignProvider/${item._id}`}>
+                            <div className="btn btn-ghost btn-outline btn-warning text-2xl">
+                              <FaEdit />
+                            </div>
+                          </Link>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </TabPanel>
+              {/* On going table */}
+              <TabPanel>
+                <p className="lg:text-4xl md:text-3xl text-2xl md:font-bold font-semibold md:my-5 my-3">
+                  Total placed appointment : {onGoingAppointments.length}
+                </p>
+                <table className="table table-zebra w-full">
+                  <thead>
+                    <tr>
+                      <th>#</th>
+                      <th>Item</th>
+                      <th>User Email</th>
+                      <th>Date</th>
+                      <th>Time</th>
+                      <th>Provider Email</th>
+                      <th>Change provider</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {onGoingAppointments.map((item, index) => (
+                      <tr key={index}>
+                        <th>{index + 1}</th>
+                        <td>{item.category}</td>
+                        <td>{item.email}</td>
+                        <td>{item.date}</td>
+                        <td>{item.time}</td>
+                        <td>{item.providerEmail}</td>
+                        <td>
+                          <Link to={`/dashboard/assignProvider/${item._id}`}>
+                            <div className="btn btn-ghost btn-outline btn-warning text-2xl">
+                              <FaEdit />
+                            </div>
+                          </Link>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </TabPanel>
+
               {/* Complete appointment table */}
               <TabPanel>
                 <p className="lg:text-4xl md:text-3xl text-2xl md:font-bold font-semibold md:my-5 my-3">
