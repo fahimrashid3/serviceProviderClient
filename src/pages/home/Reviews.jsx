@@ -36,7 +36,7 @@ const Reviews = () => {
         <div className="lg:space-y-6 md:space-y-8 py-10 space-y-3 px-5 md:px-0">
           <div className="skeleton h-6 w-40 mx-auto"></div>
           <div className="skeleton h-16 w-16 mx-auto"></div>
-          <div className="skeleton h-24 w-full lg:w-3/5 md:w-4/5 mx-auto"></div>
+          <div className="skeleton h-20 w-full lg:w-3/5 md:w-4/5 mx-auto"></div>
           <div className="skeleton h-8 w-32 mx-auto"></div>
         </div>
       </div>

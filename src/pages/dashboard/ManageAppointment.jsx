@@ -198,7 +198,7 @@ const ManageAppointment = () => {
                       <th>Date</th>
                       <th>Time</th>
                       <th>Provider Email</th>
-                      <th>Change provider</th>
+                      {/* <th>Change provider</th> */}
                     </tr>
                   </thead>
                   <tbody>
@@ -210,13 +210,13 @@ const ManageAppointment = () => {
                         <td>{item.date}</td>
                         <td>{item.time}</td>
                         <td>{item.providerEmail}</td>
-                        <td>
+                        {/* <td>
                           <Link to={`/dashboard/assignProvider/${item._id}`}>
                             <div className="btn btn-ghost btn-outline btn-warning text-2xl">
                               <FaEdit />
                             </div>
                           </Link>
-                        </td>
+                        </td> */}
                       </tr>
                     ))}
                   </tbody>
@@ -236,7 +236,7 @@ const ManageAppointment = () => {
                       <th>Date</th>
                       <th>Time</th>
                       <th>Provider Email</th>
-                      <th>Change provider</th>
+                      {/* <th>Change provider</th> */}
                     </tr>
                   </thead>
                   <tbody>
@@ -248,13 +248,13 @@ const ManageAppointment = () => {
                         <td>{item.date}</td>
                         <td>{item.time}</td>
                         <td>{item.providerEmail}</td>
-                        <td>
+                        {/* <td>
                           <Link to={`/dashboard/assignProvider/${item._id}`}>
                             <div className="btn btn-ghost btn-outline btn-warning text-2xl">
                               <FaEdit />
                             </div>
                           </Link>
-                        </td>
+                        </td> */}
                       </tr>
                     ))}
                   </tbody>

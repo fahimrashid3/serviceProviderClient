@@ -3,13 +3,51 @@ import useProviderAppointment from "../../hooks/useProviderAppointment";
 import Loading from "../../components/Loading";
 import { MdVideoCall } from "react-icons/md";
 import { Link } from "react-router-dom";
+import { FaEdit } from "react-icons/fa";
+import Swal from "sweetalert2";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
 
 const MyServices = () => {
+  const axiosSecure = useAxiosSecure();
   const [providerAppointments, , isLoading] = useProviderAppointment();
 
   if (isLoading) {
     return <Loading />;
   }
+  const handelComplete = (_id) => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, Mark as complete!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        const appointmentUpdateInfo = {
+          appointmentId: _id,
+          status: "complete",
+        };
+
+        axiosSecure
+          .patch("/appointmentComplete", appointmentUpdateInfo)
+          .then((response) => {
+            Swal.fire({
+              position: "top-end",
+              icon: "success",
+              title: "Appointment saved as complete",
+              showConfirmButton: false,
+              timer: 1500,
+            });
+            console.log("Appointment updated:", response.data);
+          })
+          .catch((error) => {
+            console.error("Error updating appointment:", error);
+          });
+      }
+    });
+  };
 
   return (
     <div>
@@ -29,8 +67,8 @@ const MyServices = () => {
                 <th>Email</th>
                 <th>Date</th>
                 <th>Time</th>
-                <th>Price (Taka)</th>
                 <th>Status</th>
+                <th>Mark as complete</th>
                 <th>Call Now</th>
               </tr>
             </thead>
@@ -42,7 +80,6 @@ const MyServices = () => {
                     <td>{item.email}</td>
                     <td>{item.date}</td>
                     <td>{item.time}</td>
-                    <td>{item.price}</td>
                     <td>
                       {item.status === "paid" ? (
                         <p className="text-green-500 text-lg font-semibold">
@@ -53,15 +90,27 @@ const MyServices = () => {
                       )}
                     </td>
                     <td>
-                      {item.status !== "paid" ? (
+                      <button
+                        onClick={() => handelComplete(item._id)}
+                        className="btn btn-ghost btn-outline btn-warning text-2xl"
+                      >
+                        <FaEdit />
+                      </button>
+                    </td>
+
+                    <td>
+                      {item.status === "paid" ? (
+                        <p>paid</p>
+                      ) : item.status === "complete" ? (
+                        <p>complete</p>
+                      ) : (
                         <Link
                           to={`/room/${item._id}`}
                           className="btn btn-ghost btn-outline btn-error text-2xl"
+                          aria-label="Join Video Call"
                         >
                           <MdVideoCall />
                         </Link>
-                      ) : (
-                        <p>Paid</p>
                       )}
                     </td>
                   </tr>
