@@ -4,12 +4,18 @@ import useUsers from "../../../hooks/useUser";
 import Loading from "../../../components/Loading.jsx";
 import useAuth from "../../../hooks/useAuth.jsx";
 import Swal from "sweetalert2";
+import useAxiosSecure from "../../../hooks/useAxiosSecure.jsx";
+import Resizer from "react-image-file-resizer";
+import useAxiosPublic from "../../../hooks/useAxiosPublic.jsx";
 
 const UserProfile = () => {
   const [users, loading] = useUsers();
   const [isEditing, setIsEditing] = useState(false);
-  const [previewImage, setPreviewImage] = useState(users?.photo || "");
-  const [selectedFile, setSelectedFile] = useState(null); // State to store the selected file
+  const [previewImage, setPreviewImage] = useState(users?.photoUrl || "");
+  const [selectedFile, setSelectedFile] = useState(null);
+  const [isUpdating, setIsUpdating] = useState(false); // Loading state for updates
+  const axiosSecure = useAxiosSecure();
+  const axiosPublic = useAxiosPublic();
   const {
     register,
     handleSubmit,
@@ -51,24 +57,89 @@ const UserProfile = () => {
   };
 
   if (loading) {
-    return <Loading></Loading>;
+    return <Loading />;
   }
 
-  const onSubmit = (data) => {
-    console.log("Form submitted with data:", data); // Debugging line
-    const updatedUserInfo = {
-      ...data,
-      email: users?.email,
-      photo: selectedFile, // Include the selected file in the form data
-    };
+  // Accessing environment variables
+  const cloud_name = import.meta.env.VITE_CLOUD_NAME;
+  const preset_key = import.meta.env.VITE_PRESET_KEY;
 
-    console.log("Updated Data:", updatedUserInfo); // Log the updated data to check the changes
-    setIsEditing(false);
+  // Function to resize image
+  const resizeImage = (file) =>
+    new Promise((resolve) => {
+      Resizer.imageFileResizer(
+        file,
+        800,
+        800,
+        "WEBP",
+        90,
+        0,
+        (uri) => {
+          resolve(uri);
+        },
+        "file" // Output type
+      );
+    });
+  const onSubmit = async (data) => {
+    setIsUpdating(true); // Start loading state
+
+    try {
+      let photoUrl = users?.photoUrl; // Default to existing photo URL
+
+      // Upload new image if a file is selected
+      if (selectedFile) {
+        const resizedImage = await resizeImage(selectedFile);
+
+        // Upload resized image to Cloudinary
+        const formData = new FormData();
+        formData.append("file", resizedImage);
+        formData.append("upload_preset", preset_key);
+
+        const res = await axiosPublic.post(
+          `https://api.cloudinary.com/v1_1/${cloud_name}/image/upload`,
+          formData
+        );
+        photoUrl = res.data.secure_url; // Update photo URL with new image
+      }
+
+      // Prepare updated user info
+      const updatedUserInfo = {
+        name: data.name,
+        phone: data.phone,
+        photoUrl: photoUrl,
+        email: users?.email, // Include email for filtering
+      };
+
+      // Update user profile in the database
+      const updateRes = await axiosSecure.patch("/user", updatedUserInfo);
+      console.log(updateRes);
+      if (updateRes.data) {
+        Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: "Profile updated successfully",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+        setIsEditing(false); // Exit edit mode
+        setPreviewImage(photoUrl); // Update preview image
+      }
+    } catch (error) {
+      console.error("Error updating profile:", error);
+      Swal.fire({
+        position: "top-end",
+        icon: "error",
+        title: error.response?.data?.message || "Failed to update profile",
+        showConfirmButton: false,
+        timer: 1500,
+      });
+    } finally {
+      setIsUpdating(false); // End loading state
+    }
   };
-
   const handleCancel = () => {
     reset();
-    setPreviewImage(users?.photo || "");
+    setPreviewImage(users?.photoUrl || "");
     setIsEditing(false);
   };
 
@@ -102,7 +173,6 @@ const UserProfile = () => {
               htmlFor="photoUrl"
               className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-50 rounded-full cursor-pointer"
             >
-              {/* Edit Icon SVG */}
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 className="h-12 w-12 text-white hover:text-primary-600"
@@ -117,11 +187,10 @@ const UserProfile = () => {
                   d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"
                 />
               </svg>
-              {/* Hidden File Input */}
               <input
                 type="file"
                 id="photoUrl"
-                {...register("photo", { required: "Photo is required" })}
+                {...register("photo")}
                 className="hidden"
                 onChange={handleImageChange}
               />
@@ -190,8 +259,9 @@ const UserProfile = () => {
             <button
               type="submit"
               className="btn bg-primary-600 text-white hover:bg-primary-700"
+              disabled={isUpdating}
             >
-              Save
+              {isUpdating ? "Saving..." : "Save"}
             </button>
             <button
               type="button"
