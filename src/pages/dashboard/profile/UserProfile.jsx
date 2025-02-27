@@ -206,7 +206,7 @@ const UserProfile = () => {
             {isEditing ? (
               <input
                 type="text"
-                {...register("name", { required: "Name is required" })}
+                {...register("name")}
                 className="border rounded p-1"
               />
             ) : (
@@ -234,10 +234,8 @@ const UserProfile = () => {
             <p className="font-semibold">Phone Number</p>
             {isEditing ? (
               <input
-                type="tel"
-                {...register("phone", {
-                  required: "Phone number is required",
-                })}
+                type="number"
+                {...register("phone")}
                 className="border rounded p-1"
               />
             ) : users?.phone ? (
@@ -254,7 +252,7 @@ const UserProfile = () => {
           <hr />
         </div>
 
-        {isEditing ? (
+        {isEditing && (
           <div className="flex justify-center gap-3">
             <button
               type="submit"
@@ -271,25 +269,26 @@ const UserProfile = () => {
               Cancel
             </button>
           </div>
-        ) : (
-          <div className="flex justify-center gap-3">
-            <button
-              type="button"
-              onClick={() => setIsEditing(true)}
-              className="btn bg-transparent border-1 border-b-4 mx-auto border-primary-600 text-primary-600 hover:bg-primary-600 hover:text-white hover:border-primary-600"
-            >
-              Edit Profile
-            </button>
-            <button
-              type="button"
-              onClick={handelLogout}
-              className="btn bg-transparent border-1 border-b-4 mx-auto border-primary-600 text-primary-600 hover:bg-primary-600 hover:text-white hover:border-primary-600"
-            >
-              Logout
-            </button>
-          </div>
         )}
       </form>
+      {!isEditing && (
+        <div className="flex justify-center gap-3">
+          <button
+            type="button"
+            onClick={() => setIsEditing(true)}
+            className="btn bg-transparent border-1 border-b-4 mx-auto border-primary-600 text-primary-600 hover:bg-primary-600 hover:text-white hover:border-primary-600"
+          >
+            Edit Profile
+          </button>
+          <button
+            type="button"
+            onClick={handelLogout}
+            className="btn bg-transparent border-1 border-b-4 mx-auto border-primary-600 text-primary-600 hover:bg-primary-600 hover:text-white hover:border-primary-600"
+          >
+            Logout
+          </button>
+        </div>
+      )}
     </div>
   );
 };
