@@ -8,7 +8,13 @@ import { FaRegCalendarCheck } from "react-icons/fa6";
 import Swal from "sweetalert2";
 import useAppointment from "../../../hooks/useAppointment";
 import useAdmin from "../../../hooks/useAdmin";
-import { FaCalendarCheck, FaEdit, FaHome, FaUsers } from "react-icons/fa";
+import {
+  FaCalendarCheck,
+  FaEdit,
+  FaHistory,
+  FaHome,
+  FaUsers,
+} from "react-icons/fa";
 import { BsEnvelopeExclamation } from "react-icons/bs";
 import { MdOutlineMenuOpen } from "react-icons/md";
 import { IoMdPersonAdd } from "react-icons/io";
@@ -169,6 +175,12 @@ const Navbar = () => {
                       <Link to="/dashboard/myServices">
                         <FcServices />
                         My Services
+                      </Link>
+                    </li>
+                    <li>
+                      <Link to="/dashboard/myAppointmentHistory">
+                        <FaHistory />
+                        My Appointment History
                       </Link>
                     </li>
                     <li>

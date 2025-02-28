@@ -37,6 +37,7 @@ import MyBlogs from "../pages/blogs/MyBlogs";
 import WriteBlogs from "../pages/blogs/WriteBlogs";
 import ProviderRout from "./ProviderRoute";
 import MyBlogDetails from "../pages/blogs/MyBlogDetails";
+import MyAppointmentHistory from "../pages/dashboard/MyAppointmentHistory";
 export const router = createBrowserRouter([
   {
     path: "/",
@@ -160,6 +161,14 @@ export const router = createBrowserRouter([
         element: (
           <ProviderRout>
             <MyServices />
+          </ProviderRout>
+        ),
+      },
+      {
+        path: "myAppointmentHistory",
+        element: (
+          <ProviderRout>
+            <MyAppointmentHistory />
           </ProviderRout>
         ),
       },

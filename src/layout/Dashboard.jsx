@@ -4,6 +4,7 @@ import {
   FaCalendarCheck,
   FaDollarSign,
   FaEdit,
+  FaHistory,
   FaHome,
   FaPhone,
   FaUsers,
@@ -111,6 +112,12 @@ const DashBoard = () => {
                 <NavLink to="/dashboard/myServices">
                   <FcServices />
                   My Services
+                </NavLink>
+              </li>
+              <li>
+                <NavLink to="/dashboard/myAppointmentHistory">
+                  <FaHistory />
+                  My Appointment History
                 </NavLink>
               </li>
               <li>
