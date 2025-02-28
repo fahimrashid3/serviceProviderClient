@@ -36,9 +36,9 @@ const ManageAppointment = () => {
   const onGoingAppointments = allAppointments.filter(
     (item) => item.status === "on-going"
   );
-  const completeAppointments = allAppointments.filter(
-    (item) => item.status === "complete"
-  );
+  // const completeAppointments = allAppointments.filter(
+  //   (item) => item.status === "complete"
+  // );
 
   // Tab state
   const [tabIndex, setTabIndex] = useState(0);
@@ -65,7 +65,7 @@ const ManageAppointment = () => {
                 <Tab>Placed</Tab>
                 <Tab>In progress</Tab>
                 <Tab>On going</Tab>
-                <Tab>Complete</Tab>
+                {/* <Tab>Complete</Tab> */}
               </TabList>
             </div>
             <div className="my-5">
@@ -262,7 +262,7 @@ const ManageAppointment = () => {
               </TabPanel>
 
               {/* Complete appointment table */}
-              <TabPanel>
+              {/* <TabPanel>
                 <p className="lg:text-4xl md:text-3xl text-2xl md:font-bold font-semibold md:my-5 my-3">
                   Total complete appointment : {completeAppointments.length}
                 </p>
@@ -293,7 +293,7 @@ const ManageAppointment = () => {
                     ))}
                   </tbody>
                 </table>
-              </TabPanel>
+              </TabPanel> */}
             </div>
           </Tabs>
         </div>

@@ -9,7 +9,7 @@ import useAxiosSecure from "../../hooks/useAxiosSecure";
 
 const MyServices = () => {
   const axiosSecure = useAxiosSecure();
-  const [providerAppointments, , isLoading] = useProviderAppointment();
+  const [providerAppointments, refetch, isLoading] = useProviderAppointment();
 
   if (isLoading) {
     return <Loading />;
@@ -27,20 +27,21 @@ const MyServices = () => {
       if (result.isConfirmed) {
         const appointmentUpdateInfo = {
           appointmentId: _id,
-          status: "complete",
         };
 
         axiosSecure
-          .patch("/appointmentComplete", appointmentUpdateInfo)
+          .post("/completeAppointment", appointmentUpdateInfo)
           .then((response) => {
-            Swal.fire({
-              position: "top-end",
-              icon: "success",
-              title: "Appointment saved as complete",
-              showConfirmButton: false,
-              timer: 1500,
-            });
-            console.log("Appointment updated:", response.data);
+            if (response.data.insertedId && response.data.deletedCount) {
+              refetch();
+              Swal.fire({
+                position: "top-end",
+                icon: "success",
+                title: "Appointment saved as complete",
+                showConfirmButton: false,
+                timer: 1500,
+              });
+            }
           })
           .catch((error) => {
             console.error("Error updating appointment:", error);
@@ -90,12 +91,16 @@ const MyServices = () => {
                       )}
                     </td>
                     <td>
-                      <button
-                        onClick={() => handelComplete(item._id)}
-                        className="btn btn-ghost btn-outline btn-warning text-2xl"
-                      >
-                        <FaEdit />
-                      </button>
+                      {item.status === "on-going" ? (
+                        <button
+                          onClick={() => handelComplete(item._id)}
+                          className="btn btn-ghost btn-outline btn-warning text-2xl"
+                        >
+                          <FaEdit />
+                        </button>
+                      ) : (
+                        <p>{item.status}</p>
+                      )}
                     </td>
 
                     <td>
