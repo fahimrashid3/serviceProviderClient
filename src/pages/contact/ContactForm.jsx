@@ -16,23 +16,41 @@ const ContactForm = () => {
     // watch,
     formState: { errors },
   } = useForm();
-  // TODO: save the data in the data base
   const onSubmit = (data) => {
-    const contactSMSInfo = data;
+    const contactSMSInfo = {
+      ...data, // Spread the form data
+      createdAt: Date.now(), // Save the current timestamp in milliseconds
+      // Alternatively, use a human-readable format:
+      // createdAt: new Date().toISOString(), // ISO format (e.g., "2023-10-05T12:34:56.789Z")
+      // createdAt: new Date().toString(), // Human-readable format (e.g., "Wed Oct 05 2023 12:34:56 GMT+0000")
+    };
+
     console.log(contactSMSInfo);
-    AxiosSecure.post("/contacts", contactSMSInfo).then((res) => {
-      if (res.data.insertedId) {
-        navigate("/");
-        scrollTo(0, 0);
+
+    AxiosSecure.post("/contacts", contactSMSInfo)
+      .then((res) => {
+        if (res.data.insertedId) {
+          navigate("/");
+          scrollTo(0, 0);
+          Swal.fire({
+            position: "top-end",
+            icon: "success",
+            title: "Message sent successfully!",
+            showConfirmButton: false,
+            timer: 1000,
+          });
+        }
+      })
+      .catch((error) => {
+        console.error("Error submitting contact message:", error);
         Swal.fire({
           position: "top-end",
-          icon: "success",
-          title: "Message sent successfully!",
+          icon: "error",
+          title: "Failed to send message!",
           showConfirmButton: false,
           timer: 1000,
         });
-      }
-    });
+      });
   };
   if (!user) {
     return (
