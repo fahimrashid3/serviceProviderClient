@@ -17,7 +17,6 @@ import AddProvider from "../pages/dashboard/AddProvider";
 import ManageProviders from "../pages/dashboard/ManageProviders";
 import AdminRoute from "./AdminRoute";
 import FullProfile from "../pages/profile/FullProfile";
-import ManageContact from "../pages/dashboard/ManageContact";
 import ManageReviews from "../pages/dashboard/ManageReviews";
 import Checkout from "../pages/dashboard/Checkout";
 import Success from "../pages/payment/Success";
@@ -38,6 +37,8 @@ import WriteBlogs from "../pages/blogs/WriteBlogs";
 import ProviderRout from "./ProviderRoute";
 import MyBlogDetails from "../pages/blogs/MyBlogDetails";
 import MyAppointmentHistory from "../pages/dashboard/MyAppointmentHistory";
+import UserContact from "../pages/dashboard/contacts/UserContact";
+import ManageContact from "../pages/dashboard/contacts/ManageContact";
 export const router = createBrowserRouter([
   {
     path: "/",
@@ -143,6 +144,14 @@ export const router = createBrowserRouter([
         element: (
           <PrivetRoute>
             <UserProfile />
+          </PrivetRoute>
+        ),
+      },
+      {
+        path: "userContact",
+        element: (
+          <PrivetRoute>
+            <UserContact />
           </PrivetRoute>
         ),
       },

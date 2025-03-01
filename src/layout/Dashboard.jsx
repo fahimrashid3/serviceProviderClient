@@ -9,7 +9,7 @@ import {
   FaPhone,
   FaUsers,
 } from "react-icons/fa";
-import { MdOutlineMenuOpen } from "react-icons/md";
+import { MdMessage, MdOutlineMenuOpen } from "react-icons/md";
 import { IoMdPersonAdd } from "react-icons/io";
 import { BsEnvelopeExclamation } from "react-icons/bs";
 import useAdmin from "../hooks/useAdmin";
@@ -144,6 +144,12 @@ const DashBoard = () => {
               <li>
                 <NavLink to="/dashboard/userProfile">
                   <FaHome /> My Profile
+                </NavLink>
+              </li>
+              <li>
+                <NavLink to="/dashboard/userContact">
+                  <MdMessage />
+                  Contact Messages
                 </NavLink>
               </li>
               <li>

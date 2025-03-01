@@ -16,7 +16,7 @@ import {
   FaUsers,
 } from "react-icons/fa";
 import { BsEnvelopeExclamation } from "react-icons/bs";
-import { MdOutlineMenuOpen } from "react-icons/md";
+import { MdMessage, MdOutlineMenuOpen } from "react-icons/md";
 import { IoMdPersonAdd } from "react-icons/io";
 import useProvider from "../../../hooks/useProvider";
 import { TbLogs } from "react-icons/tb";
@@ -205,6 +205,14 @@ const Navbar = () => {
                           <CgProfile />
                         </span>
                         Profile
+                      </Link>
+                    </li>
+                    <li>
+                      <Link to="/dashboard/userContact">
+                        <span className="text-2xl">
+                          <MdMessage />
+                        </span>
+                        Contact Messages
                       </Link>
                     </li>
                     <li>

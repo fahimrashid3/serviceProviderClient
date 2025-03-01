@@ -36,7 +36,8 @@ const ManageReviews = () => {
               <th>Name</th>
               <th>Star</th>
               <th>details</th>
-              <th>Action</th>
+              <th>Add</th>
+              <th>Delete</th>
             </tr>
           </thead>
           <tbody>
@@ -57,7 +58,12 @@ const ManageReviews = () => {
 
                 <th>
                   <button className="btn btn-ghost btn-outline btn-success">
-                    Replay
+                    Add
+                  </button>
+                </th>
+                <th>
+                  <button className="btn btn-ghost btn-outline btn-error">
+                    Delete
                   </button>
                 </th>
               </tr>
