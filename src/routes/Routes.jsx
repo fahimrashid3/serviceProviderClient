@@ -27,7 +27,7 @@ import ProviderProfile from "../pages/dashboard/profile/ProviderProfile";
 import UserProfile from "../pages/dashboard/profile/UserProfile";
 import AssignProvider from "../components/AssignProvider";
 import Room from "../pages/dashboard/Room";
-import PaymentHistory from "../pages/dashboard/PaymentHistory";
+import AppointmentHistory from "../pages/dashboard/AppointmentHistory";
 import MyReviews from "../pages/dashboard/MyReviews";
 import ErrorPage from "../pages/shared/errorPage/ErrorPage";
 import Blogs from "../pages/blogs/Blogs";
@@ -132,8 +132,8 @@ export const router = createBrowserRouter([
         element: <MyAppointment />,
       },
       {
-        path: "paymentHistory",
-        element: <PaymentHistory />,
+        path: "appointmentHistory",
+        element: <AppointmentHistory />,
       },
       {
         path: "reviews",

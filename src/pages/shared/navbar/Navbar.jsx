@@ -216,6 +216,14 @@ const Navbar = () => {
                       </Link>
                     </li>
                     <li>
+                      <Link to="/dashboard/appointmentHistory">
+                        <span className="text-2xl">
+                          <FaHistory />
+                        </span>
+                        Appointment History
+                      </Link>
+                    </li>
+                    <li>
                       <Link to="/dashboard/myAppointment">
                         <span className="text-2xl">
                           <FaRegCalendarCheck />
