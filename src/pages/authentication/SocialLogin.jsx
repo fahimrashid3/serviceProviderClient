@@ -1,6 +1,7 @@
 import { useLocation, useNavigate } from "react-router-dom";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
 import useAuth from "../../hooks/useAuth";
+import { useEffect, useState } from "react";
 
 const SocialLogin = () => {
   const location = useLocation();
@@ -8,6 +9,7 @@ const SocialLogin = () => {
   const { googleSignIn } = useAuth();
   const axiosPublic = useAxiosPublic();
   const navigate = useNavigate();
+  const [shouldNavigate, setShouldNavigate] = useState(false);
 
   const handleGoogleSignIn = () => {
     googleSignIn().then((result) => {
@@ -16,13 +18,18 @@ const SocialLogin = () => {
         name: result.user?.displayName,
         photoUrl: result.user?.photoURL,
       };
-      console.log(userInfo);
+
       axiosPublic.post("/users", userInfo).then((res) => {
         console.log(res.data);
-        navigate(from, { replace: true });
+        setShouldNavigate(true);
       });
     });
   };
+  useEffect(() => {
+    if (shouldNavigate) {
+      navigate(from, { replace: true });
+    }
+  }, [shouldNavigate, navigate, from]);
 
   return (
     <div className="flex justify-center items-center gap-5 font-bold">
