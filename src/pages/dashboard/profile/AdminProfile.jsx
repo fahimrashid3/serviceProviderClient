@@ -1,16 +1,24 @@
 import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
-import useAuth from "../../../hooks/useAuth";
 import { FaCalendarCheck, FaUsers } from "react-icons/fa";
 import { GiProfit } from "react-icons/gi";
 import { FaUserDoctor } from "react-icons/fa6";
 import Loading from "../../../components/Loading";
-import { BarChart, Bar, Cell, XAxis, YAxis, CartesianGrid } from "recharts";
+import {
+  BarChart,
+  Bar,
+  PieChart,
+  Pie,
+  Cell,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Legend,
+} from "recharts";
 
 const colors = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042", "red", "pink"];
 
 const AdminProfile = () => {
-  const { user } = useAuth();
   const axiosSecure = useAxiosSecure();
 
   const { data: chartData = [], isLoading: chartDataLoading } = useQuery({
@@ -52,10 +60,38 @@ const AdminProfile = () => {
 
     return <path d={getPath(x, y, width, height)} stroke="none" fill={fill} />;
   };
+  const RADIAN = Math.PI / 180;
+  const renderCustomizedLabel = ({
+    cx,
+    cy,
+    midAngle,
+    innerRadius,
+    outerRadius,
+    percent,
+  }) => {
+    const radius = innerRadius + (outerRadius - innerRadius) * 0.5;
+    const x = cx + radius * Math.cos(-midAngle * RADIAN);
+    const y = cy + radius * Math.sin(-midAngle * RADIAN);
+
+    return (
+      <text
+        x={x}
+        y={y}
+        fill="white"
+        textAnchor={x > cx ? "start" : "end"}
+        dominantBaseline="central"
+      >
+        {`${(percent * 100).toFixed(0)}%`}
+      </text>
+    );
+  };
+  const pieChartData = chartData.historyResult?.map((data) => ({
+    name: data._id,
+    value: data.totalRevenue,
+  }));
 
   return (
-    <div>
-      <h2 className="text-3xl">Hi, welcome: {user?.name}</h2>
+    <div className="space-y-10">
       <div className="stats shadow w-full md:mt-10 mt-2">
         <div className="stat">
           <div className="stat-figure text-dark-700 text-4xl">
@@ -89,7 +125,7 @@ const AdminProfile = () => {
           <div className="stat-value"> ৳ {revenue.toFixed(2)}</div>
         </div>
       </div>
-      <div className="flex">
+      <div className="flex justify-around">
         <div>
           <p>Total pending appointment</p>
           <BarChart
@@ -146,6 +182,30 @@ const AdminProfile = () => {
             </Bar>
           </BarChart>
         </div>
+      </div>
+      <div>
+        <p>revenue presentence form all Complete appointment</p>
+
+        <PieChart width={400} height={400}>
+          <Pie
+            data={pieChartData}
+            cx="50%"
+            cy="50%"
+            labelLine={false}
+            label={renderCustomizedLabel}
+            outerRadius={80}
+            fill="#8884d8"
+            dataKey="value"
+          >
+            {pieChartData.map((entry, index) => (
+              <Cell
+                key={`cell-${index}`}
+                fill={colors[index % colors.length]}
+              />
+            ))}
+          </Pie>
+          <Legend></Legend>
+        </PieChart>
       </div>
     </div>
   );
