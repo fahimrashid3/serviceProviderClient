@@ -13,7 +13,7 @@ const UserProfile = () => {
   const [isEditing, setIsEditing] = useState(false);
   const [previewImage, setPreviewImage] = useState(users?.photoUrl || "");
   const [selectedFile, setSelectedFile] = useState(null);
-  const [isUpdating, setIsUpdating] = useState(false); // Loading state for updates
+  const [isUpdating, setIsUpdating] = useState(false);
   const axiosSecure = useAxiosSecure();
   const axiosPublic = useAxiosPublic();
   const {
