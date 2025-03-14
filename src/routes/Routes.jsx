@@ -39,6 +39,7 @@ import MyBlogDetails from "../pages/blogs/MyBlogDetails";
 import MyAppointmentHistory from "../pages/dashboard/MyAppointmentHistory";
 import UserContact from "../pages/dashboard/contacts/UserContact";
 import ManageContact from "../pages/dashboard/contacts/ManageContact";
+import UpdateProviderProfile from "../pages/dashboard/profile/UpdateProviderProfile";
 export const router = createBrowserRouter([
   {
     path: "/",
@@ -161,6 +162,14 @@ export const router = createBrowserRouter([
         element: (
           <ProviderRout>
             <ProviderProfile />
+          </ProviderRout>
+        ),
+      },
+      {
+        path: "updateProviderProfile/:email",
+        element: (
+          <ProviderRout>
+            <UpdateProviderProfile />
           </ProviderRout>
         ),
       },

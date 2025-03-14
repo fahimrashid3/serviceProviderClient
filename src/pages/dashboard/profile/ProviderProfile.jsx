@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import useAuth from "../../../hooks/useAuth.jsx";
 import useAxiosSecure from "../../../hooks/useAxiosSecure.jsx";
+import { Link } from "react-router-dom";
 
 const ProviderProfile = () => {
   const axiosSecure = useAxiosSecure();
@@ -17,13 +18,16 @@ const ProviderProfile = () => {
     <div className="md:p-4">
       <div className="p-4 rounded">
         <h2 className="text-lg font-semibold mb-4">Personal Information</h2>
-        <div className="mask mask-squircle w-28 md:w-40 lg:w-56 relative">
-          <img
-            src={provider?.userImg}
-            alt="Profile"
-            className="w-full h-full object-cover"
-          />
+        <div className="flex flex-col items-center justify-center">
+          <div className="mask mask-squircle w-28 md:w-40 lg:w-56 relative">
+            <img
+              src={provider?.userImg}
+              alt="Profile"
+              className="w-full h-full object-cover"
+            />
+          </div>
         </div>
+
         <div className="md:flex gap-5">
           {/* input name */}
           <div className="flex-1">
@@ -84,16 +88,6 @@ const ProviderProfile = () => {
             className="textarea textarea-bordered textarea-md w-full max-w-full"
             value={provider?.about || ""}
             readOnly
-          />
-        </div>
-        <div className="form-control">
-          <label className="label">
-            <span className="label-text">Profile Image</span>
-          </label>
-          <img
-            src={provider?.image}
-            alt="Profile"
-            className="w-24 h-24 object-cover"
           />
         </div>
       </div>
@@ -243,6 +237,21 @@ const ProviderProfile = () => {
             </div>
           ))}
         </div>
+      </div>
+      <div className="flex justify-center gap-3">
+        <Link
+          to={`/dashboard/updateProviderProfile/${provider.email}`}
+          type="button"
+          className="btn bg-transparent border-1 border-b-4 mx-auto border-primary-600 text-primary-600 hover:bg-primary-600 hover:text-white hover:border-primary-600"
+        >
+          Edit Profile
+        </Link>
+        <button
+          type="button"
+          className="btn bg-transparent border-1 border-b-4 mx-auto border-primary-600 text-primary-600 hover:bg-primary-600 hover:text-white hover:border-primary-600"
+        >
+          Logout
+        </button>
       </div>
     </div>
   );
