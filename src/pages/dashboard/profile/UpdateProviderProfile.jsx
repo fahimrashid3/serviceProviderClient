@@ -7,6 +7,7 @@ import Resizer from "react-image-file-resizer";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import useCategories from "../../../hooks/useCategories";
 import useAuth from "../../../hooks/useAuth";
+import Swal from "sweetalert2";
 
 const UpdateProviderProfile = () => {
   const axiosSecure = useAxiosSecure();
@@ -118,19 +119,38 @@ const UpdateProviderProfile = () => {
       rewards: data.rewards || provider.rewards,
       contactNumber: data.contactNumber || provider.contactNumber,
       timeTable: {
-        Monday: data.timeTable.Monday || provider.timeTable?.Monday || "",
-        Tuesday: data.timeTable.Tuesday || provider.timeTable?.Tuesday || "",
-        Wednesday:
-          data.timeTable.Wednesday || provider.timeTable?.Wednesday || "",
-        Thursday: data.timeTable.Thursday || provider.timeTable?.Thursday || "",
-        Friday: data.timeTable.Friday || provider.timeTable?.Friday || "",
-        Saturday: data.timeTable.Saturday || provider.timeTable?.Saturday || "",
-        Sunday: data.timeTable.Sunday || provider.timeTable?.Sunday || "",
+        Monday: data.timeTable.Monday || provider.timeTable?.Monday,
+        Tuesday: data.timeTable.Tuesday || provider.timeTable?.Tuesday,
+        Wednesday: data.timeTable.Wednesday || provider.timeTable?.Wednesday,
+        Thursday: data.timeTable.Thursday || provider.timeTable?.Thursday,
+        Friday: data.timeTable.Friday || provider.timeTable?.Friday,
+        Saturday: data.timeTable.Saturday || provider.timeTable?.Saturday,
+        Sunday: data.timeTable.Sunday || provider.timeTable?.Sunday,
       },
       totalReview: 0,
     };
-
-    console.log("Updated Data:", providerInfo);
+    axiosSecure.patch("/provider", providerInfo).then((res) => {
+      console.log(res.data);
+      if (res.data.modifiedCount > 0) {
+        navigate("/dashboard/providerHome");
+        scrollTo(0, 0);
+        Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: "Information updated successfully!",
+          showConfirmButton: false,
+          timer: 1000,
+        });
+      } else {
+        Swal.fire({
+          position: "top-end",
+          icon: "error",
+          title: "No changes detected!",
+          showConfirmButton: false,
+          timer: 1000,
+        });
+      }
+    });
   };
 
   const handleCancel = () => {
@@ -177,8 +197,9 @@ const UpdateProviderProfile = () => {
               </label>
               <input
                 placeholder="example@email.com"
-                className="input input-bordered w-full"
+                className="input input-bordered w-full text-red-500"
                 {...register("email")}
+                readOnly
               />
             </div>
           </div>

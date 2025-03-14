@@ -117,7 +117,7 @@ export default function AddProvider() {
         Swal.fire({
           position: "top-end",
           icon: "success",
-          title: "Appointment booked successfully!",
+          title: "New Provider added successfully!",
           showConfirmButton: false,
           timer: 1000,
         });

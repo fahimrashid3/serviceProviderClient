@@ -2,11 +2,12 @@ import { useEffect, useState } from "react";
 import useAuth from "../../../hooks/useAuth.jsx";
 import useAxiosSecure from "../../../hooks/useAxiosSecure.jsx";
 import { Link } from "react-router-dom";
+import Swal from "sweetalert2";
 
 const ProviderProfile = () => {
   const axiosSecure = useAxiosSecure();
   const [provider, setProvider] = useState({});
-  const { user } = useAuth();
+  const { user, logOut } = useAuth();
 
   useEffect(() => {
     axiosSecure
@@ -14,6 +15,31 @@ const ProviderProfile = () => {
       .then((res) => setProvider(res.data));
   }, [axiosSecure, user]);
 
+  const handelLogout = () => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, Log out!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        logOut()
+          .then(() => {
+            Swal.fire({
+              position: "top-end",
+              icon: "success",
+              title: "LogOut Successfully",
+              showConfirmButton: false,
+              timer: 1500,
+            });
+          })
+          .catch((error) => console.log(error));
+      }
+    });
+  };
   return (
     <div className="md:p-4">
       <div className="p-4 rounded">
@@ -249,6 +275,7 @@ const ProviderProfile = () => {
         <button
           type="button"
           className="btn bg-transparent border-1 border-b-4 mx-auto border-primary-600 text-primary-600 hover:bg-primary-600 hover:text-white hover:border-primary-600"
+          onClick={handelLogout}
         >
           Logout
         </button>
