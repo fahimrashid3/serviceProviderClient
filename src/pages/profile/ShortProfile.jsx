@@ -32,12 +32,13 @@ const ShortProfile = () => {
   // console.log(provider);
   // console.log(category);
 
-  if (!provider || !category)
+  if (!provider || !category) {
     return (
       <div className="text-center pt-[40%] h-screen">
         <span className="loading loading-ball w-[80px] text-primary "></span>
       </div>
     );
+  }
 
   return (
     <div className="-mt-20 mb-20 dark:bg-dark-700 text-dark-900 dark:text-white">

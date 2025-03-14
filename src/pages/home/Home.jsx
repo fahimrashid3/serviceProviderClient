@@ -12,8 +12,7 @@ const Home = () => {
   const navigate = useNavigate();
   const title = "ServiceFinder";
   const descriptions =
-    "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.";
-
+    "We’re not just another service provider—we’re your partner in making things easier. Whether you need a helping hand or a smart solution, we’re here to support you every step of the way. Our team is built on a foundation of trust, innovation, and a genuine desire to improve the way people get things done.";
   return (
     <div className="pt-5 max-w-[95%] lg:max-w-[90%] mx-auto">
       <Helmet>
