@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
-import useAxiosPublic from "../../hooks/useAxiosPublic";
 import useUsers from "../../hooks/useUser";
 import { Link } from "react-router-dom";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
 
 const MyBlogs = () => {
   const [users] = useUsers();
-  const axiosPublic = useAxiosPublic();
+  const axiosSecure = useAxiosSecure();
   const [myBlogs, setMyBlogs] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -17,7 +17,7 @@ const MyBlogs = () => {
     const fetchMyBlogs = async () => {
       try {
         console.log("Fetching blogs for user email:", userEmail);
-        const res = await axiosPublic.get(`/myBlogs/${userEmail}`);
+        const res = await axiosSecure.get(`/myBlogs/${userEmail}`);
         console.log("API Response:", res.data);
         setMyBlogs(res.data);
       } catch (error) {
@@ -31,7 +31,7 @@ const MyBlogs = () => {
     };
 
     fetchMyBlogs();
-  }, [axiosPublic, userEmail]);
+  }, [axiosSecure, userEmail]);
 
   return (
     <div>
