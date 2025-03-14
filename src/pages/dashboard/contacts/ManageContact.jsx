@@ -3,20 +3,18 @@ import { useEffect, useState } from "react";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import Swal from "sweetalert2";
 import SectionTitle from "../../../components/SectionTitle";
-import useAxiosPublic from "../../../hooks/useAxiosPublic";
 
 const ManageContact = () => {
-  const axiosPublic = useAxiosPublic();
   const axiosSecure = useAxiosSecure();
   const [contacts, setContacts] = useState([]);
   const [replays, setReplays] = useState({});
   const [selectedContact, setSelectedContact] = useState(null);
 
   useEffect(() => {
-    axiosPublic.get("contacts").then((res) => {
+    axiosSecure.get("contacts").then((res) => {
       setContacts(res.data);
     });
-  }, [axiosPublic]);
+  }, [axiosSecure]);
 
   const handleInputChange = (e, contactId) => {
     setReplays((prev) => ({
