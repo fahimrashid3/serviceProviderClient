@@ -1,6 +1,6 @@
 import { Helmet } from "react-helmet";
 import "react-tabs/style/react-tabs.css";
-import { FaEdit, FaEye } from "react-icons/fa";
+import { FaEdit } from "react-icons/fa";
 import SectionTitle from "../../components/SectionTitle";
 import Swal from "sweetalert2";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
@@ -87,7 +87,7 @@ const AllUser = () => {
             <th>Photo</th>
             <th>Name</th>
             <th>Email</th>
-            <th>Profile</th>
+            {/* <th>Profile</th> */}
             <th>Change Role</th>
           </tr>
         </thead>
@@ -104,11 +104,11 @@ const AllUser = () => {
               </td>
               <td>{user.name}</td>
               <td>{user.email}</td>
-              <td>
+              {/* <td>
                 <button className="btn btn-ghost btn-outline btn-success text-2xl">
                   <FaEye />
                 </button>
-              </td>
+              </td> */}
               <td>
                 {user.role === "admin" || user.role === "provider" ? (
                   <p>{user.role}</p>

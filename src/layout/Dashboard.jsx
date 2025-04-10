@@ -94,6 +94,12 @@ const DashBoard = () => {
                 </NavLink>
               </li>
               <li>
+                <NavLink to="/dashboard/completeAppointmentHistory">
+                  <FaCalendarCheck />
+                  Appointment History
+                </NavLink>
+              </li>
+              <li>
                 <NavLink to="/dashboard/allUsers">
                   <FaUsers /> All Users
                 </NavLink>

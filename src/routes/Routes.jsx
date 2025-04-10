@@ -40,6 +40,7 @@ import MyAppointmentHistory from "../pages/dashboard/MyAppointmentHistory";
 import UserContact from "../pages/dashboard/contacts/UserContact";
 import ManageContact from "../pages/dashboard/contacts/ManageContact";
 import UpdateProviderProfile from "../pages/dashboard/profile/UpdateProviderProfile";
+import CompleteAppointmentHistory from "../pages/dashboard/CompleteAppointmentHistory";
 export const router = createBrowserRouter([
   {
     path: "/",
@@ -262,6 +263,14 @@ export const router = createBrowserRouter([
         element: (
           <AdminRoute>
             <ManageAppointment />
+          </AdminRoute>
+        ),
+      },
+      {
+        path: "completeAppointmentHistory",
+        element: (
+          <AdminRoute>
+            <CompleteAppointmentHistory />
           </AdminRoute>
         ),
       },
