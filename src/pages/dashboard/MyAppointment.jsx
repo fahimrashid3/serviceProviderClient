@@ -5,10 +5,19 @@ import Swal from "sweetalert2";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import { Link } from "react-router-dom";
 import { MdVideoCall } from "react-icons/md";
+import { useEffect } from "react";
 
 const MyAppointment = () => {
   const [appointment, refetch] = useAppointment();
   const axiosSecure = useAxiosSecure();
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      refetch();
+    }, 5000);
+
+    return () => clearInterval(interval);
+  }, [refetch]);
 
   const handelDeleteAppointment = (id) => {
     Swal.fire({
@@ -58,7 +67,6 @@ const MyAppointment = () => {
         </div>
         <div className="overflow-x-auto">
           <table className="table table-zebra">
-            {/* Table Head */}
             <thead>
               <tr>
                 <th>#</th>
@@ -88,7 +96,9 @@ const MyAppointment = () => {
                     ) : item.status === "on-going" ? (
                       <p className="text-red-500 font-semibold">On going</p>
                     ) : (
-                      item.status || "N/A"
+                      <p className="text-blue-500 font-semibold">
+                        {item.status || "N/A"}
+                      </p>
                     )}
                   </td>
                   <td>
@@ -99,6 +109,8 @@ const MyAppointment = () => {
                       >
                         <MdVideoCall />
                       </button>
+                    ) : item.status === "placed" ? (
+                      <p>{item.status}</p>
                     ) : item.status !== "paid" ? (
                       <button
                         onClick={() => handelDeleteAppointment(item._id)}

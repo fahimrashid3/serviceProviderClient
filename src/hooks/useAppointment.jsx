@@ -5,7 +5,6 @@ import useAuth from "./useAuth";
 const useAppointment = () => {
   const axiosSecure = useAxiosSecure();
   const { user } = useAuth();
-  // tan stack query
 
   const { data: appointment = [], refetch } = useQuery({
     queryKey: ["appointment", user?.email],

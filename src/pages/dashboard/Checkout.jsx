@@ -13,7 +13,7 @@ const Checkout = () => {
   const [users, loading] = useUsers();
   const axiosSecure = useAxiosSecure();
   const [categories] = useCategories();
-  const [selectedAppointments, setSelectedAppointments] = useState([]); // Track selected items
+  const [selectedAppointments, setSelectedAppointments] = useState([]);
   const [totalPrice, setTotalPrice] = useState(0);
 
   if (loading) {
@@ -100,11 +100,7 @@ const Checkout = () => {
                 return (
                   <tr key={index}>
                     <th>
-                      {!(
-                        app.status === "paid" ||
-                        app.status === "in-progress" ||
-                        app.status === "complete"
-                      ) ? (
+                      {!app.status || app.status === "pending" ? (
                         <label>
                           <input
                             type="checkbox"
@@ -112,7 +108,7 @@ const Checkout = () => {
                             onChange={() =>
                               handleCheckboxChange(app._id, app.category)
                             }
-                            checked={selectedAppointments.includes(app._id)} // Mark as checked if selected
+                            checked={selectedAppointments.includes(app._id)}
                           />
                         </label>
                       ) : (
