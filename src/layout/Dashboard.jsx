@@ -74,6 +74,11 @@ const DashBoard = () => {
                 </NavLink>
               </li>
               <li>
+                <NavLink to="/dashboard/addCategory">
+                  <IoMdPersonAdd /> Add Category
+                </NavLink>
+              </li>
+              <li>
                 <NavLink to="/dashboard/manageProviders">
                   <MdOutlineMenuOpen /> Manage Providers
                 </NavLink>

@@ -19,7 +19,7 @@ import { BsEnvelopeExclamation } from "react-icons/bs";
 import { MdMessage, MdOutlineMenuOpen } from "react-icons/md";
 import { IoMdPersonAdd } from "react-icons/io";
 import useProvider from "../../../hooks/useProvider";
-import { TbLogs } from "react-icons/tb";
+import { TbCategoryPlus, TbLogs } from "react-icons/tb";
 import { FcServices } from "react-icons/fc";
 import useUsers from "../../../hooks/useUser";
 
@@ -134,6 +134,12 @@ const Navbar = () => {
                     <li>
                       <Link to="/dashboard/addProviders">
                         <IoMdPersonAdd /> Add Providers
+                      </Link>
+                    </li>
+                    <li>
+                      <Link to="/dashboard/AddCategory">
+                        <TbCategoryPlus />
+                        Add Category
                       </Link>
                     </li>
                     <li>

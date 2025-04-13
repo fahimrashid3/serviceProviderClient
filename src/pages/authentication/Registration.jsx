@@ -61,7 +61,13 @@ const Registration = () => {
 
     try {
       if (!cloud_name || !preset_key) {
-        throw new Error("Cloudinary configuration is missing");
+        Swal.fire({
+          position: "top-end",
+          icon: "error",
+          title: "Cloudinary configuration is missing",
+          showConfirmButton: false,
+          timer: 1500,
+        });
       }
 
       // Resize the image

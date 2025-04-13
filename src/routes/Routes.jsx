@@ -41,6 +41,7 @@ import UserContact from "../pages/dashboard/contacts/UserContact";
 import ManageContact from "../pages/dashboard/contacts/ManageContact";
 import UpdateProviderProfile from "../pages/dashboard/profile/UpdateProviderProfile";
 import CompleteAppointmentHistory from "../pages/dashboard/CompleteAppointmentHistory";
+import AddCategory from "../pages/dashboard/AddCategory";
 export const router = createBrowserRouter([
   {
     path: "/",
@@ -255,6 +256,14 @@ export const router = createBrowserRouter([
         element: (
           <AdminRoute>
             <AddProvider />
+          </AdminRoute>
+        ),
+      },
+      {
+        path: "addCategory",
+        element: (
+          <AdminRoute>
+            <AddCategory />
           </AdminRoute>
         ),
       },
