@@ -25,8 +25,8 @@ const AddCategory = () => {
     new Promise((resolve) => {
       Resizer.imageFileResizer(
         file, // File to resize
-        800, // Max width
-        800, // Max height
+        1080, // Max width
+        720, // Max height
         "WEBP", // Output format
         90, // Quality (0-100)
         0, // Rotation
@@ -62,7 +62,12 @@ const AddCategory = () => {
       );
       const serviceImg = res.data.secure_url;
 
-      const categoryInfo = { serviceProviderType, price, time, serviceImg };
+      const categoryInfo = {
+        serviceProviderType,
+        price: parseInt(price),
+        time,
+        serviceImg,
+      };
       // console.log(categoryInfo);
       axiosSecure.post("/category", categoryInfo).then((res) => {
         if (res.insertedId) {
@@ -96,7 +101,7 @@ const AddCategory = () => {
     <div className="hero bg-base-200 min-h-screen">
       <div className="hero-content flex-col lg:flex-row-reverse">
         <div className="text-center lg:text-left">
-          <h1 className="text-5xl font-bold">Login now!</h1>
+          <h1 className="text-5xl font-bold">Add a new service now!</h1>
           <p className="py-6">
             Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda
             excepturi exercitationem quasi. In deleniti eaque aut repudiandae et

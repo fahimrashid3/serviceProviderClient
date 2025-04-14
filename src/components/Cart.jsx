@@ -7,7 +7,7 @@ const Cart = ({ provider }) => {
     <div
       className="
       overflow-hidden hover:translate-y-[-10px] transition-all duration-500 border rounded-xl
-        drop-shadow-lg shadow-dark-900 dark:shadow-dark-200"
+        drop-shadow-lg shadow-dark-900 dark:shadow-dark-200 max-w-96"
     >
       <div className="card card-compact bg-base-100 shadow-xl ">
         <figure>
