@@ -6,11 +6,18 @@ import { Link } from "react-router-dom";
 import { FaEdit } from "react-icons/fa";
 import Swal from "sweetalert2";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
+import { useEffect } from "react";
 
 const MyServices = () => {
   const axiosSecure = useAxiosSecure();
   const [providerAppointments, refetch, isLoading] = useProviderAppointment();
+  useEffect(() => {
+    const interval = setInterval(() => {
+      refetch();
+    }, 5000);
 
+    return () => clearInterval(interval);
+  }, [refetch]);
   if (isLoading) {
     return <Loading />;
   }

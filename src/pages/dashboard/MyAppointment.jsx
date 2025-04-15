@@ -46,9 +46,9 @@ const MyAppointment = () => {
     });
   };
 
-  const handleJoinMeeting = (meetingLink) => {
-    window.location.href = meetingLink;
-  };
+  // const handleJoinMeeting = (_id) => {
+  //   console.log(_id);
+  // };
 
   return (
     <div>
@@ -102,24 +102,27 @@ const MyAppointment = () => {
                     )}
                   </td>
                   <td>
-                    {item.status === "in-progress" ? (
-                      <button
-                        onClick={() => handleJoinMeeting(item.userMeetingLink)}
-                        className="btn btn-ghost btn-outline btn-info text-2xl "
+                    {item.status === "paid" || item.status === "placed" ? (
+                      <p className="text-yellow-500 font-semibold">
+                        {item.status}
+                      </p>
+                    ) : item.status === "on-going" ||
+                      item.status === "in-progress" ? (
+                      <Link
+                        to={`/room/${item._id}`}
+                        className="btn btn-ghost btn-outline btn-error text-2xl"
+                        // onClick={() => handleJoinMeeting(item._id)}
+                        aria-label="Join Video Call"
                       >
                         <MdVideoCall />
-                      </button>
-                    ) : item.status === "placed" ? (
-                      <p>{item.status}</p>
-                    ) : item.status !== "paid" ? (
+                      </Link>
+                    ) : (
                       <button
                         onClick={() => handelDeleteAppointment(item._id)}
                         className="btn btn-ghost btn-outline btn-error "
                       >
                         <AiTwotoneDelete />
                       </button>
-                    ) : (
-                      <p>Paid</p>
                     )}
                   </td>
                 </tr>
