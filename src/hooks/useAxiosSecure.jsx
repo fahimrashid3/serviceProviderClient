@@ -1,43 +1,52 @@
+// src/hooks/useAxiosSecure.js
+
 import axios from "axios";
+import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import useAuth from "./useAuth";
 
 const axiosSecure = axios.create({
-  // baseURL: "https://service-provider-server-cyan.vercel.app",
-  baseURL: "http://localhost:8000",
+  baseURL: "http://localhost:8000", // change if using live server
 });
-const useAxiosSecure = () => {
-  const navigate = useNavigate();
-  const { logOut } = useAuth();
-  // request interceptors to add authorization header for ever secure call to the apis
-  axiosSecure.interceptors.request.use(
-    (config) => {
-      const token = localStorage.getItem("access-token");
-      // console.log(`request stopped by interceptors`, token);
-      config.headers.authorization = `Bearer ${token}`;
-      return config;
-    },
-    (error) => {
-      return Promise.reject(error);
-    }
-  );
-  // intercepts 401 and 403 status
-  axiosSecure.interceptors.response.use(
-    (response) => {
-      return response;
-    },
-    // log out user if status code is 401 and 403
-    async (error) => {
-      const status = error.status;
-      // console.log(status);
 
-      if (status === 401 || status === 403) {
-        await logOut();
-        navigate("/login");
-      }
-      return Promise.reject(error);
+let isInterceptorAttached = false;
+
+const useAxiosSecure = () => {
+  const { logOut } = useAuth();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (!isInterceptorAttached) {
+      isInterceptorAttached = true;
+
+      // Attach request interceptor
+      axiosSecure.interceptors.request.use(
+        (config) => {
+          const token = localStorage.getItem("access-token");
+          if (token) {
+            config.headers.Authorization = `Bearer ${token}`;
+          }
+          return config;
+        },
+        (error) => Promise.reject(error)
+      );
+
+      // Attach response interceptor
+      axiosSecure.interceptors.response.use(
+        (response) => response,
+        async (error) => {
+          const status = error.response?.status;
+          if (status === 401 || status === 403) {
+            console.warn("Unauthorized, logging out...");
+            await logOut();
+            navigate("/login");
+          }
+          return Promise.reject(error);
+        }
+      );
     }
-  );
+  }, [logOut, navigate]);
+
   return axiosSecure;
 };
 
