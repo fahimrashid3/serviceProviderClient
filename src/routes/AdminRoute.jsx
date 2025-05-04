@@ -5,7 +5,7 @@ import Loading from "../components/Loading";
 
 const AdminRoute = ({ children }) => {
   const [isAdmin, isAdminLoading] = useAdmin();
-  const { user, loading } = useAuth();
+  const { user, loading,logOut } = useAuth();
   const location = useLocation();
 
   if (isAdminLoading || loading) {
@@ -19,7 +19,9 @@ const AdminRoute = ({ children }) => {
   if (user && isAdmin) {
     return children;
   }
-
+if (user && !isAdmin) {
+    logOut();
+}
   return <Navigate to="/login" state={{ from: location }} replace></Navigate>;
 };
 
