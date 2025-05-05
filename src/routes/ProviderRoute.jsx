@@ -5,7 +5,7 @@ import useProvider from "../hooks/useProvider";
 
 const ProviderRoute = ({ children }) => {
   const [isProvider, isProviderLoading] = useProvider();
-  const { user, loading } = useAuth();
+  const { user, loading,logOut } = useAuth();
   const location = useLocation();
 
   if (loading || isProviderLoading) {
@@ -14,6 +14,9 @@ const ProviderRoute = ({ children }) => {
 
   if (user && isProvider) {
     return children;
+  }
+  if (user && !isProvider) {
+    logOut();
   }
 
   return <Navigate to="/login" state={{ from: location }} replace />;
