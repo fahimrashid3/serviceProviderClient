@@ -18,15 +18,20 @@ const Featured = () => {
             <p>Jan 5,2025</p>
             <p className="uppercase">Where can i get some?</p>
             <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae
-              provident culpa, mollitia alias sapiente error aspernatur libero
-              voluptate aperiam perferendis ipsum aut repellendus? Corrupti
-              fugit, ut alias quo accusamus explicabo accusantium aliquam amet
-              animi saepe quasi molestiae excepturi, sequi non.
+              FEATURED ITEM Get the Right Help — Exactly When You Need It From
+              doctors to teachers to lawyers, we connect you with experts you
+              can rely on. You are not feeling well, need academic advice, or
+              have legal issues — we make life easier. <br />
+              • Consult licensed doctors for healthcare tips and treatment
+              <br />
+              • Receive competent teachers to guide you or your child <br />
+              • Get expert, easy-to-understand advice from qualified lawyers
+              <br />
+              Each of our experts is handpicked, skilled, and on call to help
+              you — anywhere, anytime. <br />
+              Schedule your session now — expert guidance in the palm of your
+              hand!
             </p>
-            <button className="btn btn-outline btn-primary border-0 border-b-4">
-              Pre Booking
-            </button>
           </div>
         </div>
       </div>
