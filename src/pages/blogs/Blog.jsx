@@ -1,7 +1,7 @@
 import { CiBookmark, CiShare2 } from "react-icons/ci";
-import { RxEyeOpen } from "react-icons/rx";
+// import { RxEyeOpen } from "react-icons/rx";
 import { Link } from "react-router-dom";
-import { Rating } from "@smastrom/react-rating";
+// import { Rating } from "@smastrom/react-rating";
 import Swal from "sweetalert2";
 import { useEffect, useState } from "react";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
@@ -14,9 +14,9 @@ const MainNews = ({ blog }) => {
     date,
     title,
     content,
-    rating,
+    // rating,
     img,
-    totalView,
+    // totalView,
   } = blog;
   const axiosPublic = useAxiosPublic();
   const [author, setAuthor] = useState(null);
@@ -93,13 +93,13 @@ const MainNews = ({ blog }) => {
         <hr />
       </div>
 
-      <div className="flex justify-between">
+      {/* <div className="flex justify-between">
         <Rating style={{ maxWidth: 100 }} value={rating} readOnly />
         <div className="flex items-center gap-2">
           <RxEyeOpen />
           <p>{totalView}</p>
         </div>
-      </div>
+      </div> */}
     </div>
   );
 };

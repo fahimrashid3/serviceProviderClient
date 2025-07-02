@@ -58,7 +58,7 @@ const Checkout = () => {
       .then((res) => {
         // console.log(res);
         const gatewayPageURL = res.data;
-        console.log(gatewayPageURL);
+        // console.log(gatewayPageURL);
         if (gatewayPageURL) {
           window.location.replace(gatewayPageURL);
         }
@@ -66,7 +66,7 @@ const Checkout = () => {
   };
 
   // console.log("user from auth", user);
-  console.log("user from db", users);
+  // console.log("user from db", users);
   return (
     <div className="-mt-20 min-h-screen lg:px-20 md:px-16 px-10 bg-gray-50">
       <Helmet>
