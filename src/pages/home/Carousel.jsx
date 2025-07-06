@@ -4,10 +4,10 @@ import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 import { Autoplay, Pagination, Navigation } from "swiper/modules";
-import img1 from "../../assets/home/01.jpg";
-import img2 from "../../assets/home/02.jpg";
-import img3 from "../../assets/home/03.jpg";
-import img4 from "../../assets/home/04.jpg";
+import img1 from "../../assets/home/01.png";
+import img2 from "../../assets/home/02.png";
+import img3 from "../../assets/home/03.png";
+import img4 from "../../assets/home/04.png";
 
 const Carousel = () => {
   return (
@@ -27,19 +27,19 @@ const Carousel = () => {
         className="mySwiper  "
       >
         <SwiperSlide>
-          <img src={img1} className="mx-auto rounded-xl w-full md:h-screen" />
+          <img src={img1} className="mx-auto rounded-xl w-full max-h-screen" />
         </SwiperSlide>
 
         <SwiperSlide>
-          <img src={img2} className="mx-auto rounded-xl w-full md:h-screen" />
+          <img src={img2} className="mx-auto rounded-xl w-full max-h-screen" />
         </SwiperSlide>
 
         <SwiperSlide>
-          <img src={img3} className="mx-auto rounded-xl w-full md:h-screen" />
+          <img src={img3} className="mx-auto rounded-xl w-full max-h-screen" />
         </SwiperSlide>
 
         <SwiperSlide>
-          <img src={img4} className="mx-auto rounded-xl w-full md:h-screen" />
+          <img src={img4} className="mx-auto rounded-xl w-full max-h-screen" />
         </SwiperSlide>
       </Swiper>
     </div>
