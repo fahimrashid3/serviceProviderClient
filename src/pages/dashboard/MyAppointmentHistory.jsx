@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import useAuth from "../../hooks/useAuth";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
-import { FaEye } from "react-icons/fa6";
+// import { FaEye } from "react-icons/fa6";
 
 const MyAppointmentHistory = () => {
   const axiosSecure = useAxiosSecure();
@@ -32,7 +32,7 @@ const MyAppointmentHistory = () => {
             <th>Booking Date</th>
             <th>Complete Date</th>
             <th>User Email</th>
-            <th>View Review</th>
+            <th>Payment Id</th>
           </tr>
         </thead>
         <tbody>
@@ -53,8 +53,8 @@ const MyAppointmentHistory = () => {
                 <td>{item.date}</td>
                 <td>{completedDate}</td>
                 <td>{item.email}</td>
-                <td>
-                  {/* Button to open modal */}
+                <td>{item.paymentId}</td>
+                {/* <td>
                   <button
                     className="btn btn-ghost btn-outline btn-success text-xl"
                     onClick={() =>
@@ -65,7 +65,6 @@ const MyAppointmentHistory = () => {
                   >
                     <FaEye />
                   </button>
-                  {/* Modal */}
                   <dialog
                     id={`my_modal_${item._id || index}`}
                     className="modal"
@@ -84,7 +83,7 @@ const MyAppointmentHistory = () => {
                       </div>
                     </div>
                   </dialog>
-                </td>
+                </td> */}
               </tr>
             );
           })}

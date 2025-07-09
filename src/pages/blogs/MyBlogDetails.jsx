@@ -51,7 +51,7 @@ const MyBlogDetails = () => {
         <h2 className="text-2xl font-bold">{blog.title}</h2>
         <p className="text-lg text-justify">{blog.content}</p>
         {/* TODO: edit option */}
-        <p className="text-red-500">Edit option will be introduce soon</p>
+        {/* <p className="text-red-500">Edit option will be introduce soon</p> */}
       </div>
     </div>
   );
