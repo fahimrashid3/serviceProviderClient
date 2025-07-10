@@ -84,11 +84,11 @@ export default function AddProvider() {
     // Create the providerInfo object
     const providerInfo = {
       name: data.name || "",
-      email: data.email || "",
+      email: (data.email || "").toLowerCase(),
       userImg: userImg || "",
       qualification: data.qualification || "",
       category: data.category || "",
-      rating: 0,
+      rating: 0.0,
       location: data.location || "",
       about: data.about || "",
       education: data.education || [],
