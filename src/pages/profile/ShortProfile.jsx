@@ -44,11 +44,11 @@ const ShortProfile = () => {
     <div className="relative min-h-screen py-12 px-2 bg-gradient-to-br from-primary-50 via-white to-primary-100 dark:from-dark-900 dark:via-dark-800 dark:to-dark-900 flex flex-col items-center">
       <div className="relative w-full max-w-7xl mx-auto mt-[-60px] z-10">
         {/* Glassy Card */}
-        <div className="mt-52 pb-32 backdrop-blur-xl bg-white/80 dark:bg-dark-800/80 rounded-3xl shadow-2xl border border-primary-100 dark:border-dark-700 px-6 md:px-12 py-10 flex flex-col md:flex-row gap-10 animate-fade-in-up">
+        <div className="mt-52 pb-32 backdrop-blur-xl bg-white/80 dark:bg-dark-800/80 rounded-3xl shadow-2xl border border-primary-100 dark:border-dark-700 px-6 md:px-12 py-10 flex flex-col md:flex-row gap-10 transition-opacity duration-700 ease-in-out opacity-100 translate-y-0">
           {/* Profile Avatar & Info */}
           <div className="flex-1 flex flex-col items-center md:items-start relative">
             <div className="relative -mt-24 mb-4 md:mb-6">
-              <div className="w-40 h-40 md:w-48 md:h-48 rounded-full border-4 border-primary-400 dark:border-primary-700 shadow-xl overflow-hidden bg-gradient-to-br from-primary-100 to-primary-300 dark:from-dark-700 dark:to-dark-900 animate-avatar-pop">
+              <div className="w-40 h-40 md:w-48 md:h-48 rounded-full border-4 border-primary-400 dark:border-primary-700 shadow-xl overflow-hidden bg-gradient-to-br from-primary-100 to-primary-300 dark:from-dark-700 dark:to-dark-900 transform scale-100 opacity-100 transition-all duration-700">
                 <img
                   className="object-cover w-full h-full hover:scale-105 transition-transform duration-300"
                   src={provider.userImg}
@@ -56,7 +56,7 @@ const ShortProfile = () => {
                 />
               </div>
               {/* Glow effect */}
-              <div className="absolute inset-0 rounded-full pointer-events-none animate-avatar-glow"></div>
+              <div className="absolute inset-0 rounded-full pointer-events-none animate-pulse"></div>
             </div>
             <h2 className="font-extrabold text-2xl md:text-3xl text-center md:text-left mb-1 tracking-tight">
               {provider.name}
@@ -87,7 +87,7 @@ const ShortProfile = () => {
                 {provider.location}
               </span>
             </div>
-            <blockquote className="italic text-gray-600 dark:text-gray-300 text-base md:text-lg leading-relaxed border-l-4 border-primary-200 dark:border-primary-700 pl-4 mt-2 animate-fade-in">
+            <blockquote className="italic text-justify text-gray-600 dark:text-gray-300 text-base md:text-lg leading-relaxed border-l-4 border-primary-200 dark:border-primary-700 pl-4 mt-2 transition-opacity duration-1000 opacity-100">
               {provider.about}
             </blockquote>
           </div>
@@ -118,14 +118,14 @@ const ShortProfile = () => {
               <Link
                 to="/appointment"
                 state={{ bookingBtnCategory: category }}
-                className="flex-1 btn bg-gradient-to-r from-primary-500 to-primary-700 text-white border-none shadow-lg hover:scale-105 hover:from-primary-600 hover:to-primary-800 transition-all duration-200 text-md font-bold py-3 rounded-full animate-fade-in-up"
+                className="flex-1 btn bg-gradient-to-r from-primary-500 to-primary-700 text-white border-none shadow-lg hover:scale-105 hover:from-primary-600 hover:to-primary-800 transition-all duration-200 text-md font-bold py-3 rounded-full"
               >
                 Book Now
               </Link>
               <Link
                 to={`/fullProfile/${_id}`}
                 state={{ provider, category }}
-                className="flex-1 btn bg-white/80 dark:bg-dark-700/80 border border-primary-600 text-primary-600 hover:bg-primary-50 dark:hover:bg-dark-800 hover:text-primary-700 transition-all duration-200 text-md font-bold py-3 rounded-full shadow-lg animate-fade-in-up"
+                className="flex-1 btn bg-white/80 dark:bg-dark-700/80 border border-primary-600 text-primary-600 hover:bg-primary-50 dark:hover:bg-dark-800 hover:text-primary-700 transition-all duration-200 text-md font-bold py-3 rounded-full shadow-lg"
               >
                 View Full Profile
               </Link>
@@ -133,19 +133,6 @@ const ShortProfile = () => {
           </div>
         </div>
       </div>
-      {/* Animations (add to your CSS or Tailwind config) */}
-      <style>{`
-        @keyframes fade-in-up { from { opacity: 0; transform: translateY(40px); } to { opacity: 1; transform: none; } }
-        .animate-fade-in-up { animation: fade-in-up 0.7s cubic-bezier(.4,0,.2,1) both; }
-        @keyframes avatar-pop { 0% { transform: scale(0.7); opacity: 0; } 100% { transform: scale(1); opacity: 1; } }
-        .animate-avatar-pop { animation: avatar-pop 0.7s cubic-bezier(.4,0,.2,1) both; }
-        @keyframes avatar-glow { 0%, 100% { box-shadow: 0 0 0 0 rgba(59,130,246,0.3); } 50% { box-shadow: 0 0 32px 8px rgba(59,130,246,0.25); } }
-        .animate-avatar-glow { animation: avatar-glow 2.5s infinite; }
-        @keyframes fade-in { from { opacity: 0; } to { opacity: 1; } }
-        .animate-fade-in { animation: fade-in 1.2s both; }
-        @keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-6px); } }
-        .animate-bounce { animation: bounce 1.2s infinite; }
-      `}</style>
     </div>
   );
 };
