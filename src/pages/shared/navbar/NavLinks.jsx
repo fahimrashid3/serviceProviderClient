@@ -2,7 +2,7 @@ import { NavLink } from "react-router-dom";
 
 const NavLinks = ({ onClick }) => {
   return (
-    <>
+    <ul className="list-none flex items-center gap-1 m-0 p-0">
       <li>
         <NavLink
           onClick={onClick}
@@ -99,7 +99,7 @@ const NavLinks = ({ onClick }) => {
           Blogs
         </NavLink>
       </li>
-    </>
+    </ul>
   );
 };
 
