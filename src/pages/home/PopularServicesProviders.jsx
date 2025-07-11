@@ -33,120 +33,54 @@ const PopularServicesProviders = () => {
   }, [axiosPublic]);
 
   return (
-    <div className="mb-12 md:mb-20">
-      <SectionTitle heading="Popular Services" subHeading="from our services" />
-      {topProviders.length > 0 ? (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-10 mb-12 md:mb-20">
-          {topProviders.map((provider) => (
-            <ShortProfileCart key={provider._id} user={provider} />
-          ))}
+    <section className="relative  bg-gradient-to-br from-primary-50 via-white to-primary-100/60 w-full">
+      <div className="max-w-screen-2xl mx-auto px-4 md:px-8">
+        <div className="mb-12 text-center">
+          <SectionTitle
+            heading="Popular Services"
+            subHeading="from our services"
+          />
         </div>
-      ) : (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-10 mb-12 md:mb-20">
-          {/* skeleton start */}
-          <div className="flex justify-between items-center gap-5 border p-4 rounded-lg cursor-pointer">
-            <div className="w-32 h-32 overflow-hidden rounded-b-full rounded-r-full">
-              <div className="skeleton w-full h-full"></div>
-            </div>
-            <div className="flex flex-col gap-2">
-              <div className="skeleton h-6 w-32"></div>
-              <div className="skeleton h-5 w-28"></div>
-              <div className="skeleton h-5 w-36"></div>
-            </div>
-            <div>
-              <div className="skeleton h-5 w-20"></div>
-            </div>
+        {topProviders.length > 0 ? (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12 md:mb-20">
+            {topProviders.map((provider) => (
+              <div
+                key={provider._id}
+                className="bg-white rounded-2xl shadow-lg p-6 flex flex-col items-center transition-transform duration-300 hover:scale-105 hover:shadow-2xl"
+              >
+                <ShortProfileCart user={provider} />
+              </div>
+            ))}
           </div>
-          {/* skeleton end */}
-          {/* skeleton start */}
-          <div className="flex justify-between items-center gap-5 border p-4 rounded-lg cursor-pointer">
-            <div className="w-32 h-32 overflow-hidden rounded-b-full rounded-r-full">
-              <div className="skeleton w-full h-full"></div>
-            </div>
-            <div className="flex flex-col gap-2">
-              <div className="skeleton h-6 w-32"></div>
-              <div className="skeleton h-5 w-28"></div>
-              <div className="skeleton h-5 w-36"></div>
-            </div>
-            <div>
-              <div className="skeleton h-5 w-20"></div>
-            </div>
+        ) : (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12 md:mb-20">
+            {[...Array(6)].map((_, idx) => (
+              <div
+                key={idx}
+                className="bg-white rounded-2xl shadow-lg p-6 flex flex-col items-center animate-pulse"
+              >
+                <div className="w-24 h-24 rounded-full bg-gray-200 mb-4" />
+                <div className="h-6 w-32 bg-gray-200 rounded mb-2" />
+                <div className="h-5 w-28 bg-gray-200 rounded mb-2" />
+                <div className="h-5 w-36 bg-gray-200 rounded mb-2" />
+                <div className="h-5 w-20 bg-gray-200 rounded" />
+              </div>
+            ))}
           </div>
-          {/* skeleton end */}
-          {/* skeleton start */}
-          <div className="flex justify-between items-center gap-5 border p-4 rounded-lg cursor-pointer">
-            <div className="w-32 h-32 overflow-hidden rounded-b-full rounded-r-full">
-              <div className="skeleton w-full h-full"></div>
-            </div>
-            <div className="flex flex-col gap-2">
-              <div className="skeleton h-6 w-32"></div>
-              <div className="skeleton h-5 w-28"></div>
-              <div className="skeleton h-5 w-36"></div>
-            </div>
-            <div>
-              <div className="skeleton h-5 w-20"></div>
-            </div>
-          </div>
-          {/* skeleton end */}
-          {/* skeleton start */}
-          <div className="flex justify-between items-center gap-5 border p-4 rounded-lg cursor-pointer">
-            <div className="w-32 h-32 overflow-hidden rounded-b-full rounded-r-full">
-              <div className="skeleton w-full h-full"></div>
-            </div>
-            <div className="flex flex-col gap-2">
-              <div className="skeleton h-6 w-32"></div>
-              <div className="skeleton h-5 w-28"></div>
-              <div className="skeleton h-5 w-36"></div>
-            </div>
-            <div>
-              <div className="skeleton h-5 w-20"></div>
-            </div>
-          </div>
-          {/* skeleton end */}
-          {/* skeleton start */}
-          <div className="flex justify-between items-center gap-5 border p-4 rounded-lg cursor-pointer">
-            <div className="w-32 h-32 overflow-hidden rounded-b-full rounded-r-full">
-              <div className="skeleton w-full h-full"></div>
-            </div>
-            <div className="flex flex-col gap-2">
-              <div className="skeleton h-6 w-32"></div>
-              <div className="skeleton h-5 w-28"></div>
-              <div className="skeleton h-5 w-36"></div>
-            </div>
-            <div>
-              <div className="skeleton h-5 w-20"></div>
-            </div>
-          </div>
-          {/* skeleton end */}
-          {/* skeleton start */}
-          <div className="flex justify-between items-center gap-5 border p-4 rounded-lg cursor-pointer">
-            <div className="w-32 h-32 overflow-hidden rounded-b-full rounded-r-full">
-              <div className="skeleton w-full h-full"></div>
-            </div>
-            <div className="flex flex-col gap-2">
-              <div className="skeleton h-6 w-32"></div>
-              <div className="skeleton h-5 w-28"></div>
-              <div className="skeleton h-5 w-36"></div>
-            </div>
-            <div>
-              <div className="skeleton h-5 w-20"></div>
-            </div>
-          </div>
-          {/* skeleton end */}
+        )}
+        <div className="flex justify-center mt-10">
+          <button
+            onClick={() => {
+              navigate("/ourServices");
+              scrollTo(0, 0);
+            }}
+            className="inline-block px-8 py-3 rounded-full bg-primary-500 hover:bg-primary-600 text-white font-semibold shadow-md transition-colors duration-200 text-lg flex gap-3"
+          >
+            Show all
+          </button>
         </div>
-      )}
-      <div className="flex justify-center">
-        <button
-          onClick={() => {
-            navigate("/ourServices");
-            scrollTo(0, 0);
-          }}
-          className="btn bg-transparent border border-b-4 border-primary-600 text-primary-600 hover:bg-primary-600 hover:text-white hover:border-primary-600 flex gap-3 text-lg"
-        >
-          Show all
-        </button>
       </div>
-    </div>
+    </section>
   );
 };
 

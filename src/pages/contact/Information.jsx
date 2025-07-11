@@ -4,39 +4,47 @@ import { IoTime } from "react-icons/io5";
 
 const Information = () => {
   return (
-    <div className="md:flex justify-center gap-10 mb-20 text-center">
-      <div className="md:hover:-mt-5 transition-all duration-500 cursor-context-menu">
-        <div className="border-2 border-dark-900 dark:border-white rounded-lg">
-          <div className="flex items-center justify-center gap-3 font-bold md:text-2xl text-xl py-4">
+    <div className="w-full animate-fade-in-up">
+      <div className="bg-white border border-primary-200 rounded-2xl shadow-lg p-8 flex flex-col gap-6">
+        {/* Phone Row */}
+        <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3 sm:gap-6">
+          <span className="inline-flex items-center justify-center w-14 h-14 rounded-full bg-gradient-to-br from-primary-400 to-primary-600 text-white text-2xl shadow-md">
             <IoMdCall />
-            <p>PHONE</p>
-          </div>
-          <div className="p-10 rounded-lg  text-dark-900 dark:text-dark-200 bg-dark-200 dark:bg-dark-700 md:w-80 w-full h-44 mx-auto">
-            <p className="md:text-xl text-lg ">+880 1405819175</p>
-          </div>
+          </span>
+          <span className="font-bold text-primary-700 text-lg sm:text-xl min-w-[110px]">
+            PHONE
+          </span>
+          <span className="text-gray-800 text-base sm:text-lg font-medium break-all">
+            +880 1405819175
+          </span>
         </div>
-      </div>
-      <div className="md:hover:-mt-5 transition-all duration-500 cursor-context-menu">
-        <div className="border-2 border-dark-900 dark:border-white rounded-lg">
-          <div className="flex items-center justify-center gap-3 font-bold md:text-2xl text-xl py-4">
+        <div className="border-t border-primary-100 my-2" />
+        {/* Location Row */}
+        <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3 sm:gap-6">
+          <span className="inline-flex items-center justify-center w-14 h-14 rounded-full bg-gradient-to-br from-primary-400 to-primary-600 text-white text-2xl shadow-md">
             <FaLocationDot />
-            <p>Location</p>
-          </div>
-          <div className="p-10 rounded-lg  text-dark-900 dark:text-dark-200 bg-dark-200 dark:bg-dark-700 md:w-80 w-full h-44 mx-auto">
-            <p className="md:text-xl text-lg ">Rupnagar R/A, Dhaka</p>
-          </div>
+          </span>
+          <span className="font-bold text-primary-700 text-lg sm:text-xl min-w-[110px]">
+            LOCATION
+          </span>
+          <span className="text-gray-800 text-base sm:text-lg font-medium">
+            Rupnagar R/A, Dhaka
+          </span>
         </div>
-      </div>
-      <div className="md:hover:-mt-5 transition-all duration-500 cursor-context-menu">
-        <div className="border-2 border-dark-900 dark:border-white rounded-lg">
-          <div className="flex items-center justify-center gap-3 font-bold md:text-2xl text-xl py-4">
+        <div className="border-t border-primary-100 my-2" />
+        {/* Working Hours Row */}
+        <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3 sm:gap-6">
+          <span className="inline-flex items-center justify-center w-14 h-14 rounded-full bg-gradient-to-br from-primary-400 to-primary-600 text-white text-2xl shadow-md">
             <IoTime />
-            <p>WORKING HOURS</p>
-          </div>
-          <div className="p-10 rounded-lg  text-dark-900 dark:text-dark-200 bg-dark-200 dark:bg-dark-700 md:w-80 w-full h-44 mx-auto">
-            <p className="md:text-xl text-lg ">Mon - Fri: 08:00 - 22:00</p>
-            <p className="md:text-xl text-lg ">Sat - Sun: 10:00 - 23:00</p>
-          </div>
+          </span>
+          <span className="font-bold text-primary-700 text-lg sm:text-xl min-w-[110px]">
+            WORKING HOURS
+          </span>
+          <span className="text-gray-800 text-base sm:text-lg font-medium">
+            <span>Mon - Fri: 08:00 - 22:00</span>
+            <br className="hidden sm:block" />
+            <span>Sat - Sun: 10:00 - 23:00</span>
+          </span>
         </div>
       </div>
     </div>

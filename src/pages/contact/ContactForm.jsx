@@ -63,76 +63,82 @@ const ContactForm = () => {
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className="bg-dark-300 dark:bg-dark-700 rounded-lg text-dark-900 dark:text-white py-5 md:py-14 lg:my-20 space-y-5"
+      className="flex flex-col gap-8 mt-8 animate-fade-in-up"
     >
-      <div className="md:flex gap-5 justify-center  lg:px-36 md:px-20 px-5 mx-auto">
-        <label className="form-control w-full">
-          <div className="label">
-            <span className="label-text">Name</span>
-          </div>
+      <div className="flex flex-col md:flex-row gap-8">
+        <div className="w-full relative group">
           <input
             {...register("name", { required: true })}
             type="text"
-            placeholder="Name"
-            className="input input-bordered w-full "
+            placeholder=" "
+            className="peer w-full p-5 border border-primary-200 rounded-xl focus:outline-none focus:border-primary-500 text-base transition-all duration-200 bg-white shadow-sm focus:shadow-primary-100"
           />
+          <label className="absolute left-5 top-1/2 -translate-y-1/2 bg-white px-1 text-primary-500 pointer-events-none transition-all duration-200 peer-focus:-top-3 peer-focus:text-xs peer-focus:text-primary-600 peer-placeholder-shown:top-1/2 peer-placeholder-shown:text-base peer-placeholder-shown:text-primary-500 peer-focus:bg-white">
+            Name
+          </label>
           {errors.name && (
-            <span className="text-red-500">Name is required</span>
+            <span className="text-red-500 text-sm mt-1 block animate-fade-in">
+              Name is required
+            </span>
           )}
-        </label>
-        <label className="form-control w-full">
-          <div className="label">
-            <span className="label-text">Phone number</span>
-          </div>
+        </div>
+        <div className="w-full relative group">
           <input
             {...register("phone", { required: true })}
             type="text"
-            placeholder="Phone number"
-            className="input input-bordered w-full "
+            placeholder=" "
+            className="peer w-full p-5 border border-primary-200 rounded-xl focus:outline-none focus:border-primary-500 text-base transition-all duration-200 bg-white shadow-sm focus:shadow-primary-100"
           />
+          <label className="absolute left-5 top-1/2 -translate-y-1/2 bg-white px-1 text-primary-500 pointer-events-none transition-all duration-200 peer-focus:-top-3 peer-focus:text-xs peer-focus:text-primary-600 peer-placeholder-shown:top-1/2 peer-placeholder-shown:text-base peer-placeholder-shown:text-primary-500 peer-focus:bg-white">
+            Phone number
+          </label>
           {errors.phone && (
-            <span className="text-red-500">Phone number is required</span>
+            <span className="text-red-500 text-sm mt-1 block animate-fade-in">
+              Phone number is required
+            </span>
           )}
-        </label>
-      </div>
-      <label className="form-control w-full lg:px-36 md:px-20 px-5 mx-auto">
-        <div className="label">
-          <span className="label-text">Email address</span>
         </div>
+      </div>
+      <div className="w-full relative group">
         <input
           disabled
           {...register("email")}
           type="email"
-          placeholder="Email address"
+          placeholder={user.email}
           value={user.email}
-          className="input input-bordered w-full "
+          className="peer w-full p-5 border border-primary-100 rounded-xl bg-gray-100 text-gray-500 cursor-not-allowed focus:outline-none text-base"
         />
+
         {errors.email && (
-          <span className="text-red-500">Email address is required</span>
+          <span className="text-red-500 text-sm mt-1 block animate-fade-in">
+            Email address is required
+          </span>
         )}
-      </label>
-      <div className="lg:px-36 md:px-20 px-5 mx-auto">
-        <label>
-          <div className="label">
-            <span className="label-text">Type Your Message</span>
-          </div>
-          <textarea
-            {...register("message", { required: true })}
-            placeholder="Message"
-            className="w-full textarea textarea-bordered lg:h-60 md:h-40 h-28"
-          ></textarea>
-          {errors.message && (
-            <span className="text-red-500">Message is required</span>
-          )}
-        </label>
       </div>
-      <div className="flex justify-center lg:px-36 md:px-20 px-5 mx-auto">
+      <div className="w-full relative group">
+        <textarea
+          {...register("message", { required: true })}
+          placeholder=" "
+          className="peer w-full p-5 border border-primary-200 rounded-xl focus:outline-none focus:border-primary-500 text-base min-h-[120px] md:min-h-[160px] transition-all duration-200 bg-white shadow-sm focus:shadow-primary-100"
+        ></textarea>
+        <label className="absolute left-5 top-6 bg-white px-1 text-primary-500 pointer-events-none transition-all duration-200 peer-focus:-top-3 peer-focus:text-xs peer-focus:text-primary-600 peer-placeholder-shown:top-6 peer-placeholder-shown:text-base peer-placeholder-shown:text-primary-500 peer-focus:bg-white">
+          Type Your Message
+        </label>
+        {errors.message && (
+          <span className="text-red-500 text-sm mt-1 block animate-fade-in">
+            Message is required
+          </span>
+        )}
+      </div>
+      <div className="w-full">
         <button
           type="submit"
-          className="btn bg-transparent border-primary-600 text-primary-600 hover:bg-primary-600 hover:text-white hover:border-primary-600 flex gap-3 md:text-xl text-lg w-full"
+          className="w-full py-5 rounded-xl bg-gradient-to-r from-primary-500 to-primary-700 text-white font-bold text-lg hover:from-primary-600 hover:to-primary-800 transition-all duration-200 flex items-center justify-center gap-3 group shadow-lg hover:shadow-xl"
         >
-          <FaPaperPlane />
-          Sent Message
+          <span className="group-hover:animate-paperplane-move">
+            <FaPaperPlane />
+          </span>
+          Send Message
         </button>
       </div>
     </form>

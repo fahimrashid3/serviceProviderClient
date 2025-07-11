@@ -120,8 +120,8 @@ const Appointment = () => {
   };
 
   return (
-    <div className="pt-28 bg-primary-100 dark:bg-dark-700">
-      <div className="-mt-20 min-h-screen">
+    <section className="pt-28 min-h-screen bg-gradient-to-br from-primary-50 via-white to-primary-100/60 pb-10">
+      <div className="-mt-20 max-w-screen-2xl mx-auto px-4 md:px-8">
         <Helmet>
           <title>Appointment</title>
         </Helmet>
@@ -129,134 +129,148 @@ const Appointment = () => {
           img={"https://i.ibb.co.com/6bm34g2/appointment.jpg"}
           title="Appointment"
         />
-        <SectionTitle
-          heading={"Book an appointment"}
-          subHeading={"Find your requirements"}
-        />
-        <div className="flex flex-col-reverse md:flex-row-reverse lg:px-20 md:px-12 px-5">
-          <div className="md:w-1/4 mt-10 md:mt-0">
-            <div
-              className="
-            bg-white py-5 px-3 rounded-lg md:max-w-[98%] mx-auto
-            space-y-6 flex flex-col  shadow-primary-400 shadow-2xl"
-            >
-              <div className="flex justify-between">
-                <p>Category :</p>
-                <p>
+        <div className="mb-12 text-center">
+          <SectionTitle
+            heading={"Book an appointment"}
+            subHeading={"Find your requirements"}
+          />
+        </div>
+        <div className="flex flex-col-reverse md:flex-row-reverse gap-10 lg:px-20 md:px-12 px-0">
+          {/* Booking Summary Card */}
+          <aside className="md:w-1/4 mt-10 md:mt-0">
+            <div className="bg-white/90 py-7 px-5 rounded-2xl shadow-2xl sticky top-32 space-y-6 flex flex-col border border-primary-100">
+              <h3 className="text-xl font-bold text-primary-700 mb-2 text-center">
+                Booking Summary
+              </h3>
+              <div className="flex justify-between text-base">
+                <span className="font-medium">Category:</span>
+                <span>
                   {selectedCategory ? submittedCategory : "Select category"}
-                </p>
+                </span>
               </div>
-              <div className="flex justify-between">
-                <p>Price (taka) :</p>
-                <p>{selectedCategory ? submittedPrice : "Select category"}</p>
+              <div className="flex justify-between text-base">
+                <span className="font-medium">Price (taka):</span>
+                <span>
+                  {selectedCategory ? submittedPrice : "Select category"}
+                </span>
               </div>
-              <div className="flex justify-between">
-                <p>Meeting Time :</p>
-                <p>{selectedCategory ? submittedTime : "Select category"}</p>
+              <div className="flex justify-between text-base">
+                <span className="font-medium">Meeting Time:</span>
+                <span>
+                  {selectedCategory ? submittedTime : "Select category"}
+                </span>
               </div>
-              <div className="flex justify-between">
-                <p>Date :</p>
-                <p>{selectedDate || "Select Date"}</p>
+              <div className="flex justify-between text-base">
+                <span className="font-medium">Date:</span>
+                <span>{selectedDate || "Select Date"}</span>
               </div>
-              <div className="flex justify-between">
-                <p>Time :</p>
-                <p>{slotTime || "Select Time"}</p>
+              <div className="flex justify-between text-base">
+                <span className="font-medium">Time:</span>
+                <span>{slotTime || "Select Time"}</span>
               </div>
-              <div className="mx-auto flex justify-center mt-10"></div>
               <button
                 onClick={handleAppointment}
                 disabled={!selectedCategory || !selectedDate || !slotTime}
-                className={`btn border-b-8 font-semibold 
-                    text-primary-900 hover:text-white hover:border-primary-600 border-primary-700 bg-primary-300 hover:bg-primary-500 
-                    transition-all duration-200 w-full ${
-                      !selectedCategory || !selectedDate || !slotTime
-                        ? "opacity-50 cursor-not-allowed"
-                        : ""
-                    }`}
+                className={`mt-6 w-full px-6 py-3 rounded-full font-semibold text-lg shadow-md transition-all duration-200
+                  bg-primary-500 text-white hover:bg-primary-600
+                  disabled:opacity-50 disabled:cursor-not-allowed`}
               >
                 Book now
               </button>
             </div>
-          </div>
-          <div className="md:w-3/4 md:pr-20 pr-5">
-            <p className="font-bold text-3xl pt-16 text-primary-600">
-              Select Category
-            </p>
-            {/* category display section */}
-            <div className="grid lg:grid-cols-5 md:grid-cols-3 grid-cols-2 gap-5 justify-start mt-5">
-              {categories.map((category) => (
-                <div
-                  key={category._id}
-                  onClick={() =>
-                    handleCategoryClick(
-                      category._id,
-                      category.serviceProviderType,
-                      category.price,
-                      category.time
-                    )
-                  }
-                  className={`border-2 p-4 rounded-lg cursor-pointer transition-all duration-200 shadow-lg hover:shadow-primary-500 hover:shadow-2xl ${
-                    selectedCategory === category._id
-                      ? "bg-primary-300 text-primary-800 border-primary-800"
-                      : "bg-white text-dark-600 border-gray-200"
-                  }`}
-                >
-                  <p className="text-2xl font-bold">
-                    {category.serviceProviderType}
-                  </p>
-                </div>
-              ))}
+          </aside>
+          {/* Main Booking Area */}
+          <main className="md:w-3/4 md:pr-20 pr-0">
+            <div className="mb-10">
+              <h2 className="font-bold text-2xl md:text-3xl text-primary-600 mb-4">
+                Select Category
+              </h2>
+              <div className="grid lg:grid-cols-5 md:grid-cols-3 grid-cols-2 gap-5">
+                {categories.map((category) => (
+                  <div
+                    key={category._id}
+                    onClick={() =>
+                      handleCategoryClick(
+                        category._id,
+                        category.serviceProviderType,
+                        category.price,
+                        category.time
+                      )
+                    }
+                    className={`border-2 p-6 rounded-2xl cursor-pointer transition-all duration-200 shadow-lg hover:shadow-primary-400 hover:scale-105 hover:bg-primary-100/60
+                      ${
+                        selectedCategory === category._id
+                          ? "bg-primary-300 text-primary-800 border-primary-800"
+                          : "bg-white text-dark-600 border-gray-200"
+                      }
+                    `}
+                  >
+                    <p className="text-xl md:text-2xl font-bold text-center">
+                      {category.serviceProviderType}
+                    </p>
+                  </div>
+                ))}
+              </div>
             </div>
-            <p className="font-bold text-3xl pt-16 text-primary-600">
-              Select Date
-            </p>
-            {/* display date section */}
-            <div className="grid lg:grid-cols-5 md:grid-cols-4 grid-cols-3 gap-5 sm:my-4 w-full mt-4">
-              {timeSlot.map((item, index) => (
-                <div
-                  onClick={() => handleDateClick(index)}
-                  className={`mb-4 text-center text-xl font-semibold py-6 min-w-32 rounded-xl cursor-pointer border shadow-lg hover:shadow-primary-500  hover:shadow-2xl ${
-                    slotIndex === index
-                      ? "bg-primary-300 text-primary-800 border-primary-800"
-                      : "bg-white text-dark-600 border-gray-200"
-                  }`}
-                  key={index}
-                >
-                  <p>
-                    {item[0]?.dateTime && daysOfWeek[item[0].dateTime.getDay()]}
-                  </p>
-                  <p>{item[0]?.dateTime.getDate()}</p>
-                </div>
-              ))}
-            </div>
-            <p className="font-bold text-3xl pt-16 text-primary-600">
-              Select Time
-            </p>
-            <div className="grid lg:grid-cols-6 md:grid-cols-4 grid-cols-3 gap-5 sm:my-4 w-full mt-4">
-              {timeSlot.length &&
-                selectedCategory &&
-                timeSlot[slotIndex]?.map((item, index) => (
-                  <p
-                    onClick={() => handleTimeClick(item.time)}
-                    className={`py-2 rounded-full cursor-pointer text-center border shadow-lg hover:shadow-primary-400 hover:shadow-xl ${
-                      item.time === slotTime
-                        ? "bg-primary-300 text-primary-800 border-primary-800"
-                        : "bg-white text-dark-600 border-gray-200"
-                    } ${
-                      !selectedCategory || slotIndex === null
-                        ? "opacity-50 cursor-not-allowed"
-                        : ""
-                    }`}
+            <div className="mb-10">
+              <h2 className="font-bold text-2xl md:text-3xl text-primary-600 mb-4">
+                Select Date
+              </h2>
+              <div className="grid lg:grid-cols-5 md:grid-cols-4 grid-cols-3 gap-5 w-full">
+                {timeSlot.map((item, index) => (
+                  <div
+                    onClick={() => handleDateClick(index)}
+                    className={`mb-4 text-center text-lg font-semibold py-6 min-w-32 rounded-2xl cursor-pointer border shadow-lg transition-all duration-200 hover:shadow-primary-400 hover:scale-105
+                      ${
+                        slotIndex === index
+                          ? "bg-primary-300 text-primary-800 border-primary-800"
+                          : "bg-white text-dark-600 border-gray-200"
+                      }
+                    `}
                     key={index}
                   >
-                    {item.time.toLowerCase()}
-                  </p>
+                    <p className="text-base font-bold">
+                      {item[0]?.dateTime &&
+                        daysOfWeek[item[0].dateTime.getDay()]}
+                    </p>
+                    <p className="text-2xl">{item[0]?.dateTime.getDate()}</p>
+                  </div>
                 ))}
+              </div>
             </div>
-          </div>
+            <div>
+              <h2 className="font-bold text-2xl md:text-3xl text-primary-600 mb-4">
+                Select Time
+              </h2>
+              <div className="grid lg:grid-cols-6 md:grid-cols-4 grid-cols-3 gap-5 w-full">
+                {timeSlot.length &&
+                  selectedCategory &&
+                  timeSlot[slotIndex]?.map((item, index) => (
+                    <p
+                      onClick={() => handleTimeClick(item.time)}
+                      className={`py-3 rounded-full cursor-pointer text-center border shadow-lg transition-all duration-200 hover:shadow-primary-400 hover:scale-105
+                        ${
+                          item.time === slotTime
+                            ? "bg-primary-300 text-primary-800 border-primary-800"
+                            : "bg-white text-dark-600 border-gray-200"
+                        }
+                        ${
+                          !selectedCategory || slotIndex === null
+                            ? "opacity-50 cursor-not-allowed"
+                            : ""
+                        }
+                      `}
+                      key={index}
+                    >
+                      {item.time.toLowerCase()}
+                    </p>
+                  ))}
+              </div>
+            </div>
+          </main>
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 

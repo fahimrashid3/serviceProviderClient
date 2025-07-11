@@ -14,38 +14,57 @@ const Categories = () => {
   const [categories] = useCategories();
 
   return (
-    <div className="mb-12 md:mb-24 lg:mb-32 max-w-screen-2xl mx-auto">
-      <SectionTitle
-        heading={"All categories"}
-        subHeading={"Explore more"}
-      ></SectionTitle>
-      <Swiper
-        slidesPerView={2.5}
-        spaceBetween={30}
-        pagination={{
-          clickable: true,
-        }}
-        modules={[Pagination]}
-        className="mySwiper"
-      >
-        {categories.map((category) => (
-          <SwiperSlide key={category._id} className="cursor-pointer">
-            <Link to={`/ourServices/${category.serviceProviderType}`}>
-              <SwiperSlide key={category._id} className="cursor-pointer">
-                <img
-                  className="lg:h-96 md:h-72 h-52"
-                  src={category.serviceImg}
-                  alt=""
-                />
-                <h3 className="text-4xl uppercase text-center text-primary-400 -mt-16">
-                  {category.serviceProviderType}
-                </h3>
-              </SwiperSlide>
-            </Link>
-          </SwiperSlide>
-        ))}
-      </Swiper>
-    </div>
+    <section className="relative bg-gradient-to-br from-primary-50 via-white to-primary-100/60 w-full">
+      <div className="max-w-screen-2xl mx-auto px-4 md:px-8">
+        <div className="mb-12 text-center">
+          <SectionTitle
+            heading={"All categories"}
+            subHeading={"Explore more"}
+          />
+        </div>
+        <Swiper
+          slidesPerView={1.2}
+          breakpoints={{
+            640: { slidesPerView: 2 },
+            1024: { slidesPerView: 3.5 },
+          }}
+          spaceBetween={30}
+          pagination={{ clickable: true }}
+          navigation={true}
+          modules={[Pagination]}
+          className="mySwiper pb-8"
+        >
+          {categories.map((category) => (
+            <SwiperSlide key={category._id} className="group cursor-pointer">
+              <Link
+                to={`/ourServices/${category.serviceProviderType}`}
+                className="block h-full"
+              >
+                <div className="relative h-52 md:h-72 lg:h-96 rounded-2xl overflow-hidden shadow-lg transition-transform duration-300 group-hover:scale-105 group-hover:shadow-2xl bg-white">
+                  <img
+                    className="w-full h-full object-cover object-center"
+                    src={category.serviceImg}
+                    alt={category.serviceProviderType}
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/40 to-transparent z-10 transition-opacity duration-300 group-hover:bg-black/60" />
+                  <h3 className="absolute bottom-6 left-1/2 -translate-x-1/2 text-2xl md:text-3xl lg:text-4xl font-bold uppercase text-white text-center z-20 drop-shadow-lg tracking-wide px-2">
+                    {category.serviceProviderType}
+                  </h3>
+                </div>
+              </Link>
+            </SwiperSlide>
+          ))}
+        </Swiper>
+        <div className="flex justify-center mt-10">
+          <Link
+            to="/ourServices"
+            className="inline-block px-8 py-3 rounded-full bg-primary-500 hover:bg-primary-600 text-white font-semibold shadow-md transition-colors duration-200"
+          >
+            View All Categories
+          </Link>
+        </div>
+      </div>
+    </section>
   );
 };
 

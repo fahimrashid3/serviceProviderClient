@@ -22,6 +22,7 @@ import useProvider from "../../../hooks/useProvider";
 import { TbCategoryPlus, TbLogs } from "react-icons/tb";
 import { FcServices } from "react-icons/fc";
 import useUsers from "../../../hooks/useUser";
+import { useState } from "react";
 
 const Navbar = () => {
   const [users] = useUsers();
@@ -29,6 +30,8 @@ const Navbar = () => {
   const [isProvider] = useProvider();
   const [appointment] = useAppointment();
   const { user, logOut } = useAuth();
+  const [profileOpen, setProfileOpen] = useState(false);
+
   const handelLogout = () => {
     Swal.fire({
       title: "Are you sure?",
@@ -57,114 +60,114 @@ const Navbar = () => {
 
   // console.log(user && user.photoURL);
   return (
-    <div className="bg-black bg-opacity-70 py-3 w-full z-[50] fixed">
-      <div className="mx-auto max-w-[95%] md:max-w-[90%] lg:max-w-[85%]">
-        <div className="navbar w-full">
-          <div className="navbar-start">
-            <div className="dropdown">
-              <div
-                tabIndex={0}
-                role="button"
-                className="btn btn-ghost text-yellow lg:hidden"
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="h-5 w-5"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M4 6h16M4 12h8m-8 6h16"
-                  />
-                </svg>
-              </div>
-              <ul
-                tabIndex={0}
-                className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-black bg-opacity-50 rounded-box w-52"
-              >
-                <NavLinks></NavLinks>
-              </ul>
-            </div>
-            <Link to="/">
-              <div className="btn btn-ghost bg-transparent hover:bg-transparent flex flex-col md:flex-row ">
-                <img src={""} className="hidden md:block rounded-md bg-white" />
-                <h1 className="text-xl md:text-3xl font-bold text-white">
-                  Service<span className="text-[#F7B801]">Providers</span>
-                </h1>
-              </div>
-            </Link>
-          </div>
-          <div className="navbar-center hidden lg:flex">
-            <ul className="menu menu-horizontal px-1 text-base">
-              <NavLinks></NavLinks>
-            </ul>
-          </div>
-          <div className="navbar-end">
-            <div className="dropdown dropdown-end">
-              <div
-                tabIndex={0}
-                role="button"
-                className=" pr-5 text-4xl dark:text-white dark:hover:text-gray-100 text-white hover:text-gray-300"
-              >
-                {users?.photoUrl ? (
-                  <div className="avatar">
-                    <div className="w-10 rounded-full ring-primary ring-offset-primary-500 ring ring-offset-1">
-                      <img src={users?.photoUrl} />
-                    </div>
+    <header className="fixed px-10 top-0 left-0 w-full z-[50] bg-white border-b border-gray-200 shadow-sm transition-all duration-300">
+      <nav className="w-full mx-auto max-w-none flex items-center justify-between py-3 px-2">
+        {/* Logo Section */}
+        <div className="flex items-center">
+          <Link to="/" className="flex items-center gap-2">
+            <img
+              src="/logo.png"
+              alt="Service Provider Logo"
+              className="h-12 w-auto object-contain"
+            />
+          </Link>
+        </div>
+        {/* NavLinks and Profile Section */}
+        <div className="flex items-center gap-4">
+          <ul className="flex gap-2 xl:gap-4 items-center text-base font-normal">
+            <NavLinks />
+          </ul>
+          {/* Profile Dropdown */}
+          <div className="relative">
+            <button
+              tabIndex={0}
+              className="text-4xl text-gray-900 hover:text-primary-600 p-1 rounded-full focus:outline-none border-2 border-primary-100"
+              aria-label="Profile menu"
+              onClick={() => setProfileOpen((v) => !v)}
+            >
+              {users?.photoUrl ? (
+                <div className="avatar">
+                  <div className="w-10 rounded-full border-2 border-primary-600">
+                    <img src={users?.photoUrl} alt="User avatar" />
                   </div>
-                ) : (
-                  <CgProfile />
-                )}
-              </div>
-              <ul
-                tabIndex={0}
-                className="dropdown-content menu bg-dark-900 text-white dark:bg-gray-400 dark:text-dark-900  rounded-box z-[1] w-64 p-2 shadow"
-              >
+                </div>
+              ) : (
+                <CgProfile />
+              )}
+            </button>
+            {/* Dropdown */}
+            {profileOpen && (
+              <ul className="absolute right-0 mt-2 w-64 bg-white border border-gray-200 rounded-xl shadow-lg p-2 z-50">
                 {isAdmin && (
                   <>
                     <li>
-                      <Link to="/dashboard/adminHome">
-                        <FaHome /> Admin Home
+                      <Link
+                        to="/dashboard/adminHome"
+                        className="flex items-center gap-3 px-2 py-2 rounded-lg hover:bg-primary-50"
+                      >
+                        <FaHome className="text-lg" /> <span>Admin Home</span>
                       </Link>
                     </li>
                     <li>
-                      <Link to="/dashboard/addProviders">
-                        <IoMdPersonAdd /> Add Providers
+                      <Link
+                        to="/dashboard/addProviders"
+                        className="flex items-center gap-3 px-2 py-2 rounded-lg hover:bg-primary-50"
+                      >
+                        <IoMdPersonAdd className="text-lg" />{" "}
+                        <span>Add Providers</span>
                       </Link>
                     </li>
                     <li>
-                      <Link to="/dashboard/AddCategory">
-                        <TbCategoryPlus />
-                        Add Category
+                      <Link
+                        to="/dashboard/AddCategory"
+                        className="flex items-center gap-3 px-2 py-2 rounded-lg hover:bg-primary-50"
+                      >
+                        <TbCategoryPlus className="text-lg" />{" "}
+                        <span>Add Category</span>
                       </Link>
                     </li>
                     <li>
-                      <Link to="/dashboard/manageProviders">
-                        <MdOutlineMenuOpen /> Manage Providers
+                      <Link
+                        to="/dashboard/manageProviders"
+                        className="flex items-center gap-3 px-2 py-2 rounded-lg hover:bg-primary-50"
+                      >
+                        <MdOutlineMenuOpen className="text-lg" />{" "}
+                        <span>Manage Providers</span>
                       </Link>
                     </li>
                     <li>
-                      <Link to="/dashboard/manageReviews">
-                        <BsEnvelopeExclamation /> Manage Reviews
+                      <Link
+                        to="/dashboard/manageReviews"
+                        className="flex items-center gap-3 px-2 py-2 rounded-lg hover:bg-primary-50"
+                      >
+                        <BsEnvelopeExclamation className="text-lg" />{" "}
+                        <span>Manage Reviews</span>
                       </Link>
                     </li>
                     <li>
-                      <Link to="/dashboard/manageContact">
-                        <BsEnvelopeExclamation /> Manage Contacts
+                      <Link
+                        to="/dashboard/manageContact"
+                        className="flex items-center gap-3 px-2 py-2 rounded-lg hover:bg-primary-50"
+                      >
+                        <BsEnvelopeExclamation className="text-lg" />{" "}
+                        <span>Manage Contacts</span>
                       </Link>
                     </li>
                     <li>
-                      <Link to="/dashboard/manageAppointments">
-                        <FaCalendarCheck /> Manage Appointments
+                      <Link
+                        to="/dashboard/manageAppointments"
+                        className="flex items-center gap-3 px-2 py-2 rounded-lg hover:bg-primary-50"
+                      >
+                        <FaCalendarCheck className="text-lg" />{" "}
+                        <span>Manage Appointments</span>
                       </Link>
                     </li>
                     <li>
-                      <Link to="/dashboard/allUsers">
-                        <FaUsers /> All Users
+                      <Link
+                        to="/dashboard/allUsers"
+                        className="flex items-center gap-3 px-2 py-2 rounded-lg hover:bg-primary-50"
+                      >
+                        <FaUsers className="text-lg" /> <span>All Users</span>
                       </Link>
                     </li>
                   </>
@@ -172,33 +175,46 @@ const Navbar = () => {
                 {isProvider && (
                   <>
                     <li>
-                      <Link to="/dashboard/providerHome">
-                        <FaHome />
-                        Provider Profile
+                      <Link
+                        to="/dashboard/providerHome"
+                        className="flex items-center gap-3 px-2 py-2 rounded-lg hover:bg-primary-50"
+                      >
+                        <FaHome className="text-lg" />{" "}
+                        <span>Provider Profile</span>
                       </Link>
                     </li>
                     <li>
-                      <Link to="/dashboard/myServices">
-                        <FcServices />
-                        My Services
+                      <Link
+                        to="/dashboard/myServices"
+                        className="flex items-center gap-3 px-2 py-2 rounded-lg hover:bg-primary-50"
+                      >
+                        <FcServices className="text-lg" />{" "}
+                        <span>My Services</span>
                       </Link>
                     </li>
                     <li>
-                      <Link to="/dashboard/myAppointmentHistory">
-                        <FaHistory />
-                        My Appointment History
+                      <Link
+                        to="/dashboard/myAppointmentHistory"
+                        className="flex items-center gap-3 px-2 py-2 rounded-lg hover:bg-primary-50"
+                      >
+                        <FaHistory className="text-lg" />{" "}
+                        <span>My Appointment History</span>
                       </Link>
                     </li>
                     <li>
-                      <Link to="/dashboard/myBlogs">
-                        <TbLogs />
-                        My blogs
+                      <Link
+                        to="/dashboard/myBlogs"
+                        className="flex items-center gap-3 px-2 py-2 rounded-lg hover:bg-primary-50"
+                      >
+                        <TbLogs className="text-lg" /> <span>My blogs</span>
                       </Link>
                     </li>
                     <li>
-                      <Link to="/dashboard/writeBlogs">
-                        <FaEdit />
-                        Write blogs
+                      <Link
+                        to="/dashboard/writeBlogs"
+                        className="flex items-center gap-3 px-2 py-2 rounded-lg hover:bg-primary-50"
+                      >
+                        <FaEdit className="text-lg" /> <span>Write blogs</span>
                       </Link>
                     </li>
                   </>
@@ -206,68 +222,71 @@ const Navbar = () => {
                 {!isProvider && !isAdmin && (
                   <>
                     <li>
-                      <Link to="/dashboard/userProfile">
-                        <span className="text-2xl">
-                          <CgProfile />
-                        </span>
-                        Profile
+                      <Link
+                        to="/dashboard/userProfile"
+                        className="flex items-center gap-3 px-2 py-2 rounded-lg hover:bg-primary-50"
+                      >
+                        <CgProfile className="text-2xl" /> <span>Profile</span>
                       </Link>
                     </li>
                     <li>
-                      <Link to="/dashboard/userContact">
-                        <span className="text-2xl">
-                          <MdMessage />
-                        </span>
-                        Contact Messages
+                      <Link
+                        to="/dashboard/userContact"
+                        className="flex items-center gap-3 px-2 py-2 rounded-lg hover:bg-primary-50"
+                      >
+                        <MdMessage className="text-2xl" />{" "}
+                        <span>Contact Messages</span>
                       </Link>
                     </li>
                     <li>
-                      <Link to="/dashboard/appointmentHistory">
-                        <span className="text-2xl">
-                          <FaHistory />
-                        </span>
-                        Appointment History
+                      <Link
+                        to="/dashboard/appointmentHistory"
+                        className="flex items-center gap-3 px-2 py-2 rounded-lg hover:bg-primary-50"
+                      >
+                        <FaHistory className="text-2xl" />{" "}
+                        <span>Appointment History</span>
                       </Link>
                     </li>
                     <li>
-                      <Link to="/dashboard/myAppointment">
-                        <span className="text-2xl">
-                          <FaRegCalendarCheck />
-                        </span>
-                        My Appointment
-                        <div className="badge badge-secondary">
+                      <Link
+                        to="/dashboard/myAppointment"
+                        className="flex items-center gap-3 px-2 py-2 rounded-lg hover:bg-primary-50"
+                      >
+                        <FaRegCalendarCheck className="text-2xl" />{" "}
+                        <span>My Appointment</span>
+                        <div className="badge badge-secondary ml-2">
                           {appointment.length}
                         </div>
                       </Link>
                     </li>
                   </>
                 )}
-
                 <>
                   <li>
                     {user ? (
-                      <p onClick={handelLogout}>
-                        <span className="text-2xl font-semibold">
-                          <CiLogout />{" "}
-                        </span>
-                        logout
-                      </p>
+                      <button
+                        onClick={handelLogout}
+                        className="flex items-center gap-3 px-2 py-2 rounded-lg hover:bg-primary-50 w-full text-left"
+                      >
+                        <CiLogout className="text-2xl font-semibold" />{" "}
+                        <span>Logout</span>
+                      </button>
                     ) : (
-                      <Link to="/login">
-                        <span className="text-2xl">
-                          <FiLogIn />{" "}
-                        </span>
-                        Login
+                      <Link
+                        to="/login"
+                        className="flex items-center gap-3 px-2 py-2 rounded-lg hover:bg-primary-50"
+                      >
+                        <FiLogIn className="text-2xl" /> <span>Login</span>
                       </Link>
                     )}
                   </li>
                 </>
               </ul>
-            </div>
+            )}
           </div>
         </div>
-      </div>
-    </div>
+      </nav>
+    </header>
   );
 };
 

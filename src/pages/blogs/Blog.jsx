@@ -36,21 +36,24 @@ const MainNews = ({ blog }) => {
   };
 
   return (
-    <div className="mb-24 border p-5 rounded-lg">
-      <div className="flex bg-gray-50 text-black justify-between rounded-t-lg">
-        <div className="flex">
+    <div className="mb-10 bg-white border border-gray-200 rounded-xl p-6 shadow-sm hover:shadow-md transition-all duration-150 flex flex-col gap-4">
+      {/* Header: Author info and actions */}
+      <div className="flex items-center justify-between pb-4 border-b border-gray-100">
+        <div className="flex items-center gap-3">
           {author ? (
             <>
               <img
-                className="rounded-full w-12 h-12 mr-3 object-cover object-center"
+                className="rounded-full w-12 h-12 object-cover object-center border-2 border-primary-100"
                 src={author.userImg}
                 alt={author.name}
               />
               <div>
-                <p className="font-semibold text-xl">{author.name}</p>
-                <div className="flex gap-5">
-                  <p>{date}</p>
-                  <p>{time}</p>
+                <p className="font-semibold text-lg text-gray-900">
+                  {author.name}
+                </p>
+                <div className="flex gap-3 text-xs text-gray-500">
+                  <span>{date}</span>
+                  <span>{time}</span>
                 </div>
               </div>
             </>
@@ -66,23 +69,39 @@ const MainNews = ({ blog }) => {
             </div>
           )}
         </div>
-        <button
-          onClick={handleSaveButton}
-          className="flex text-xl items-center gap-2 mr-3"
-        >
-          <CiBookmark />
-          <CiShare2 />
-        </button>
+        <div className="flex gap-2">
+          <button
+            onClick={handleSaveButton}
+            className="text-xl text-gray-500 hover:text-primary-600 p-2 rounded-lg transition-colors"
+            title="Bookmark"
+          >
+            <CiBookmark />
+          </button>
+          <button
+            onClick={handleSaveButton}
+            className="text-xl text-gray-500 hover:text-primary-600 p-2 rounded-lg transition-colors"
+            title="Share"
+          >
+            <CiShare2 />
+          </button>
+        </div>
       </div>
-
-      <div className="space-y-5 mt-5 mb-5">
-        <p className="font-bold text-2xl">{title}</p>
-        <img className="h-80 mx-auto" src={img} alt={"Image not available"} />
-        <p>
+      {/* Content */}
+      <div className="flex flex-col gap-4 mt-2">
+        <p className="font-bold text-2xl text-gray-900">{title}</p>
+        <img
+          className="h-64 w-full object-cover rounded-lg border border-gray-100"
+          src={img}
+          alt={"Image not available"}
+        />
+        <p className="text-gray-700 text-base">
           {content.length > 200 ? (
             <>
               {content.slice(0, 200)}
-              <Link to={`/blog/${_id}`} className="text-blue-600">
+              <Link
+                to={`/blog/${_id}`}
+                className="text-primary-600 font-semibold ml-1 hover:underline"
+              >
                 Read more...
               </Link>
             </>
@@ -90,16 +109,7 @@ const MainNews = ({ blog }) => {
             content
           )}
         </p>
-        <hr />
       </div>
-
-      {/* <div className="flex justify-between">
-        <Rating style={{ maxWidth: 100 }} value={rating} readOnly />
-        <div className="flex items-center gap-2">
-          <RxEyeOpen />
-          <p>{totalView}</p>
-        </div>
-      </div> */}
     </div>
   );
 };

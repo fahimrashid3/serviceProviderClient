@@ -23,7 +23,7 @@ const OurServices = () => {
     );
 
   return (
-    <div className="pt-5">
+    <div className="pt-5 max-w-7xl mx-auto">
       <Helmet>
         <title>Our services</title>
       </Helmet>

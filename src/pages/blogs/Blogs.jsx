@@ -9,6 +9,7 @@ const Blogs = () => {
   const [blogs, setBlogs] = useState([]);
   const [displayBlogs, setDisplayBlogs] = useState([]);
   const [activeCategory, setActiveCategory] = useState("allCategory"); // New state for active category
+  const [mobileCatOpen, setMobileCatOpen] = useState(false);
   const categoriesData = useCategories();
   const categories = Array.isArray(categoriesData[0]) ? categoriesData[0] : [];
 
@@ -198,57 +199,123 @@ const Blogs = () => {
   }
 
   return (
-    <div className="pt-16">
+    <div className="pt-16 bg-gray-50 min-h-screen">
       <Helmet>
         <title>Blogs</title>
       </Helmet>
-      <div className="grid md:grid-cols-4 grid-cols-1 gap-6 mt-10">
-        {/* BlogFilter section with its own scroll */}
-        <div className="md:col-span-1 h-[80vh] overflow-y-auto sticky top-16">
-          <div className="pt-10">
-            <div>
+      <div className="grid md:grid-cols-4 grid-cols-1 gap-8 mt-10 max-w-7xl mx-auto">
+        {/* Mobile Categories Button */}
+        <div className="md:hidden col-span-1 mb-4 px-2">
+          <button
+            className="w-full py-3 rounded-lg bg-primary-600 text-white font-bold text-lg shadow-sm flex items-center justify-center gap-2"
+            onClick={() => setMobileCatOpen(true)}
+          >
+            &#9776; Categories
+          </button>
+        </div>
+        {/* Mobile Categories Slide-in Menu */}
+        {mobileCatOpen && (
+          <div className="fixed inset-0 z-50 bg-black/30 flex">
+            <div className="w-3/4 max-w-xs bg-white h-full shadow-xl p-6 flex flex-col gap-2 animate-slide-in-left">
+              <div className="flex justify-between items-center mb-4">
+                <span className="text-lg font-bold text-primary-700">
+                  Categories
+                </span>
+                <button
+                  className="text-2xl text-gray-700 p-2 hover:bg-primary-100 rounded"
+                  onClick={() => setMobileCatOpen(false)}
+                  aria-label="Close categories"
+                >
+                  &times;
+                </button>
+              </div>
               <button
-                onClick={() => handelFilterBlogs("allCategory")}
-                className={`block p-2 space-y-2 ml-4 text-xl text-black ${
-                  activeCategory === "allCategory"
-                    ? "bg-primary-500 text-white btn"
-                    : ""
-                }`}
+                onClick={() => {
+                  handelFilterBlogs("allCategory");
+                  setMobileCatOpen(false);
+                }}
+                className={`block w-full px-4 py-2 text-lg font-bold rounded-lg transition-colors mb-1
+                  ${
+                    activeCategory === "allCategory"
+                      ? "bg-primary-600 text-white"
+                      : "bg-primary-50 text-primary-700 hover:bg-primary-100"
+                  }
+                `}
               >
                 All Categories
               </button>
               {categories.map((category) => (
                 <button
-                  className={`block p-2 space-y-2 ml-4 text-xl text-black ${
-                    activeCategory === category.serviceProviderType
-                      ? "bg-primary-500 text-white btn"
-                      : ""
-                  }`}
+                  className={`block w-full px-4 py-2 text-lg font-bold rounded-lg transition-colors mb-1
+                    ${
+                      activeCategory === category.serviceProviderType
+                        ? "bg-primary-600 text-white"
+                        : "bg-primary-50 text-primary-700 hover:bg-primary-100"
+                    }
+                  `}
                   key={category._id}
-                  onClick={() =>
-                    handelFilterBlogs(category.serviceProviderType)
-                  }
+                  onClick={() => {
+                    handelFilterBlogs(category.serviceProviderType);
+                    setMobileCatOpen(false);
+                  }}
                 >
                   {category.serviceProviderType}
                 </button>
               ))}
             </div>
+            <div className="flex-1" onClick={() => setMobileCatOpen(false)} />
+          </div>
+        )}
+        {/* BlogFilter section (desktop/tablet) */}
+        <div className="hidden md:block md:col-span-1 h-[80vh] overflow-y-auto sticky top-20">
+          <div className="bg-white border border-gray-200 rounded-xl p-6 shadow-sm flex flex-col gap-2">
+            <button
+              onClick={() => handelFilterBlogs("allCategory")}
+              className={`block w-full px-4 py-2 text-lg font-bold rounded-lg transition-colors mb-1
+                ${
+                  activeCategory === "allCategory"
+                    ? "bg-primary-600 text-white"
+                    : "bg-primary-50 text-primary-700 hover:bg-primary-100"
+                }
+              `}
+            >
+              All Categories
+            </button>
+            {categories.map((category) => (
+              <button
+                className={`block w-full px-4 py-2 text-lg font-bold rounded-lg transition-colors mb-1
+                  ${
+                    activeCategory === category.serviceProviderType
+                      ? "bg-primary-600 text-white"
+                      : "bg-primary-50 text-primary-700 hover:bg-primary-100"
+                  }
+                `}
+                key={category._id}
+                onClick={() => handelFilterBlogs(category.serviceProviderType)}
+              >
+                {category.serviceProviderType}
+              </button>
+            ))}
           </div>
         </div>
-
         {/* Blog section with its own scroll */}
-        <div className="md:col-span-2 h-[80vh] overflow-y-auto min-h-screen px-5">
+        <div className="md:col-span-2 h-[80vh] overflow-y-auto min-h-screen px-0">
           {displayBlogs.length > 0 ? (
             displayBlogs.map((blog) => <Blog key={blog._id} blog={blog} />)
           ) : (
-            <p>No blogs found in this category</p>
+            <p className="text-center text-gray-500 mt-10">
+              No blogs found in this category
+            </p>
           )}
         </div>
-
         {/* Third section - placeholder for additional content */}
-        <div className="md:col-span-1 h-[80vh] overflow-y-auto sticky top-16">
-          <h1 className="font-semibold text-xl mb-2">Additional content</h1>
-          <h1>we can show anything in this section</h1>
+        <div className="md:col-span-1 h-[80vh] overflow-y-auto sticky top-20">
+          <div className="bg-white border border-gray-200 rounded-xl p-6 shadow-sm">
+            <h1 className="font-semibold text-xl mb-2">Additional content</h1>
+            <p className="text-gray-600">
+              We can show anything in this section
+            </p>
+          </div>
         </div>
       </div>
     </div>
