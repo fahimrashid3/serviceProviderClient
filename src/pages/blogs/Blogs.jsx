@@ -203,70 +203,8 @@ const Blogs = () => {
       <Helmet>
         <title>Blogs</title>
       </Helmet>
-      <div className="grid md:grid-cols-4 grid-cols-1 gap-8 mt-10 max-w-7xl mx-auto">
-        {/* Mobile Categories Button */}
-        <div className="md:hidden col-span-1 mb-4 px-2">
-          <button
-            className="w-full py-3 rounded-lg bg-primary-600 text-white font-bold text-lg shadow-sm flex items-center justify-center gap-2"
-            onClick={() => setMobileCatOpen(true)}
-          >
-            &#9776; Categories
-          </button>
-        </div>
-        {/* Mobile Categories Slide-in Menu */}
-        {mobileCatOpen && (
-          <div className="fixed inset-0 z-50 bg-black/30 flex">
-            <div className="w-3/4 max-w-xs bg-white h-full shadow-xl p-6 flex flex-col gap-2 animate-slide-in-left">
-              <div className="flex justify-between items-center mb-4">
-                <span className="text-lg font-bold text-primary-700">
-                  Categories
-                </span>
-                <button
-                  className="text-2xl text-gray-700 p-2 hover:bg-primary-100 rounded"
-                  onClick={() => setMobileCatOpen(false)}
-                  aria-label="Close categories"
-                >
-                  &times;
-                </button>
-              </div>
-              <button
-                onClick={() => {
-                  handelFilterBlogs("allCategory");
-                  setMobileCatOpen(false);
-                }}
-                className={`block w-full px-4 py-2 text-lg font-bold rounded-lg transition-colors mb-1
-                  ${
-                    activeCategory === "allCategory"
-                      ? "bg-primary-600 text-white"
-                      : "bg-primary-50 text-primary-700 hover:bg-primary-100"
-                  }
-                `}
-              >
-                All Categories
-              </button>
-              {categories.map((category) => (
-                <button
-                  className={`block w-full px-4 py-2 text-lg font-bold rounded-lg transition-colors mb-1
-                    ${
-                      activeCategory === category.serviceProviderType
-                        ? "bg-primary-600 text-white"
-                        : "bg-primary-50 text-primary-700 hover:bg-primary-100"
-                    }
-                  `}
-                  key={category._id}
-                  onClick={() => {
-                    handelFilterBlogs(category.serviceProviderType);
-                    setMobileCatOpen(false);
-                  }}
-                >
-                  {category.serviceProviderType}
-                </button>
-              ))}
-            </div>
-            <div className="flex-1" onClick={() => setMobileCatOpen(false)} />
-          </div>
-        )}
-        {/* BlogFilter section (desktop/tablet) */}
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mt-10 max-w-7xl mx-auto">
+        {/* Categories section (desktop/tablet) */}
         <div className="hidden md:block md:col-span-1 h-[80vh] overflow-y-auto sticky top-20">
           <div className="bg-white border border-gray-200 rounded-xl p-6 shadow-sm flex flex-col gap-2">
             <button
@@ -298,7 +236,68 @@ const Blogs = () => {
             ))}
           </div>
         </div>
-        {/* Blog section with its own scroll */}
+        {/* Mobile Categories Button & Slide-in */}
+        <div className="md:hidden col-span-2 mb-4 px-2">
+          <button
+            className="w-full py-3 rounded-lg bg-primary-600 text-white font-bold text-lg shadow-sm flex items-center justify-center gap-2"
+            onClick={() => setMobileCatOpen(true)}
+          >
+            Categories
+          </button>
+          {mobileCatOpen && (
+            <div className="fixed inset-0 z-50 bg-black/30 flex">
+              <div className="w-3/4 max-w-xs bg-white h-full shadow-xl p-6 flex flex-col gap-2 animate-slide-in-left">
+                <div className="flex justify-between items-center mb-4">
+                  <span className="text-lg font-bold text-primary-700">
+                    Categories
+                  </span>
+                  <button
+                    className="text-2xl text-gray-700 p-2 hover:bg-primary-100 rounded"
+                    onClick={() => setMobileCatOpen(false)}
+                    aria-label="Close categories"
+                  >
+                    &times;
+                  </button>
+                </div>
+                <button
+                  onClick={() => {
+                    handelFilterBlogs("allCategory");
+                    setMobileCatOpen(false);
+                  }}
+                  className={`block w-full px-4 py-2 text-lg font-bold rounded-lg transition-colors mb-1
+                    ${
+                      activeCategory === "allCategory"
+                        ? "bg-primary-600 text-white"
+                        : "bg-primary-50 text-primary-700 hover:bg-primary-100"
+                    }
+                  `}
+                >
+                  All Categories
+                </button>
+                {categories.map((category) => (
+                  <button
+                    className={`block w-full px-4 py-2 text-lg font-bold rounded-lg transition-colors mb-1
+                      ${
+                        activeCategory === category.serviceProviderType
+                          ? "bg-primary-600 text-white"
+                          : "bg-primary-50 text-primary-700 hover:bg-primary-100"
+                      }
+                    `}
+                    key={category._id}
+                    onClick={() => {
+                      handelFilterBlogs(category.serviceProviderType);
+                      setMobileCatOpen(false);
+                    }}
+                  >
+                    {category.serviceProviderType}
+                  </button>
+                ))}
+              </div>
+              <div className="flex-1" onClick={() => setMobileCatOpen(false)} />
+            </div>
+          )}
+        </div>
+        {/* Blog section (center, 2 columns) */}
         <div className="md:col-span-2 h-[80vh] overflow-y-auto min-h-screen px-0">
           {displayBlogs.length > 0 ? (
             displayBlogs.map((blog) => <Blog key={blog._id} blog={blog} />)
@@ -308,8 +307,8 @@ const Blogs = () => {
             </p>
           )}
         </div>
-        {/* Third section - placeholder for additional content */}
-        <div className="md:col-span-1 h-[80vh] overflow-y-auto sticky top-20">
+        {/* Additional section (right, 1 column) */}
+        <div className="md:col-span-1 col-span-1 h-[80vh] overflow-y-auto sticky top-20">
           <div className="bg-white border border-gray-200 rounded-xl p-6 shadow-sm">
             <h1 className="font-semibold text-xl mb-2">Additional content</h1>
             <p className="text-gray-600">

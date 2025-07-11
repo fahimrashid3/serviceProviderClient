@@ -15,7 +15,7 @@ import {
   FaUsers,
 } from "react-icons/fa";
 import { BsEnvelopeExclamation } from "react-icons/bs";
-import { MdMessage, MdOutlineMenuOpen } from "react-icons/md";
+import { MdMessage, MdOutlineMenuOpen, MdMenu } from "react-icons/md";
 import { IoMdPersonAdd } from "react-icons/io";
 import useProvider from "../../../hooks/useProvider";
 import { TbCategoryPlus, TbLogs } from "react-icons/tb";
@@ -31,6 +31,7 @@ const Navbar = () => {
   const [appointment] = useAppointment();
   const { user, logOut } = useAuth();
   const [profileOpen, setProfileOpen] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const handelLogout = () => {
     Swal.fire({
@@ -59,18 +60,29 @@ const Navbar = () => {
   };
 
   return (
-    <div className="px-20 navbar bg-base-100 shadow-sm fixed top-0 left-0 w-full z-[50] flex justify-between items-center">
-      <div className="flex items-center gap-2">
-        <Link to="/" className="flex items-center gap-2 ml-2">
+    <div className="px-4 sm:px-8 md:px-20 navbar bg-base-100 shadow-sm fixed top-0 left-0 w-full z-[50] flex flex-wrap justify-between items-center">
+      <div className="flex items-center gap-2 min-w-0">
+        <Link to="/" className="flex items-center gap-2 ml-2 min-w-0">
           <img
             src="/logo.png"
             alt="Service Provider Logo"
-            className="h-12 w-auto object-contain"
+            className="h-10 sm:h-12 w-auto object-contain max-w-[500px]"
           />
         </Link>
       </div>
-      <div className="flex items-center gap-4">
-        <NavLinks />
+      {/* Hamburger menu for mobile */}
+      <div className="flex items-center gap-2 sm:gap-4 flex-wrap">
+        <button
+          className="sm:hidden text-3xl p-2 rounded focus:outline-none"
+          aria-label="Open menu"
+          onClick={() => setMobileMenuOpen((v) => !v)}
+        >
+          <MdMenu />
+        </button>
+        {/* NavLinks for desktop */}
+        <div className="hidden sm:block">
+          <NavLinks />
+        </div>
         {/* Profile Icon & Dropdown */}
         <div className="relative">
           <button
@@ -278,6 +290,12 @@ const Navbar = () => {
           )}
         </div>
       </div>
+      {/* Mobile nav links dropdown */}
+      {mobileMenuOpen && (
+        <div className="sm:hidden absolute top-full left-0 w-full bg-base-100 shadow-md z-40 animate-fade-in">
+          <NavLinks onClick={() => setMobileMenuOpen(false)} />
+        </div>
+      )}
     </div>
   );
 };

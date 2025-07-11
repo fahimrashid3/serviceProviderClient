@@ -2,12 +2,12 @@ import { NavLink } from "react-router-dom";
 
 const NavLinks = ({ onClick }) => {
   return (
-    <ul className="list-none flex items-center gap-1 m-0 p-0">
-      <li>
+    <ul className="list-none flex flex-col sm:flex-row items-start sm:items-center gap-1 m-0 p-0 overflow-x-auto sm:overflow-x-visible whitespace-nowrap scrollbar-thin scrollbar-thumb-primary-200 scrollbar-track-transparent w-full">
+      <li className="w-full sm:w-auto">
         <NavLink
           onClick={onClick}
           className={({ isActive }) =>
-            `transition-all duration-150 px-5 py-2 font-normal tracking-wide text-base lg:text-base flex items-center justify-center
+            `transition-all duration-150 px-3 sm:px-5 py-2 font-normal tracking-wide text-sm sm:text-base flex items-center justify-start sm:justify-center w-full sm:w-auto
             ${
               isActive
                 ? "border-b-2 border-primary-600 text-primary-600"
@@ -19,11 +19,11 @@ const NavLinks = ({ onClick }) => {
           Home
         </NavLink>
       </li>
-      <li>
+      <li className="w-full sm:w-auto">
         <NavLink
           onClick={onClick}
           className={({ isActive }) =>
-            `transition-all duration-150 px-5 py-2 font-normal tracking-wide text-base lg:text-base flex items-center justify-center
+            `transition-all duration-150 px-3 sm:px-5 py-2 font-normal tracking-wide text-sm sm:text-base flex items-center justify-start sm:justify-center w-full sm:w-auto
             ${
               isActive
                 ? "border-b-2 border-primary-600 text-primary-600"
@@ -35,11 +35,11 @@ const NavLinks = ({ onClick }) => {
           Our Services
         </NavLink>
       </li>
-      <li>
+      <li className="w-full sm:w-auto">
         <NavLink
           onClick={onClick}
           className={({ isActive }) =>
-            `transition-all duration-150 px-5 py-2 font-normal tracking-wide text-base lg:text-base flex items-center justify-center
+            `transition-all duration-150 px-3 sm:px-5 py-2 font-normal tracking-wide text-sm sm:text-base flex items-center justify-start sm:justify-center w-full sm:w-auto
             ${
               isActive
                 ? "border-b-2 border-primary-600 text-primary-600"
@@ -51,11 +51,11 @@ const NavLinks = ({ onClick }) => {
           About Us
         </NavLink>
       </li>
-      <li>
+      <li className="w-full sm:w-auto">
         <NavLink
           onClick={onClick}
           className={({ isActive }) =>
-            `transition-all duration-150 px-5 py-2 font-normal tracking-wide text-base lg:text-base flex items-center justify-center
+            `transition-all duration-150 px-3 sm:px-5 py-2 font-normal tracking-wide text-sm sm:text-base flex items-center justify-start sm:justify-center w-full sm:w-auto
             ${
               isActive
                 ? "border-b-2 border-primary-600 text-primary-600"
@@ -67,11 +67,11 @@ const NavLinks = ({ onClick }) => {
           Contact Us
         </NavLink>
       </li>
-      <li>
+      <li className="w-full sm:w-auto">
         <NavLink
           onClick={onClick}
           className={({ isActive }) =>
-            `transition-all duration-150 px-5 py-2 font-normal tracking-wide text-base lg:text-base flex items-center justify-center
+            `transition-all duration-150 px-3 sm:px-5 py-2 font-normal tracking-wide text-sm sm:text-base flex items-center justify-start sm:justify-center w-full sm:w-auto
             ${
               isActive
                 ? "border-b-2 border-primary-600 text-primary-600"
@@ -83,11 +83,11 @@ const NavLinks = ({ onClick }) => {
           Appointment
         </NavLink>
       </li>
-      <li>
+      <li className="w-full sm:w-auto">
         <NavLink
           onClick={onClick}
           className={({ isActive }) =>
-            `transition-all duration-150 px-5 py-2 font-normal tracking-wide text-base lg:text-base flex items-center justify-center
+            `transition-all duration-150 px-3 sm:px-5 py-2 font-normal tracking-wide text-sm sm:text-base flex items-center justify-start sm:justify-center w-full sm:w-auto
             ${
               isActive
                 ? "border-b-2 border-primary-600 text-primary-600"

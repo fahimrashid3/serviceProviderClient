@@ -54,9 +54,6 @@ const BlogDetails = () => {
               <IoMdArrowRoundBack />
               Back to Blogs
             </Link>
-            <p className="text-red-600 mt-4 text-sm">
-              NOTE: rating system will add soon........{" "}
-            </p>
           </div>
         </div>
         <div className="md:col-span-1">

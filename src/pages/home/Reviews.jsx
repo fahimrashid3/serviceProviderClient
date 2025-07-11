@@ -80,7 +80,7 @@ const Reviews = () => {
               <p className="text-center lg:px-32 md:px-16 px-5  space-y-5">
                 {review.details}
               </p>
-              <h3 className="text-center text-[#D99904] text-3xl">
+              <h3 className="text-center text-primary-600 text-3xl">
                 {review.name}
               </h3>
             </div>
