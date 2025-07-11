@@ -12,12 +12,12 @@ const team = [
     img: "https://res.cloudinary.com/dipwayvsu/image/upload/v1752233973/isweep4rj4e2c2xehzbc.jpg",
   },
   {
-    name: "Md. Mamunur Rashid",
+    name: "Abdullah Al Noman",
     role: "Head of Operations",
     img: "https://res.cloudinary.com/dipwayvsu/image/upload/v1752233973/nipu4okrkqj3jz4xu2r5.jpg",
   },
   {
-    name: "Abdullah Al Noman",
+    name: "Md. Mamunur Rashid",
     role: "Head of Marketing",
     img: "https://res.cloudinary.com/dipwayvsu/image/upload/v1752233973/hkbln9u7zgaxymld6uoe.jpg",
   },
