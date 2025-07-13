@@ -1,5 +1,5 @@
 import SectionBanner from "../../components/SectionBanner";
-import Carousel from "./Carousel";
+import Banner from "./Banner";
 import Categories from "./Categories";
 import PopularServicesProviders from "./PopularServicesProviders";
 import Featured from "./featured/Featured";
@@ -17,7 +17,7 @@ const Home = () => {
       <Helmet>
         <title>Service Provider</title>
       </Helmet>
-      <Carousel></Carousel>
+      <Banner></Banner>
       <Categories></Categories>
       <SectionBanner
         img="https://res.cloudinary.com/dipwayvsu/image/upload/v1752424089/qssw8yvorfmhnynnbphi.avif"
