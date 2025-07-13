@@ -87,13 +87,13 @@ const Navbar = () => {
         <div className="relative">
           <button
             tabIndex={0}
-            className="text-3xl text-gray-900 hover:text-primary-600 p-1 rounded-full focus:outline-none border-2 border-primary-100"
+            className="text-3xl text-gray-900 hover:text-primary-600 p-1 rounded-full focus:outline-none border-2 border-primary-100  dark:border-gray-600"
             aria-label="Profile menu"
             onClick={() => setProfileOpen((v) => !v)}
           >
             {users?.photoUrl ? (
               <div className="avatar">
-                <div className="w-9 rounded-full border-2 border-primary-600">
+                <div className="w-9 rounded-full border-2 border-primary-600 dark:border-primary-400">
                   <img src={users?.photoUrl} alt="User avatar" />
                 </div>
               </div>
@@ -102,7 +102,7 @@ const Navbar = () => {
             )}
           </button>
           {profileOpen && (
-            <ul className="absolute right-0 mt-2 w-56 bg-white border border-gray-200 rounded-xl shadow-lg p-2 z-50">
+            <ul className="absolute right-0 mt-2 w-56 text-black dark:text-white bg-white dark:bg-gray-700 border dark:border-gray-600 border-gray-200 rounded-xl shadow-lg p-2 z-50">
               {isAdmin && (
                 <>
                   <li>
