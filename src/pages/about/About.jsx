@@ -41,7 +41,7 @@ const About = () => {
           <h1 className="text-4xl md:text-5xl font-extrabold text-primary-600 mb-2">
             About Us
           </h1>
-          <p className="text-lg md:text-xl text-base-content/80 max-w-xl">
+          <p className="text-lg md:text-xl text-base-content/80 max-w-xl text-gray-700 dark:text-gray-200 ">
             We’re not just another service provider—we’re your partner in making
             things easier. Whether you need a helping hand or a smart solution,
             we’re here to support you every step of the way. Our team is built
@@ -71,21 +71,21 @@ const About = () => {
 
       {/* Mission & Vision Section */}
       <section className="w-full max-w-5xl mx-auto px-4 md:px-0 py-10 grid md:grid-cols-2 gap-10 animate-fade-in">
-        <div className="bg-white rounded-2xl shadow p-8 flex flex-col items-center text-center border-t-4 border-primary-400">
+        <div className="bg-white rounded-2xl shadow p-8 flex flex-col items-center text-center border-t-4 border-primary-400 dark:bg-gray-700">
           <h2 className="text-2xl font-bold text-primary-600 mb-3">
             Our Mission
           </h2>
-          <p className="text-base text-base-content/80">
+          <p className="text-base-content/80 text-gray-700 dark:text-gray-200 ">
             To empower individuals and businesses by providing seamless,
             trustworthy, and innovative service solutions that simplify everyday
             life.
           </p>
         </div>
-        <div className="bg-white rounded-2xl shadow p-8 flex flex-col items-center text-center border-t-4 border-primary-400">
+        <div className="bg-white rounded-2xl shadow p-8 flex flex-col items-center text-center border-t-4 border-primary-400 dark:bg-gray-700">
           <h2 className="text-2xl font-bold text-primary-600 mb-3">
             Our Vision
           </h2>
-          <p className="text-base text-base-content/80">
+          <p className="text-base-content/80 text-gray-700 dark:text-gray-200 ">
             To be the most trusted and forward-thinking service platform,
             recognized for our commitment to quality, customer satisfaction, and
             positive impact on communities.
@@ -102,17 +102,19 @@ const About = () => {
           {team.map((member) => (
             <div
               key={member.name}
-              className="bg-white rounded-2xl shadow-lg p-6 flex flex-col items-center w-64 hover:shadow-xl transition-shadow duration-300"
+              className="bg-white dark:bg-gray-700 rounded-2xl shadow-lg p-6 flex flex-col items-center w-64 hover:shadow-xl transition-shadow duration-300"
             >
               <img
                 src={member.img}
                 alt={member.name}
                 className="w-24 h-24 rounded-full object-cover mb-4 border-4 border-primary-100"
               />
-              <h3 className="text-lg font-bold text-primary-700 mb-1">
+              <h3 className="text-lg font-bold text-primary-700 mb-1  dark:text-primary-600">
                 {member.name}
               </h3>
-              <p className="text-base-content/70">{member.role}</p>
+              <p className="text-base-content/70 dark:text-gray-200 ">
+                {member.role}
+              </p>
             </div>
           ))}
         </div>
@@ -126,22 +128,28 @@ const About = () => {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           <div className="bg-primary-50 rounded-xl p-6 text-center shadow">
             <div className="text-4xl mb-2">🤝</div>
-            <h4 className="font-bold text-lg mb-1">Integrity</h4>
-            <p className="text-base-content/70">
+            <h4 className="font-bold text-lg mb-1 text-gray-700 dark:text-gray-200 ">
+              Integrity
+            </h4>
+            <p className="text-base-content/70 text-gray-700 dark:text-gray-200 ">
               We act with honesty and transparency in all we do.
             </p>
           </div>
           <div className="bg-primary-50 rounded-xl p-6 text-center shadow">
             <div className="text-4xl mb-2">🚀</div>
-            <h4 className="font-bold text-lg mb-1">Innovation</h4>
-            <p className="text-base-content/70">
+            <h4 className="font-bold text-lg mb-1 text-gray-700 dark:text-gray-200 ">
+              Innovation
+            </h4>
+            <p className="text-base-content/70 text-gray-700 dark:text-gray-200 ">
               We embrace change and continuously seek better solutions.
             </p>
           </div>
           <div className="bg-primary-50 rounded-xl p-6 text-center shadow">
             <div className="text-4xl mb-2">🌟</div>
-            <h4 className="font-bold text-lg mb-1">Excellence</h4>
-            <p className="text-base-content/70">
+            <h4 className="font-bold text-lg mb-1 text-gray-700 dark:text-gray-200 ">
+              Excellence
+            </h4>
+            <p className="text-base-content/70 text-gray-700 dark:text-gray-200 ">
               We strive for the highest standards in everything we deliver.
             </p>
           </div>

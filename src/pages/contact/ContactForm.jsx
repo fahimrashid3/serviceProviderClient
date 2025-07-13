@@ -18,11 +18,8 @@ const ContactForm = () => {
   } = useForm();
   const onSubmit = (data) => {
     const contactSMSInfo = {
-      ...data, // Spread the form data
-      createdAt: Date.now(), // Save the current timestamp in milliseconds
-      // Alternatively, use a human-readable format:
-      // createdAt: new Date().toISOString(), // ISO format (e.g., "2023-10-05T12:34:56.789Z")
-      // createdAt: new Date().toString(), // Human-readable format (e.g., "Wed Oct 05 2023 12:34:56 GMT+0000")
+      ...data,
+      createdAt: Date.now(),
     };
 
     console.log(contactSMSInfo);
@@ -71,9 +68,9 @@ const ContactForm = () => {
             {...register("name", { required: true })}
             type="text"
             placeholder=" "
-            className="peer w-full p-5 border border-primary-200 rounded-xl focus:outline-none focus:border-primary-500 text-base transition-all duration-200 bg-white shadow-sm focus:shadow-primary-100"
+            className="peer w-full p-5 border border-primary-200 dark:border-primary-600 rounded-xl focus:outline-none focus:border-primary-500 dark:focus:border-primary-400 text-base transition-all duration-200 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 shadow-sm focus:shadow-primary-100 dark:focus:shadow-primary-900/20"
           />
-          <label className="absolute left-5 top-1/2 -translate-y-1/2 bg-white px-1 text-primary-500 pointer-events-none transition-all duration-200 peer-focus:-top-3 peer-focus:text-xs peer-focus:text-primary-600 peer-placeholder-shown:top-1/2 peer-placeholder-shown:text-base peer-placeholder-shown:text-primary-500 peer-focus:bg-white">
+          <label className="absolute left-5 top-1/2 -translate-y-1/2 bg-white dark:bg-gray-800 px-1 text-primary-500 dark:text-primary-400 pointer-events-none transition-all duration-200 peer-focus:-top-3 peer-focus:text-xs peer-focus:text-primary-600 dark:peer-focus:text-primary-400 peer-placeholder-shown:top-1/2 peer-placeholder-shown:text-base peer-placeholder-shown:text-primary-500 dark:peer-placeholder-shown:text-primary-400 peer-focus:bg-white dark:peer-focus:bg-gray-800">
             Name
           </label>
           {errors.name && (
@@ -87,9 +84,9 @@ const ContactForm = () => {
             {...register("phone", { required: true })}
             type="text"
             placeholder=" "
-            className="peer w-full p-5 border border-primary-200 rounded-xl focus:outline-none focus:border-primary-500 text-base transition-all duration-200 bg-white shadow-sm focus:shadow-primary-100"
+            className="peer w-full p-5 border border-primary-200 dark:border-primary-600 rounded-xl focus:outline-none focus:border-primary-500 dark:focus:border-primary-400 text-base transition-all duration-200 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 shadow-sm focus:shadow-primary-100 dark:focus:shadow-primary-900/20"
           />
-          <label className="absolute left-5 top-1/2 -translate-y-1/2 bg-white px-1 text-primary-500 pointer-events-none transition-all duration-200 peer-focus:-top-3 peer-focus:text-xs peer-focus:text-primary-600 peer-placeholder-shown:top-1/2 peer-placeholder-shown:text-base peer-placeholder-shown:text-primary-500 peer-focus:bg-white">
+          <label className="absolute left-5 top-1/2 -translate-y-1/2 bg-white dark:bg-gray-800 px-1 text-primary-500 dark:text-primary-400 pointer-events-none transition-all duration-200 peer-focus:-top-3 peer-focus:text-xs peer-focus:text-primary-600 dark:peer-focus:text-primary-400 peer-placeholder-shown:top-1/2 peer-placeholder-shown:text-base peer-placeholder-shown:text-primary-500 dark:peer-placeholder-shown:text-primary-400 peer-focus:bg-white dark:peer-focus:bg-gray-800">
             Phone number
           </label>
           {errors.phone && (
@@ -106,7 +103,7 @@ const ContactForm = () => {
           type="email"
           placeholder={user.email}
           value={user.email}
-          className="peer w-full p-5 border border-primary-100 rounded-xl bg-gray-100 text-gray-500 cursor-not-allowed focus:outline-none text-base"
+          className="peer w-full p-5 border border-primary-100 dark:border-primary-700 rounded-xl bg-gray-100 dark:bg-gray-700 text-gray-500 dark:text-gray-400 cursor-not-allowed focus:outline-none text-base"
         />
 
         {errors.email && (
@@ -119,9 +116,9 @@ const ContactForm = () => {
         <textarea
           {...register("message", { required: true })}
           placeholder=" "
-          className="peer w-full p-5 border border-primary-200 rounded-xl focus:outline-none focus:border-primary-500 text-base min-h-[120px] md:min-h-[160px] transition-all duration-200 bg-white shadow-sm focus:shadow-primary-100"
+          className="peer w-full p-5 border border-primary-200 dark:border-primary-600 rounded-xl focus:outline-none focus:border-primary-500 dark:focus:border-primary-400 text-base min-h-[120px] md:min-h-[160px] transition-all duration-200 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 shadow-sm focus:shadow-primary-100 dark:focus:shadow-primary-900/20"
         ></textarea>
-        <label className="absolute left-5 top-6 bg-white px-1 text-primary-500 pointer-events-none transition-all duration-200 peer-focus:-top-3 peer-focus:text-xs peer-focus:text-primary-600 peer-placeholder-shown:top-6 peer-placeholder-shown:text-base peer-placeholder-shown:text-primary-500 peer-focus:bg-white">
+        <label className="absolute left-5 top-6 bg-white dark:bg-gray-800 px-1 text-primary-500 dark:text-primary-400 pointer-events-none transition-all duration-200 peer-focus:-top-3 peer-focus:text-xs peer-focus:text-primary-600 dark:peer-focus:text-primary-400 peer-placeholder-shown:top-6 peer-placeholder-shown:text-base peer-placeholder-shown:text-primary-500 dark:peer-placeholder-shown:text-primary-400 peer-focus:bg-white dark:peer-focus:bg-gray-800">
           Type Your Message
         </label>
         {errors.message && (

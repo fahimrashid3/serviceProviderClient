@@ -56,7 +56,7 @@ const Blogs = () => {
           <div className="md:col-span-2 h-[80vh] overflow-y-auto min-h-screen px-5">
             <div className="mb-24 border p-5 rounded-lg animate-pulse">
               {/* Header */}
-              <div className="flex bg-gray-50 text-black justify-between rounded-t-lg p-3">
+              <div className="flex bg-gray-50 dark:bg-gray-700 text-black dark:text-gray-200 justify-between rounded-t-lg p-3">
                 <div className="flex w-full min-h-[60px] items-center">
                   <div className="skeleton h-12 w-12 rounded-full"></div>
                   <div className="ml-3 space-y-2">
@@ -90,7 +90,7 @@ const Blogs = () => {
             </div>
             <div className="mb-24 border p-5 rounded-lg animate-pulse">
               {/* Header */}
-              <div className="flex bg-gray-50 text-black justify-between rounded-t-lg p-3">
+              <div className="flex bg-gray-50 dark:bg-gray-700 text-black dark:text-gray-200 justify-between rounded-t-lg p-3">
                 <div className="flex w-full min-h-[60px] items-center">
                   <div className="skeleton h-12 w-12 rounded-full"></div>
                   <div className="ml-3 space-y-2">
@@ -124,7 +124,7 @@ const Blogs = () => {
             </div>
             <div className="mb-24 border p-5 rounded-lg animate-pulse">
               {/* Header */}
-              <div className="flex bg-gray-50 text-black justify-between rounded-t-lg p-3">
+              <div className="flex bg-gray-50 dark:bg-gray-700 text-black dark:text-gray-200 justify-between rounded-t-lg p-3">
                 <div className="flex w-full min-h-[60px] items-center">
                   <div className="skeleton h-12 w-12 rounded-full"></div>
                   <div className="ml-3 space-y-2">
@@ -158,7 +158,7 @@ const Blogs = () => {
             </div>
             <div className="mb-24 border p-5 rounded-lg animate-pulse">
               {/* Header */}
-              <div className="flex bg-gray-50 text-black justify-between rounded-t-lg p-3">
+              <div className="flex bg-gray-50 dark:bg-gray-700 text-black dark:text-gray-200 justify-between rounded-t-lg p-3">
                 <div className="flex w-full min-h-[60px] items-center">
                   <div className="skeleton h-12 w-12 rounded-full"></div>
                   <div className="ml-3 space-y-2">
@@ -199,21 +199,21 @@ const Blogs = () => {
   }
 
   return (
-    <div className="pt-16 bg-gray-50 min-h-screen">
+    <div className="pt-16 bg-gradient-to-br from-primary-50 via-white to-primary-100/60 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 min-h-screen">
       <Helmet>
         <title>Blogs</title>
       </Helmet>
       <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mt-10 max-w-7xl mx-auto">
         {/* Categories section (desktop/tablet) */}
         <div className="hidden md:block md:col-span-1 h-[80vh] overflow-y-auto sticky top-20">
-          <div className="bg-white border border-gray-200 rounded-xl p-6 shadow-sm flex flex-col gap-2">
+          <div className="bg-white dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-xl p-6 shadow-sm dark:shadow-gray-900/50 flex flex-col gap-2">
             <button
               onClick={() => handelFilterBlogs("allCategory")}
               className={`block w-full px-4 py-2 text-lg font-bold rounded-lg transition-colors mb-1
                 ${
                   activeCategory === "allCategory"
                     ? "bg-primary-600 text-white"
-                    : "bg-primary-50 text-primary-700 hover:bg-primary-100"
+                    : "bg-primary-50 dark:bg-primary-900/30 text-primary-700 dark:text-primary-400 hover:bg-primary-100 dark:hover:bg-primary-800/40"
                 }
               `}
             >
@@ -225,7 +225,7 @@ const Blogs = () => {
                   ${
                     activeCategory === category.serviceProviderType
                       ? "bg-primary-600 text-white"
-                      : "bg-primary-50 text-primary-700 hover:bg-primary-100"
+                      : "bg-primary-50 dark:bg-primary-900/30 text-primary-700 dark:text-primary-400 hover:bg-primary-100 dark:hover:bg-primary-800/40"
                   }
                 `}
                 key={category._id}
@@ -246,13 +246,13 @@ const Blogs = () => {
           </button>
           {mobileCatOpen && (
             <div className="fixed inset-0 z-50 bg-black/30 flex">
-              <div className="w-3/4 max-w-xs bg-white h-full shadow-xl p-6 flex flex-col gap-2 animate-slide-in-left">
+              <div className="w-3/4 max-w-xs bg-white dark:bg-gray-700 h-full shadow-xl p-6 flex flex-col gap-2 animate-slide-in-left">
                 <div className="flex justify-between items-center mb-4">
-                  <span className="text-lg font-bold text-primary-700">
+                  <span className="text-lg font-bold text-primary-700 dark:text-primary-400">
                     Categories
                   </span>
                   <button
-                    className="text-2xl text-gray-700 p-2 hover:bg-primary-100 rounded"
+                    className="text-2xl text-gray-700 dark:text-gray-200 p-2 hover:bg-primary-100 dark:hover:bg-primary-800/40 rounded"
                     onClick={() => setMobileCatOpen(false)}
                     aria-label="Close categories"
                   >
@@ -268,7 +268,7 @@ const Blogs = () => {
                     ${
                       activeCategory === "allCategory"
                         ? "bg-primary-600 text-white"
-                        : "bg-primary-50 text-primary-700 hover:bg-primary-100"
+                        : "bg-primary-50 dark:bg-primary-900/30 text-primary-700 dark:text-primary-400 hover:bg-primary-100 dark:hover:bg-primary-800/40"
                     }
                   `}
                 >
@@ -280,7 +280,7 @@ const Blogs = () => {
                       ${
                         activeCategory === category.serviceProviderType
                           ? "bg-primary-600 text-white"
-                          : "bg-primary-50 text-primary-700 hover:bg-primary-100"
+                          : "bg-primary-50 dark:bg-primary-900/30 text-primary-700 dark:text-primary-400 hover:bg-primary-100 dark:hover:bg-primary-800/40"
                       }
                     `}
                     key={category._id}
@@ -302,16 +302,18 @@ const Blogs = () => {
           {displayBlogs.length > 0 ? (
             displayBlogs.map((blog) => <Blog key={blog._id} blog={blog} />)
           ) : (
-            <p className="text-center text-gray-500 mt-10">
+            <p className="text-center text-gray-500 dark:text-gray-400 mt-10">
               No blogs found in this category
             </p>
           )}
         </div>
         {/* Additional section (right, 1 column) */}
         <div className="md:col-span-1 col-span-1 h-[80vh] overflow-y-auto sticky top-20">
-          <div className="bg-white border border-gray-200 rounded-xl p-6 shadow-sm">
-            <h1 className="font-semibold text-xl mb-2">Additional content</h1>
-            <p className="text-gray-600">
+          <div className="bg-white dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-xl p-6 shadow-sm dark:shadow-gray-900/50">
+            <h1 className="font-semibold text-xl mb-2 text-gray-900 dark:text-gray-200">
+              Additional content
+            </h1>
+            <p className="text-gray-600 dark:text-gray-300">
               We can show anything in this section
             </p>
           </div>

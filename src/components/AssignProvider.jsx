@@ -5,6 +5,13 @@ import { useForm } from "react-hook-form";
 import useAxiosSecure from "../hooks/useAxiosSecure";
 import Swal from "sweetalert2";
 import useAppointments from "../hooks/useAppointments";
+import {
+  FaCalendarAlt,
+  FaClock,
+  FaUser,
+  FaEnvelope,
+  FaCheckCircle,
+} from "react-icons/fa";
 
 const AssignProvider = () => {
   const { _id } = useParams();
@@ -59,58 +66,170 @@ const AssignProvider = () => {
   );
 
   return (
-    <div className="p-5">
-      <p className="text-center font-semibold text-2xl mb-5">
-        Appointment Details
-      </p>
-
-      <div className="flex justify-center gap-10 text-lg">
-        <div className="font-semibold">
-          <p>Type:</p>
-          <p>Date:</p>
-          <p>Time:</p>
-          <p>User Email:</p>
-          <p>Status:</p>
+    <div className="min-h-screen bg-gradient-to-br from-primary-50 via-white to-primary-100/60 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 py-8 px-4">
+      <div className="max-w-4xl mx-auto">
+        {/* Header */}
+        <div className="text-center mb-8">
+          <h1 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-gray-100 mb-2">
+            Assign Provider
+          </h1>
+          <p className="text-gray-600 dark:text-gray-300 text-lg">
+            Review appointment details and assign a suitable provider
+          </p>
         </div>
-        <div>
-          <p>{appointment.category || "N/A"}</p>
-          <p>{appointment.date || "N/A"}</p>
-          <p>{appointment.time || "N/A"}</p>
-          <p>{appointment.email || "N/A"}</p>
-          <p>{appointment.status || "Paid"}</p>
+
+        <div className="grid lg:grid-cols-2 gap-8">
+          {/* Appointment Details Card */}
+          <div className="bg-white dark:bg-gray-700 rounded-2xl shadow-lg dark:shadow-gray-900/50 p-6 border border-gray-200 dark:border-gray-600">
+            <h2 className="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-6 flex items-center gap-3">
+              <FaCheckCircle className="text-primary-600 dark:text-primary-400" />
+              Appointment Details
+            </h2>
+
+            <div className="space-y-4">
+              <div className="flex items-center gap-4 p-4 bg-gray-50 dark:bg-gray-600 rounded-xl">
+                <div className="w-10 h-10 bg-primary-100 dark:bg-primary-900/30 rounded-full flex items-center justify-center">
+                  <FaCalendarAlt className="text-primary-600 dark:text-primary-400" />
+                </div>
+                <div>
+                  <p className="text-sm text-gray-500 dark:text-gray-400 font-medium">
+                    Service Type
+                  </p>
+                  <p className="text-lg font-semibold text-gray-900 dark:text-gray-100">
+                    {appointment.category || "N/A"}
+                  </p>
+                </div>
+              </div>
+
+              <div className="flex items-center gap-4 p-4 bg-gray-50 dark:bg-gray-600 rounded-xl">
+                <div className="w-10 h-10 bg-green-100 dark:bg-green-900/30 rounded-full flex items-center justify-center">
+                  <FaCalendarAlt className="text-green-600 dark:text-green-400" />
+                </div>
+                <div>
+                  <p className="text-sm text-gray-500 dark:text-gray-400 font-medium">
+                    Date
+                  </p>
+                  <p className="text-lg font-semibold text-gray-900 dark:text-gray-100">
+                    {appointment.date || "N/A"}
+                  </p>
+                </div>
+              </div>
+
+              <div className="flex items-center gap-4 p-4 bg-gray-50 dark:bg-gray-600 rounded-xl">
+                <div className="w-10 h-10 bg-blue-100 dark:bg-blue-900/30 rounded-full flex items-center justify-center">
+                  <FaClock className="text-blue-600 dark:text-blue-400" />
+                </div>
+                <div>
+                  <p className="text-sm text-gray-500 dark:text-gray-400 font-medium">
+                    Time
+                  </p>
+                  <p className="text-lg font-semibold text-gray-900 dark:text-gray-100">
+                    {appointment.time || "N/A"}
+                  </p>
+                </div>
+              </div>
+
+              <div className="flex items-center gap-4 p-4 bg-gray-50 dark:bg-gray-600 rounded-xl">
+                <div className="w-10 h-10 bg-purple-100 dark:bg-purple-900/30 rounded-full flex items-center justify-center">
+                  <FaUser className="text-purple-600 dark:text-purple-400" />
+                </div>
+                <div>
+                  <p className="text-sm text-gray-500 dark:text-gray-400 font-medium">
+                    User Email
+                  </p>
+                  <p className="text-lg font-semibold text-gray-900 dark:text-gray-100">
+                    {appointment.email || "N/A"}
+                  </p>
+                </div>
+              </div>
+
+              <div className="flex items-center gap-4 p-4 bg-gray-50 dark:bg-gray-600 rounded-xl">
+                <div className="w-10 h-10 bg-orange-100 dark:bg-orange-900/30 rounded-full flex items-center justify-center">
+                  <FaEnvelope className="text-orange-600 dark:text-orange-400" />
+                </div>
+                <div>
+                  <p className="text-sm text-gray-500 dark:text-gray-400 font-medium">
+                    Status
+                  </p>
+                  <p className="text-lg font-semibold text-gray-900 dark:text-gray-100">
+                    {appointment.status || "Paid"}
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Provider Assignment Form */}
+          <div className="bg-white dark:bg-gray-700 rounded-2xl shadow-lg dark:shadow-gray-900/50 p-6 border border-gray-200 dark:border-gray-600">
+            <h2 className="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-6">
+              Assign Provider
+            </h2>
+
+            <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+              <div>
+                <label
+                  htmlFor="providerSelect"
+                  className="block text-lg font-semibold text-gray-900 dark:text-gray-100 mb-3"
+                >
+                  Select Provider for:{" "}
+                  <span className="text-primary-600 dark:text-primary-400">
+                    {appointment.category}
+                  </span>
+                </label>
+
+                <div className="relative">
+                  <select
+                    id="providerSelect"
+                    className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-xl bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 focus:ring-2 focus:ring-primary-500 dark:focus:ring-primary-400 focus:border-transparent transition-all duration-200"
+                    {...register("selectItem", { required: true })}
+                  >
+                    <option
+                      disabled
+                      selected
+                      className="text-gray-500 dark:text-gray-400"
+                    >
+                      {appointment.providerEmail ||
+                        `Select ${appointment.category} provider`}
+                    </option>
+                    {requiredProvider.map((provider) => (
+                      <option
+                        key={provider._id}
+                        value={provider._id}
+                        className="text-gray-900 dark:text-gray-100"
+                      >
+                        {`${provider.name} - ${provider.email}`}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+
+                {requiredProvider.length === 0 && (
+                  <p className="text-red-500 dark:text-red-400 text-sm mt-2">
+                    No providers available for this category
+                  </p>
+                )}
+              </div>
+
+              <button
+                type="submit"
+                disabled={requiredProvider.length === 0}
+                className="w-full px-8 py-4 bg-primary-600 dark:bg-primary-500 text-white font-semibold rounded-xl hover:bg-primary-700 dark:hover:bg-primary-600 transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
+              >
+                Assign Provider
+              </button>
+            </form>
+
+            {/* Provider Count */}
+            <div className="mt-6 p-4 bg-primary-50 dark:bg-primary-900/20 rounded-xl">
+              <p className="text-center text-primary-700 dark:text-primary-300 font-medium">
+                {requiredProvider.length} provider
+                {requiredProvider.length !== 1 ? "s" : ""} available for this
+                category
+              </p>
+            </div>
+          </div>
         </div>
       </div>
-
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <div className="mt-10 text-center">
-          <label
-            htmlFor="providerSelect"
-            className="block font-semibold text-lg mb-2"
-          >
-            Assign a Provider: {appointment.category}
-          </label>
-          <select
-            id="providerSelect"
-            className="select select-ghost w-full max-w-lg border border-gray-300 rounded-md p-2"
-            {...register("selectItem", { required: true })}
-          >
-            <option disabled selected>
-              {appointment.providerEmail || appointment.category}
-            </option>
-            {requiredProvider.map((provider) => (
-              <option key={provider._id} value={provider._id}>
-                {`Name: ${provider.name}, Email: ${provider.email}, Category: ${provider.category}`}
-              </option>
-            ))}
-          </select>
-        </div>
-        <button
-          className="btn border-b-8 font-semibold text-primary-900 hover:text-white hover:border-primary-600 border-primary-700 bg-primary-300 hover:bg-primary-500 
-                    transition-all duration-200 w-full"
-        >
-          Assign
-        </button>
-      </form>
     </div>
   );
 };

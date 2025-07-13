@@ -44,10 +44,7 @@ const PopularServicesProviders = () => {
         {topProviders.length > 0 ? (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12 md:mb-20">
             {topProviders.map((provider) => (
-              <div
-                key={provider._id}
-                className="bg-white rounded-2xl shadow-lg p-4 flex flex-col items-center transition-transform duration-300 hover:scale-105 hover:shadow-2xl"
-              >
+              <div key={provider._id}>
                 <ShortProfileCart user={provider} />
               </div>
             ))}

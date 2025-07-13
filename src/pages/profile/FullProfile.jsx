@@ -37,10 +37,10 @@ const FullProfile = () => {
             </div>
             {/* Info */}
             <div className="flex-1 flex flex-col items-center md:items-start">
-              <h1 className="text-3xl md:text-5xl font-extrabold text-center md:text-left mb-2 tracking-tight">
+              <h1 className="text-3xl md:text-5xl font-extrabold text-center md:text-left mb-2 tracking-tight text-black dark:text-white">
                 {provider.name}
               </h1>
-              <p className="py-2 text-lg text-primary-700 dark:text-primary-300 font-semibold text-center md:text-left">
+              <p className="py-2 text-lg text-primary-700 dark:text-primary-500 font-semibold text-center md:text-left">
                 {provider.qualification}
               </p>
               <div className="flex gap-2 items-center justify-center md:justify-start mb-2">
@@ -57,7 +57,7 @@ const FullProfile = () => {
                 {provider.services.map((service, index) => (
                   <span
                     key={index}
-                    className="bg-primary-100 text-primary-700 dark:bg-dark-600 dark:text-primary-300 px-3 py-1 rounded-full text-xs font-semibold cursor-default hover:bg-primary-500 hover:text-white transition-all duration-300"
+                    className="bg-primary-100 text-primary-700 dark:bg-dark-400 dark:text-primary-500 px-3 py-1 rounded-full text-xs font-semibold"
                   >
                     {service}
                   </span>
@@ -94,55 +94,75 @@ const FullProfile = () => {
                 {/* Overview */}
                 <TabPanel>
                   <div className="max-w-[95%] md:max-w-[90%] mx-auto">
-                    <p className="font-bold text-xl mb-2">About Me</p>
+                    <p className="font-bold text-xl mb-2 text-black dark:text-white">
+                      About Me
+                    </p>
                     <p className="mb-6 text-gray-700 dark:text-gray-200 text-lg leading-relaxed">
                       {provider.about}
                     </p>
                     <div className="md:flex mt-5 gap-8">
                       <div className="flex-1 md:space-y-10 space-y-5">
                         <div>
-                          <p className="font-bold text-xl mb-2">Education</p>
+                          <p className="font-bold text-xl mb-2 text-gray-700 dark:text-gray-200 ">
+                            Education
+                          </p>
                           {provider.education.map((education, index) => (
                             <div key={index} className="py-2">
-                              <p className="font-bold text-sm">
+                              <p className="font-bold text-sm text-gray-700 dark:text-gray-200 ">
                                 {education.institution}
                               </p>
-                              <p>{education.degree}</p>
-                              <p>{education.time}</p>
+                              <p className="text-gray-700 dark:text-gray-200 ">
+                                {education.degree}
+                              </p>
+                              <p className="text-gray-700 dark:text-gray-200 ">
+                                {education.time}
+                              </p>
                             </div>
                           ))}
                         </div>
                         <div>
-                          <p className="font-bold text-xl mb-2">
+                          <p className="font-bold text-xl mb-2 text-gray-700 dark:text-gray-200 ">
                             Working Experience
                           </p>
                           {provider.workingExperience.map(
                             (workingExperience, index) => (
                               <div key={index} className="py-2">
-                                <p>{workingExperience}</p>
+                                <p className="text-gray-700 dark:text-gray-200 ">
+                                  {workingExperience}
+                                </p>
                               </div>
                             )
                           )}
                         </div>
                         <div>
-                          <p className="font-bold text-xl mb-2">Services</p>
+                          <p className="font-bold text-xl mb-2 text-gray-700 dark:text-gray-200 ">
+                            Services
+                          </p>
                           {provider.services.map((services, index) => (
                             <div key={index} className="py-2">
-                              <p>{services}</p>
+                              <p className="text-gray-700 dark:text-gray-200 ">
+                                {services}
+                              </p>
                             </div>
                           ))}
                         </div>
                       </div>
                       <div className="flex-1">
                         <div>
-                          <p className="font-bold text-xl mb-2">Rewards</p>
+                          <p className="font-bold text-xl mb-2 text-gray-700 dark:text-gray-200 ">
+                            Rewards
+                          </p>
                           {provider.rewards.map((rewards, index) => (
                             <div key={index} className="py-2">
-                              <p className="font-bold text-sm">
+                              <p className="font-bold text-sm text-gray-700 dark:text-gray-200 ">
                                 {rewards.name}
                               </p>
-                              <p>{rewards.date}</p>
-                              <p>{rewards.description}</p>
+                              <p className="text-gray-700 dark:text-gray-200 ">
+                                {rewards.date}
+                              </p>
+                              <p className="text-gray-700 dark:text-gray-200 ">
+                                {rewards.description}
+                              </p>
                             </div>
                           ))}
                         </div>
@@ -153,8 +173,10 @@ const FullProfile = () => {
                 {/* Location */}
                 <TabPanel>
                   <div>
-                    <h2 className="text-lg font-bold text-center">Location</h2>
-                    <p className="text-sm text-dark-600 text-center">
+                    <h2 className="text-lg font-bold text-center text-gray-700 dark:text-gray-200 ">
+                      Location
+                    </h2>
+                    <p className="text-sm text-center text-gray-700 dark:text-gray-200 ">
                       {provider.location}
                     </p>
                     <div className="max-w-[95%] md:max-w-[90%] mx-auto mt-5 md:mt-10 rounded-2xl overflow-hidden shadow-lg">
@@ -175,8 +197,10 @@ const FullProfile = () => {
                 {/* Reviews */}
                 <TabPanel>
                   <div>
-                    <p className="font-bold text-xl mb-2">Reviews</p>
-                    <p className="text-gray-500 dark:text-gray-300">
+                    <p className="font-bold text-xl mb-2 text-gray-700 dark:text-gray-200 ">
+                      Reviews
+                    </p>
+                    <p className="text-gray-700 dark:text-gray-200">
                       No reviews yet.
                     </p>
                   </div>
@@ -184,7 +208,7 @@ const FullProfile = () => {
                 {/* Business Hours */}
                 <TabPanel>
                   <div className="w-[95%] md:max-w-[50%] mx-auto">
-                    <h2 className="text-lg font-bold text-center mb-4">
+                    <h2 className="text-lg font-bold text-center mb-4 text-gray-700 dark:text-gray-200 ">
                       Business Hours
                     </h2>
                     {Object.entries(provider.timeTable).map(
@@ -193,8 +217,12 @@ const FullProfile = () => {
                           key={index}
                           className="flex justify-between py-2 border-b border-primary-100 dark:border-dark-700"
                         >
-                          <p className="font-medium">{day}</p>
-                          <p>{timing}</p>
+                          <p className="font-medium text-gray-700 dark:text-gray-200 ">
+                            {day}
+                          </p>
+                          <p className="text-gray-700 dark:text-gray-200 ">
+                            {timing}
+                          </p>
                         </div>
                       )
                     )}

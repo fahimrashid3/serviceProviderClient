@@ -35,11 +35,11 @@ const Banner = () => {
             }`}
           >
             <div className="space-y-4">
-              <h1 className="text-5xl lg:text-6xl xl:text-7xl font-bold text-gray-900 leading-tight">
+              <h1 className="text-5xl lg:text-6xl xl:text-7xl font-bold text-gray-900 dark:text-gray-300 leading-tight">
                 Find Your Perfect
                 <span className="block text-primary-600">Service Provider</span>
               </h1>
-              <p className="text-xl text-gray-600 max-w-lg leading-relaxed">
+              <p className="text-xl text-gray-600 dark:text-white max-w-lg leading-relaxed">
                 Connect with trusted professionals in your area. Quality
                 services guaranteed with transparent pricing and secure booking.
               </p>
@@ -103,16 +103,16 @@ const Banner = () => {
               </div>
 
               {/* Floating Elements */}
-              <div className="absolute -top-4 -right-4 bg-white p-4 rounded-xl shadow-lg animate-bounce">
+              <div className="absolute -top-4 -right-4 bg-white dark:bg-gray-800 p-4 rounded-xl shadow-lg animate-bounce">
                 <div className="flex items-center gap-3">
-                  <div className="w-12 h-12 bg-primary-100 rounded-full flex items-center justify-center">
+                  <div className="w-12 h-12 bg-primary-100 dark:bg-primary-900 rounded-full flex items-center justify-center">
                     <span className="text-primary-600 text-xl">⭐</span>
                   </div>
                   <div className="w-20 h-20"></div>
                 </div>
               </div>
 
-              <div className="absolute -bottom-4 -left-4 bg-white p-4 rounded-xl shadow-lg animate-bounce delay-1000">
+              <div className="absolute -bottom-4 -left-4 bg-white dark:bg-gray-800 p-4 rounded-xl shadow-lg animate-bounce delay-1000">
                 <div className="flex items-center gap-3">
                   <div className="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center">
                     <span className="text-green-600 text-xl">✓</span>

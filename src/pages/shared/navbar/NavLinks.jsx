@@ -11,7 +11,7 @@ const NavLinks = ({ onClick }) => {
             ${
               isActive
                 ? "border-b-2 border-primary-600 text-primary-600"
-                : "text-gray-900 hover:text-primary-600 hover:border-b-2 hover:border-primary-400"
+                : "text-gray-900 dark:text-white hover:text-primary-600 hover:border-b-2 hover:border-primary-400"
             }`
           }
           to="/"
@@ -27,7 +27,7 @@ const NavLinks = ({ onClick }) => {
             ${
               isActive
                 ? "border-b-2 border-primary-600 text-primary-600"
-                : "text-gray-900 hover:text-primary-600 hover:border-b-2 hover:border-primary-400"
+                : "text-gray-900 dark:text-white hover:text-primary-600 hover:border-b-2 hover:border-primary-400"
             }`
           }
           to="/ourServices"
@@ -43,7 +43,7 @@ const NavLinks = ({ onClick }) => {
             ${
               isActive
                 ? "border-b-2 border-primary-600 text-primary-600"
-                : "text-gray-900 hover:text-primary-600 hover:border-b-2 hover:border-primary-400"
+                : "text-gray-900 dark:text-white hover:text-primary-600 hover:border-b-2 hover:border-primary-400"
             }`
           }
           to="/about"
@@ -59,7 +59,7 @@ const NavLinks = ({ onClick }) => {
             ${
               isActive
                 ? "border-b-2 border-primary-600 text-primary-600"
-                : "text-gray-900 hover:text-primary-600 hover:border-b-2 hover:border-primary-400"
+                : "text-gray-900 dark:text-white hover:text-primary-600 hover:border-b-2 hover:border-primary-400"
             }`
           }
           to="/contact"
@@ -75,7 +75,7 @@ const NavLinks = ({ onClick }) => {
             ${
               isActive
                 ? "border-b-2 border-primary-600 text-primary-600"
-                : "text-gray-900 hover:text-primary-600 hover:border-b-2 hover:border-primary-400"
+                : "text-gray-900 dark:text-white hover:text-primary-600 hover:border-b-2 hover:border-primary-400"
             }`
           }
           to="/appointment"
@@ -91,7 +91,7 @@ const NavLinks = ({ onClick }) => {
             ${
               isActive
                 ? "border-b-2 border-primary-600 text-primary-600"
-                : "text-gray-900 hover:text-primary-600 hover:border-b-2 hover:border-primary-400"
+                : "text-gray-900 dark:text-white hover:text-primary-600 hover:border-b-2 hover:border-primary-400"
             }`
           }
           to="/blogs"

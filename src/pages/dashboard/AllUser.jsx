@@ -1,11 +1,9 @@
 import { Helmet } from "react-helmet";
 import "react-tabs/style/react-tabs.css";
 import { FaEdit } from "react-icons/fa";
-import SectionTitle from "../../components/SectionTitle";
 import Swal from "sweetalert2";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import { useNavigate } from "react-router-dom";
-import Loading from "../../components/Loading";
 import { useQuery } from "@tanstack/react-query";
 
 const AllUser = () => {
@@ -23,10 +21,16 @@ const AllUser = () => {
       return res.data;
     },
   });
+
   if (loading) {
     return (
-      <div>
-        <Loading></Loading>
+      <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 flex items-center justify-center">
+        <div className="text-center">
+          <div className="loading loading-ball w-16 h-16 text-primary-600"></div>
+          <p className="mt-4 text-gray-600 dark:text-gray-300">
+            Loading users...
+          </p>
+        </div>
       </div>
     );
   }
@@ -73,58 +77,177 @@ const AllUser = () => {
     });
   };
 
-  return (
-    <div className="-mt-20">
-      <Helmet>
-        <title>All User</title>
-      </Helmet>
-      <SectionTitle heading={"All User"} subHeading={"Manage User"} />
+  const getRoleColor = (role) => {
+    switch (role) {
+      case "admin":
+        return "bg-red-100 dark:bg-red-900/30 text-red-800 dark:text-red-300";
+      case "provider":
+        return "bg-purple-100 dark:bg-purple-900/30 text-purple-800 dark:text-purple-300";
+      default:
+        return "bg-green-100 dark:bg-green-900/30 text-green-800 dark:text-green-300";
+    }
+  };
 
-      <table className="table table-zebra">
-        <thead>
-          <tr>
-            <th>#</th>
-            <th>Photo</th>
-            <th>Name</th>
-            <th>Email</th>
-            {/* <th>Profile</th> */}
-            <th>Change Role</th>
-          </tr>
-        </thead>
-        <tbody>
-          {users.map((user, index) => (
-            <tr key={user._id}>
-              <th>{index + 1}</th>
-              <td>
-                <div className="avatar">
-                  <div className="mask mask-squircle h-12 w-12">
-                    <img src={user.photoUrl} alt="User Avatar" />
-                  </div>
-                </div>
-              </td>
-              <td>{user.name}</td>
-              <td>{user.email}</td>
-              {/* <td>
-                <button className="btn btn-ghost btn-outline btn-success text-2xl">
-                  <FaEye />
-                </button>
-              </td> */}
-              <td>
-                {user.role === "admin" || user.role === "provider" ? (
-                  <p>{user.role}</p>
-                ) : (
-                  <button
-                    className="btn btn-ghost btn-outline btn-warning text-2xl"
-                    onClick={() => manageChangeRole(user)}
+  return (
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 py-8 px-4">
+      <Helmet>
+        <title>All Users</title>
+      </Helmet>
+
+      <div className="max-w-7xl mx-auto">
+        {/* Header */}
+        <div className="text-center mb-8">
+          <h1 className="text-4xl font-bold text-gray-800 dark:text-white mb-2">
+            Manage Users
+          </h1>
+          <p className="text-gray-600 dark:text-gray-300">
+            View and manage all registered users
+          </p>
+        </div>
+
+        {/* Stats Card */}
+        <div className="bg-white dark:bg-gray-700 rounded-2xl shadow-xl p-6 border border-gray-100 dark:border-gray-600 mb-8">
+          <div className="flex items-center gap-3 mb-4">
+            <div className="w-10 h-10 bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg flex items-center justify-center">
+              <svg
+                className="w-6 h-6 text-white"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197m13.5-9a2.5 2.5 0 11-5 0 2.5 2.5 0 015 0z"
+                />
+              </svg>
+            </div>
+            <div>
+              <h2 className="text-2xl font-semibold text-gray-800 dark:text-white">
+                Total Users
+              </h2>
+              <p className="text-gray-600 dark:text-gray-300">
+                {users.length} registered users
+              </p>
+            </div>
+          </div>
+        </div>
+
+        {/* Users Table */}
+        <div className="bg-white dark:bg-gray-700 rounded-2xl shadow-xl border border-gray-100 dark:border-gray-600 overflow-hidden">
+          <div className="overflow-x-auto">
+            <table className="w-full">
+              <thead className="bg-gray-50 dark:bg-gray-600">
+                <tr>
+                  <th className="px-6 py-4 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
+                    #
+                  </th>
+                  <th className="px-6 py-4 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
+                    Photo
+                  </th>
+                  <th className="px-6 py-4 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
+                    Name
+                  </th>
+                  <th className="px-6 py-4 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
+                    Email
+                  </th>
+                  <th className="px-6 py-4 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
+                    Role
+                  </th>
+                  <th className="px-6 py-4 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
+                    Actions
+                  </th>
+                </tr>
+              </thead>
+              <tbody className="bg-white dark:bg-gray-700 divide-y divide-gray-200 dark:divide-gray-600">
+                {users.map((user, index) => (
+                  <tr
+                    key={user._id}
+                    className="hover:bg-gray-50 dark:hover:bg-gray-600 transition-colors duration-200"
                   >
-                    <FaEdit />
-                  </button>
-                )}
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+                    <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 dark:text-white">
+                      {index + 1}
+                    </td>
+                    <td className="px-6 py-4 whitespace-nowrap">
+                      <div className="flex items-center">
+                        <div className="h-12 w-12 rounded-full overflow-hidden ring-2 ring-gray-200 dark:ring-gray-600">
+                          <img
+                            src={user.photoUrl}
+                            alt={`${user.name} avatar`}
+                            className="h-full w-full object-cover"
+                            onError={(e) => {
+                              e.target.src =
+                                "https://via.placeholder.com/48x48?text=User";
+                            }}
+                          />
+                        </div>
+                      </div>
+                    </td>
+                    <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 dark:text-white">
+                      {user.name}
+                    </td>
+                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-300">
+                      {user.email}
+                    </td>
+                    <td className="px-6 py-4 whitespace-nowrap">
+                      <span
+                        className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${getRoleColor(
+                          user.role
+                        )}`}
+                      >
+                        {user.role || "user"}
+                      </span>
+                    </td>
+                    <td className="px-6 py-4 whitespace-nowrap text-sm">
+                      {user.role === "admin" || user.role === "provider" ? (
+                        <span className="text-gray-400 dark:text-gray-500 text-sm">
+                          Role assigned
+                        </span>
+                      ) : (
+                        <button
+                          className="inline-flex items-center gap-2 px-3 py-2 bg-transparent border border-orange-600 text-orange-600 hover:bg-orange-600 hover:text-white rounded-lg transition-all duration-200 hover:scale-105"
+                          onClick={() => manageChangeRole(user)}
+                        >
+                          <FaEdit className="w-4 h-4" />
+                          Change Role
+                        </button>
+                      )}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+
+          {/* Empty State */}
+          {users.length === 0 && (
+            <div className="text-center py-12">
+              <div className="w-16 h-16 bg-gray-100 dark:bg-gray-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                <svg
+                  className="w-8 h-8 text-gray-400"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197m13.5-9a2.5 2.5 0 11-5 0 2.5 2.5 0 015 0z"
+                  />
+                </svg>
+              </div>
+              <h3 className="text-lg font-medium text-gray-900 dark:text-white mb-2">
+                No users found
+              </h3>
+              <p className="text-gray-500 dark:text-gray-400">
+                No users have registered yet.
+              </p>
+            </div>
+          )}
+        </div>
+      </div>
     </div>
   );
 };

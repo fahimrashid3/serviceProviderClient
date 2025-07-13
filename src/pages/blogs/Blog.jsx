@@ -36,22 +36,22 @@ const MainNews = ({ blog }) => {
   };
 
   return (
-    <div className="mb-10 bg-white border border-gray-200 rounded-xl p-6 shadow-sm hover:shadow-md transition-all duration-150 flex flex-col gap-4">
+    <div className="mb-10 bg-white dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-xl p-6 shadow-sm dark:shadow-gray-900/50 hover:shadow-md transition-all duration-150 flex flex-col gap-4">
       {/* Header: Author info and actions */}
-      <div className="flex items-center justify-between pb-4 border-b border-gray-100">
+      <div className="flex items-center justify-between pb-4 border-b border-gray-100 dark:border-gray-600">
         <div className="flex items-center gap-3">
           {author ? (
             <>
               <img
-                className="rounded-full w-12 h-12 object-cover object-center border-2 border-primary-100"
+                className="rounded-full w-12 h-12 object-cover object-center border-2 border-primary-100 dark:border-primary-700"
                 src={author.userImg}
                 alt={author.name}
               />
               <div>
-                <p className="font-semibold text-lg text-gray-900">
+                <p className="font-semibold text-lg text-gray-900 dark:text-gray-200">
                   {author.name}
                 </p>
-                <div className="flex gap-3 text-xs text-gray-500">
+                <div className="flex gap-3 text-xs text-gray-500 dark:text-gray-400">
                   <span>{date}</span>
                   <span>{time}</span>
                 </div>
@@ -72,14 +72,14 @@ const MainNews = ({ blog }) => {
         <div className="flex gap-2">
           <button
             onClick={handleSaveButton}
-            className="text-xl text-gray-500 hover:text-primary-600 p-2 rounded-lg transition-colors"
+            className="text-xl text-gray-500 dark:text-gray-400 hover:text-primary-600 dark:hover:text-primary-400 p-2 rounded-lg transition-colors"
             title="Bookmark"
           >
             <CiBookmark />
           </button>
           <button
             onClick={handleSaveButton}
-            className="text-xl text-gray-500 hover:text-primary-600 p-2 rounded-lg transition-colors"
+            className="text-xl text-gray-500 dark:text-gray-400 hover:text-primary-600 dark:hover:text-primary-400 p-2 rounded-lg transition-colors"
             title="Share"
           >
             <CiShare2 />
@@ -88,19 +88,21 @@ const MainNews = ({ blog }) => {
       </div>
       {/* Content */}
       <div className="flex flex-col gap-4 mt-2">
-        <p className="font-bold text-2xl text-gray-900">{title}</p>
+        <p className="font-bold text-2xl text-gray-900 dark:text-gray-200">
+          {title}
+        </p>
         <img
-          className="h-64 w-full object-cover rounded-lg border border-gray-100"
+          className="h-64 w-full object-cover rounded-lg border border-gray-100 dark:border-gray-600"
           src={img}
           alt={"Image not available"}
         />
-        <p className="text-gray-700 text-base">
+        <p className="text-gray-700 dark:text-gray-300 text-base">
           {content.length > 200 ? (
             <>
               {content.slice(0, 200)}
               <Link
                 to={`/blog/${_id}`}
-                className="text-primary-600 font-semibold ml-1 hover:underline"
+                className="text-primary-600 dark:text-primary-400 font-semibold ml-1 hover:underline"
               >
                 Read more...
               </Link>

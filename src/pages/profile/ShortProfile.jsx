@@ -58,11 +58,11 @@ const ShortProfile = () => {
               {/* Glow effect */}
               <div className="absolute inset-0 rounded-full pointer-events-none animate-pulse"></div>
             </div>
-            <h2 className="font-extrabold text-2xl md:text-3xl text-center md:text-left mb-1 tracking-tight">
+            <h2 className="font-extrabold text-2xl md:text-3xl text-center md:text-left mb-1 tracking-tight dark:text-white">
               {provider.name}
             </h2>
             <div className="flex flex-wrap gap-2 justify-center md:justify-start mb-2">
-              <span className="bg-primary-100 text-primary-700 dark:bg-dark-600 dark:text-primary-300 px-3 py-1 rounded-full text-xs font-semibold">
+              <span className="bg-primary-100 text-primary-700 dark:bg-dark-400 dark:text-primary-500 px-3 py-1 rounded-full text-xs font-semibold">
                 {provider.qualification}
               </span>
               <span className="bg-gray-200 dark:bg-dark-800 text-gray-700 dark:text-gray-200 px-3 py-1 rounded-full text-xs font-semibold flex items-center gap-1">
@@ -87,14 +87,14 @@ const ShortProfile = () => {
                 {provider.location}
               </span>
             </div>
-            <blockquote className="italic text-justify text-gray-600 dark:text-gray-300 text-base md:text-lg leading-relaxed border-l-4 border-primary-200 dark:border-primary-700 pl-4 mt-2 transition-opacity duration-1000 opacity-100">
+            <blockquote className="italic text-justify text-gray-600 dark:text-gray-200 text-base md:text-lg leading-relaxed border-l-4 border-primary-200 dark:border-primary-700 pl-4 mt-2 transition-opacity duration-1000 opacity-100">
               {provider.about}
             </blockquote>
           </div>
           {/* Services & Actions */}
           <div className="flex-1 flex flex-col justify-between gap-6">
             <div>
-              <h3 className="font-semibold text-xl md:text-2xl mb-3 tracking-wide">
+              <h3 className="font-semibold text-xl md:text-2xl mb-3 tracking-wide text-black dark:text-white">
                 Our Services
               </h3>
               <div className="rounded-2xl overflow-hidden shadow-lg mb-4 group">
@@ -105,7 +105,7 @@ const ShortProfile = () => {
                 />
               </div>
               <div className="flex flex-wrap gap-2 mb-4">
-                <span className="bg-primary-50 text-primary-700 dark:bg-dark-600 dark:text-primary-300 px-3 py-1 rounded-full text-xs font-semibold">
+                <span className="bg-primary-100 text-primary-700 dark:bg-dark-400 dark:text-primary-500 px-3 py-1 rounded-full text-xs font-semibold">
                   {category.serviceProviderType}
                 </span>
               </div>

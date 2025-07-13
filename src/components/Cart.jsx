@@ -19,9 +19,9 @@ const Cart = ({ provider }) => {
         </figure>
         <div className="card-body -space-y-1">
           <p className="text-green-500">Available</p>
-          <h2 className="card-title">{name}</h2>
-          <p className="text-lg">{qualification}</p>
-          <p className="text-lg">{category}</p>
+          <h2 className="card-title dark:text-white">{name}</h2>
+          <p className="text-lg dark:text-white">{qualification}</p>
+          <p className="text-lg dark:text-white">{category}</p>
           <div className="flex items-center card-actions justify-between">
             <Link
               to="/appointment"

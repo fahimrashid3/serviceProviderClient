@@ -120,7 +120,7 @@ const Appointment = () => {
   };
 
   return (
-    <section className="pt-28 min-h-screen bg-gradient-to-br from-primary-50 via-white to-primary-100/60 pb-10">
+    <section className="pt-28 min-h-screen bg-gradient-to-br from-primary-50 via-white to-primary-100/60 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 pb-10">
       <div className="-mt-20 max-w-screen-2xl mx-auto px-4 md:px-8">
         <Helmet>
           <title>Appointment</title>
@@ -140,33 +140,33 @@ const Appointment = () => {
         <div className="flex flex-col-reverse md:flex-row-reverse gap-10 lg:px-20 md:px-12 px-0">
           {/* Booking Summary Card */}
           <aside className="md:w-1/4 mt-10 md:mt-0">
-            <div className="bg-white/90 py-7 px-5 rounded-2xl shadow-2xl sticky top-32 space-y-6 flex flex-col border border-primary-100">
-              <h3 className="text-xl font-bold text-primary-700 mb-2 text-center">
+            <div className="bg-white/90 dark:bg-gray-700/90 py-7 px-5 rounded-2xl shadow-2xl sticky top-32 space-y-6 flex flex-col border border-primary-100 dark:border-gray-600">
+              <h3 className="text-xl font-bold text-primary-700 dark:text-primary-400 mb-2 text-center">
                 Booking Summary
               </h3>
-              <div className="flex justify-between text-base">
+              <div className="flex justify-between text-base text-gray-900 dark:text-gray-200">
                 <span className="font-medium">Category:</span>
                 <span>
                   {selectedCategory ? submittedCategory : "Select category"}
                 </span>
               </div>
-              <div className="flex justify-between text-base">
+              <div className="flex justify-between text-base text-gray-900 dark:text-gray-200">
                 <span className="font-medium">Price (taka):</span>
                 <span>
                   {selectedCategory ? submittedPrice : "Select category"}
                 </span>
               </div>
-              <div className="flex justify-between text-base">
+              <div className="flex justify-between text-base text-gray-900 dark:text-gray-200">
                 <span className="font-medium">Meeting Time:</span>
                 <span>
                   {selectedCategory ? submittedTime : "Select category"}
                 </span>
               </div>
-              <div className="flex justify-between text-base">
+              <div className="flex justify-between text-base text-gray-900 dark:text-gray-200">
                 <span className="font-medium">Date:</span>
                 <span>{selectedDate || "Select Date"}</span>
               </div>
-              <div className="flex justify-between text-base">
+              <div className="flex justify-between text-base text-gray-900 dark:text-gray-200">
                 <span className="font-medium">Time:</span>
                 <span>{slotTime || "Select Time"}</span>
               </div>
@@ -184,7 +184,7 @@ const Appointment = () => {
           {/* Main Booking Area */}
           <main className="md:w-3/4 md:pr-20 pr-0">
             <div className="mb-10">
-              <h2 className="font-bold text-2xl md:text-3xl text-primary-600 mb-4">
+              <h2 className="font-bold text-2xl md:text-3xl text-primary-600 dark:text-primary-400 mb-4">
                 Select Category
               </h2>
               <div className="grid lg:grid-cols-5 md:grid-cols-3 grid-cols-2 gap-5">
@@ -199,11 +199,11 @@ const Appointment = () => {
                         category.time
                       )
                     }
-                    className={`border-2 p-6 rounded-2xl cursor-pointer transition-all duration-200 shadow-lg hover:shadow-primary-400 hover:scale-105 hover:bg-primary-100/60
+                    className={`border-2 p-6 rounded-2xl cursor-pointer transition-all duration-200 shadow-lg hover:shadow-primary-400 hover:scale-105 hover:bg-primary-100/60 dark:hover:bg-primary-900/30
                       ${
                         selectedCategory === category._id
                           ? "bg-primary-300 text-primary-800 border-primary-800"
-                          : "bg-white text-dark-600 border-gray-200"
+                          : "bg-white dark:bg-gray-700 text-dark-600 dark:text-gray-200 border-gray-200 dark:border-gray-600"
                       }
                     `}
                   >
@@ -215,7 +215,7 @@ const Appointment = () => {
               </div>
             </div>
             <div className="mb-10">
-              <h2 className="font-bold text-2xl md:text-3xl text-primary-600 mb-4">
+              <h2 className="font-bold text-2xl md:text-3xl text-primary-600 dark:text-primary-400 mb-4">
                 Select Date
               </h2>
               <div className="grid lg:grid-cols-5 md:grid-cols-4 grid-cols-3 gap-5 w-full">
@@ -226,7 +226,7 @@ const Appointment = () => {
                       ${
                         slotIndex === index
                           ? "bg-primary-300 text-primary-800 border-primary-800"
-                          : "bg-white text-dark-600 border-gray-200"
+                          : "bg-white dark:bg-gray-700 text-dark-600 dark:text-gray-200 border-gray-200 dark:border-gray-600"
                       }
                     `}
                     key={index}
@@ -241,7 +241,7 @@ const Appointment = () => {
               </div>
             </div>
             <div>
-              <h2 className="font-bold text-2xl md:text-3xl text-primary-600 mb-4">
+              <h2 className="font-bold text-2xl md:text-3xl text-primary-600 dark:text-primary-400 mb-4">
                 Select Time
               </h2>
               <div className="grid lg:grid-cols-6 md:grid-cols-4 grid-cols-3 gap-5 w-full">
@@ -254,7 +254,7 @@ const Appointment = () => {
                         ${
                           item.time === slotTime
                             ? "bg-primary-300 text-primary-800 border-primary-800"
-                            : "bg-white text-dark-600 border-gray-200"
+                            : "bg-white dark:bg-gray-700 text-dark-600 dark:text-gray-200 border-gray-200 dark:border-gray-600"
                         }
                         ${
                           !selectedCategory || slotIndex === null

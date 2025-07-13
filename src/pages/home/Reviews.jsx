@@ -65,7 +65,7 @@ const Reviews = () => {
       >
         {reviews.map((review) => (
           <SwiperSlide key={review._id}>
-            <div className=" lg:space-y-6 md:space-y-8 py-10 space-y-3 px-5 md:px-0">
+            <div className=" lg:space-y-6 md:space-y-8 py-10 space-y-3 px-5 md:px-0 dark:bg-gray-800 rounded-xl">
               <Rating
                 className="mx-auto"
                 style={{ maxWidth: 180 }}
@@ -77,7 +77,7 @@ const Reviews = () => {
                 src={quotation}
                 alt=""
               />
-              <p className="text-center lg:px-32 md:px-16 px-5  space-y-5">
+              <p className="text-center lg:px-32 md:px-16 px-5  space-y-5 dark:text-white">
                 {review.details}
               </p>
               <h3 className="text-center text-primary-600 text-3xl">
