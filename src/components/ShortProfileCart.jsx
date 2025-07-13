@@ -18,14 +18,12 @@ const ShortProfileCart = ({ user }) => {
         />
       </div>
       <div>
-        <h2 className="md:text-xl text-lg md:font-bold font-semibold">
-          {name}
-        </h2>
+        <h2 className="text-lg font-bold">{name}</h2>
         <p className="text-lg font-semibold ">{category}</p>
-        <p className="text-lg font-semibold ">{qualification}</p>
+        <p>{qualification}</p>
       </div>
       <div>
-        <p className="text-xl ">
+        <p>
           Rating: <span className="text-primary-400"> {rating}</span>
         </p>
       </div>

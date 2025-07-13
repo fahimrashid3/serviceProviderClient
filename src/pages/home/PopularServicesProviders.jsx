@@ -46,7 +46,7 @@ const PopularServicesProviders = () => {
             {topProviders.map((provider) => (
               <div
                 key={provider._id}
-                className="bg-white rounded-2xl shadow-lg p-6 flex flex-col items-center transition-transform duration-300 hover:scale-105 hover:shadow-2xl"
+                className="bg-white rounded-2xl shadow-lg p-4 flex flex-col items-center transition-transform duration-300 hover:scale-105 hover:shadow-2xl"
               >
                 <ShortProfileCart user={provider} />
               </div>
@@ -74,7 +74,7 @@ const PopularServicesProviders = () => {
               navigate("/ourServices");
               scrollTo(0, 0);
             }}
-            className="inline-block px-8 py-3 rounded-full bg-primary-500 hover:bg-primary-600 text-white font-semibold shadow-md transition-colors duration-200 text-lg flex gap-3"
+            className="px-8 py-3 rounded-full bg-primary-500 hover:bg-primary-600 text-white font-semibold shadow-md transition-colors duration-200 text-lg flex gap-3"
           >
             Show all
           </button>

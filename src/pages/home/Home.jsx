@@ -1,7 +1,6 @@
 import SectionBanner from "../../components/SectionBanner";
 import Carousel from "./Carousel";
 import Categories from "./Categories";
-import img from "../../assets/home/HomePageBanner.png";
 import PopularServicesProviders from "./PopularServicesProviders";
 import Featured from "./featured/Featured";
 import Reviews from "./Reviews";
@@ -10,7 +9,7 @@ import { useNavigate } from "react-router-dom";
 
 const Home = () => {
   const navigate = useNavigate();
-  const title = "ServiceFinder";
+  const title = "Service Provider";
   const descriptions =
     "We’re not just another service provider—we’re your partner in making things easier. Whether you need a helping hand or a smart solution, we’re here to support you every step of the way. Our team is built on a foundation of trust, innovation, and a genuine desire to improve the way people get things done.";
   return (
@@ -21,7 +20,7 @@ const Home = () => {
       <Carousel></Carousel>
       <Categories></Categories>
       <SectionBanner
-        img={img}
+        img="https://res.cloudinary.com/dipwayvsu/image/upload/v1752424089/qssw8yvorfmhnynnbphi.avif"
         title={title}
         descriptions={descriptions}
       ></SectionBanner>
