@@ -249,7 +249,7 @@ const Registration = () => {
               <button
                 disabled={disabled}
                 type="submit"
-                className="btn btn-warning btn-outline border-1 border-b-8"
+                className="px-8 py-3 border border-b-4 border-primary-600 text-primary-600 font-semibold rounded-xl hover:bg-primary-600 hover:text-white transform hover:scale-105 transition-all duration-300"
               >
                 Register Now
               </button>

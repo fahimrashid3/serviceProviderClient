@@ -74,7 +74,7 @@ const PopularServicesProviders = () => {
               navigate("/ourServices");
               scrollTo(0, 0);
             }}
-            className="px-8 py-3 rounded-full bg-primary-500 hover:bg-primary-600 text-white font-semibold shadow-md transition-colors duration-200 text-lg flex gap-3"
+            className="btn bg-transparent border-1 border-b-4 border-primary-600 text-primary-600 hover:bg-primary-600 hover:text-white hover:border-primary-600 flex gap-3 text-lg"
           >
             Show all
           </button>

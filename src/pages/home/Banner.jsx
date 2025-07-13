@@ -77,7 +77,7 @@ const Banner = () => {
               </button>
               <button
                 onClick={() => navigate("/about")}
-                className="px-8 py-4 border-2 border-primary-600 text-primary-600 font-semibold rounded-xl hover:bg-primary-600 hover:text-white transform hover:scale-105 transition-all duration-300"
+                className="px-8 py-4 border border-b-4 border-primary-600 text-primary-600 font-semibold rounded-xl hover:bg-primary-600 hover:text-white transform hover:scale-105 transition-all duration-300"
               >
                 Learn More
               </button>

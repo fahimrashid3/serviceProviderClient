@@ -58,7 +58,7 @@ const Categories = () => {
         <div className="flex justify-center mt-10">
           <Link
             to="/ourServices"
-            className="inline-block px-8 py-3 rounded-full bg-primary-500 hover:bg-primary-600 text-white font-semibold shadow-md transition-colors duration-200"
+            className="btn bg-transparent border-1 border-b-4 border-primary-600 text-primary-600 hover:bg-primary-600 hover:text-white hover:border-primary-600 flex gap-3 text-lg"
           >
             View All Categories
           </Link>
