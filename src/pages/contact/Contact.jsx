@@ -11,7 +11,9 @@ const Contact = () => {
       </Helmet>
       <div className="w-full max-w-7xl mx-auto px-2 md:px-0">
         <SectionBanner
-          img={"https://i.ibb.co.com/gVxQNWv/contact-Us.jpg"}
+          img={
+            "https://res.cloudinary.com/dipwayvsu/image/upload/v1752420521/shv2e5xmauzbmceo3eig.jpg"
+          }
           title="Contact Us"
         />
         <div className="mt-10 grid grid-cols-1 md:grid-cols-2 gap-12 items-start">

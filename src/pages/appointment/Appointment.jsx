@@ -126,7 +126,9 @@ const Appointment = () => {
           <title>Appointment</title>
         </Helmet>
         <SectionBanner
-          img={"https://i.ibb.co.com/6bm34g2/appointment.jpg"}
+          img={
+            "https://res.cloudinary.com/dipwayvsu/image/upload/v1752419597/vyjtgcktybbhk6vpncf8.webp"
+          }
           title="Appointment"
         />
         <div className="mb-12 text-center">

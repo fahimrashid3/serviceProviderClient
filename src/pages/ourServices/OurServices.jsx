@@ -6,7 +6,6 @@ import useProviders from "../../hooks/useProviders";
 
 import { useState } from "react";
 import Cart from "../../components/Cart";
-import img from "../../assets/services/doctorSectionBanner.png";
 import SectionTitle from "../../components/SectionTitle";
 import useCategories from "../../hooks/useCategories";
 
@@ -31,7 +30,7 @@ const OurServices = () => {
       <div className="-mt-20 min-h-screen">
         <SectionBanner
           title="All Provider "
-          img={img}
+          img="https://res.cloudinary.com/dipwayvsu/image/upload/v1752424089/qssw8yvorfmhnynnbphi.avif"
           alt="Section banner"
         ></SectionBanner>
         <div className="max-w-[95%] md:max-w-[90%] mx-auto">
