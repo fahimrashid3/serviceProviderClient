@@ -5,18 +5,18 @@ import ContactForm from "./ContactForm";
 
 const Contact = () => {
   return (
-    <div className="min-h-screen pb-20 flex items-center justify-center bg-gradient-to-br from-primary-200 via-white to-primary-400">
-      <Helmet>
-        <title>Contact Us</title>
-      </Helmet>
-      <div className="w-full max-w-7xl mx-auto px-2 md:px-0">
+    <section className="pt-28 min-h-screen bg-gradient-to-br from-primary-200 via-white to-primary-400 pb-10">
+      <div className="-mt-20 max-w-screen-2xl mx-auto px-4 md:px-8">
+        <Helmet>
+          <title>Contact Us</title>
+        </Helmet>
         <SectionBanner
           img={
             "https://res.cloudinary.com/dipwayvsu/image/upload/v1752420521/shv2e5xmauzbmceo3eig.jpg"
           }
           title="Contact Us"
         />
-        <div className="mt-10 grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
+        <div className="mt-10 grid grid-cols-1 md:grid-cols-2 gap-12 items-start lg:px-20 md:px-12 px-0">
           {/* Information Card */}
           <div className="animate-slide-in-left bg-white/90 border border-primary-100 rounded-3xl shadow-2xl flex flex-col justify-center p-10">
             <Information />
@@ -36,7 +36,7 @@ const Contact = () => {
           </div>
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 

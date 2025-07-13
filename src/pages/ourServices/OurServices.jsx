@@ -22,18 +22,18 @@ const OurServices = () => {
     );
 
   return (
-    <div className="pt-5 max-w-7xl mx-auto">
-      <Helmet>
-        <title>Our services</title>
-      </Helmet>
+    <section className="pt-28 min-h-screen bg-gradient-to-br from-primary-50 via-white to-primary-100/60 pb-10">
+      <div className="-mt-20 max-w-screen-2xl mx-auto px-4 md:px-8">
+        <Helmet>
+          <title>Our services</title>
+        </Helmet>
 
-      <div className="-mt-20 min-h-screen">
         <SectionBanner
           title="All Provider "
           img="https://res.cloudinary.com/dipwayvsu/image/upload/v1752424089/qssw8yvorfmhnynnbphi.avif"
           alt="Section banner"
         ></SectionBanner>
-        <div className="max-w-[95%] md:max-w-[90%] mx-auto">
+        <div className="lg:px-20 md:px-12 px-0">
           <SectionTitle
             heading="All Providers"
             subHeading="Browse what you need"
@@ -73,7 +73,7 @@ const OurServices = () => {
           </div>
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 
