@@ -12,7 +12,7 @@ const Contact = () => {
         </Helmet>
         <SectionBanner
           img={
-            "https://res.cloudinary.com/dipwayvsu/image/upload/v1752420521/shv2e5xmauzbmceo3eig.jpg"
+            "https://res.cloudinary.com/dipwayvsu/image/upload/v1752444369/ezmae2rtposulwh28ktc.jpg"
           }
           title="Contact Us"
         />

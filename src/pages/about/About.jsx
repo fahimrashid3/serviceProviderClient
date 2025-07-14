@@ -41,7 +41,7 @@ const About = () => {
           <h1 className="text-4xl md:text-5xl font-extrabold text-primary-600 mb-2">
             About Us
           </h1>
-          <p className="text-lg md:text-xl text-base-content/80 max-w-xl text-gray-700 dark:text-gray-200 ">
+          <p className="text-lg md:text-xl text-base-content/80 max-w-xl text-gray-700 dark:text-gray-200 text-justify">
             We’re not just another service provider—we’re your partner in making
             things easier. Whether you need a helping hand or a smart solution,
             we’re here to support you every step of the way. Our team is built
@@ -75,7 +75,7 @@ const About = () => {
           <h2 className="text-2xl font-bold text-primary-600 mb-3">
             Our Mission
           </h2>
-          <p className="text-base-content/80 text-gray-700 dark:text-gray-200 ">
+          <p className="text-base-content/80 text-gray-700 dark:text-gray-200 text-center">
             To empower individuals and businesses by providing seamless,
             trustworthy, and innovative service solutions that simplify everyday
             life.
@@ -85,7 +85,7 @@ const About = () => {
           <h2 className="text-2xl font-bold text-primary-600 mb-3">
             Our Vision
           </h2>
-          <p className="text-base-content/80 text-gray-700 dark:text-gray-200 ">
+          <p className="text-base-content/80 text-gray-700 dark:text-gray-200 text-center">
             To be the most trusted and forward-thinking service platform,
             recognized for our commitment to quality, customer satisfaction, and
             positive impact on communities.
@@ -112,7 +112,7 @@ const About = () => {
               <h3 className="text-lg font-bold text-primary-700 mb-1  dark:text-primary-600">
                 {member.name}
               </h3>
-              <p className="text-base-content/70 dark:text-gray-200 ">
+              <p className="text-base-content/70 dark:text-gray-200 text-center">
                 {member.role}
               </p>
             </div>
