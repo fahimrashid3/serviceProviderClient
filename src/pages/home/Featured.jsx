@@ -1,12 +1,12 @@
-import SectionTitle from "../../../components/SectionTitle";
-import featuredImg from "../../../assets/home/featured.png";
+import SectionTitle from "../../components/SectionTitle";
+import featuredImg from "../../assets/home/featured.png";
 
 const Featured = () => {
   return (
     <section className="py-16 md:py-24 bg-primary-50">
       <div className="max-w-7xl mx-auto px-4">
         <SectionTitle heading="Featured Item" subHeading="Check it out" />
-        <div className="grid  md:grid-cols-2 gap-10 items-center bg-white rounded-3xl shadow-lg p-6 md:p-12 mt-8">
+        <div className="grid  md:grid-cols-2 gap-10 items-center bg-white dark:bg-gray-800 rounded-3xl shadow-lg p-6 md:p-12 mt-8">
           {/* Image */}
           <div className="flex justify-center">
             <img
@@ -17,19 +17,16 @@ const Featured = () => {
           </div>
           {/* Content */}
           <div className="flex flex-col justify-center space-y-6">
-            {/* <span className="text-primary-600 font-semibold text-sm uppercase tracking-wider">
-              Jan 5, 2025
-            </span> */}
-            <h2 className="text-2xl md:text-3xl font-bold text-gray-900 uppercase">
+            <h2 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white uppercase">
               Where can I get some?
             </h2>
-            <p className="text-gray-700 text-base md:text-lg leading-relaxed">
+            <p className="text-gray-700 dark:text-white text-base md:text-lg leading-relaxed">
               Get the Right Help — Exactly When You Need It. From doctors to
               teachers to lawyers, we connect you with experts you can rely on.
               Whether you are not feeling well, need academic advice, or have
               legal issues — we make life easier.
             </p>
-            <ul className="list-disc list-inside text-gray-700 space-y-1">
+            <ul className="list-disc list-inside text-gray-700 dark:text-gray-300 space-y-1">
               <li>
                 Consult licensed doctors for healthcare tips and treatment
               </li>
@@ -38,7 +35,7 @@ const Featured = () => {
                 Get expert, easy-to-understand advice from qualified lawyers
               </li>
             </ul>
-            <span className="block mt-2 text-gray-600">
+            <span className="block mt-2 text-gray-600 dark:text-gray-400">
               Each of our experts is handpicked, skilled, and on call to help
               you — anywhere, anytime.
             </span>

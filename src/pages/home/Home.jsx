@@ -2,7 +2,7 @@ import SectionBanner from "../../components/SectionBanner";
 import Banner from "./Banner";
 import Categories from "./Categories";
 import PopularServicesProviders from "./PopularServicesProviders";
-import Featured from "./featured/Featured";
+import Featured from "./Featured";
 import Reviews from "./Reviews";
 import { Helmet } from "react-helmet";
 import { useNavigate } from "react-router-dom";
