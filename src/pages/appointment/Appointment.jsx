@@ -57,18 +57,41 @@ const Appointment = () => {
       endTime.setHours(21, 0, 0, 0);
 
       while (slotTime < endTime) {
-        slots.push({
-          dateTime: new Date(slotTime),
-          time: slotTime.toLocaleTimeString([], {
-            hour: "2-digit",
-            minute: "2-digit",
-          }),
-        });
+        // Check if this slot is in the future
+        const now = new Date();
+        const slotDateTime = new Date(slotTime);
+
+        // If it's today, only show slots that are at least 1 hour in the future
+        if (currentDate.toDateString() === today.toDateString()) {
+          const oneHourFromNow = new Date(now.getTime() + 60 * 60 * 1000); // 1 hour from now
+          if (slotDateTime >= oneHourFromNow) {
+            slots.push({
+              dateTime: new Date(slotTime),
+              time: slotTime.toLocaleTimeString([], {
+                hour: "2-digit",
+                minute: "2-digit",
+              }),
+            });
+          }
+        } else {
+          // For future days, show all slots
+          slots.push({
+            dateTime: new Date(slotTime),
+            time: slotTime.toLocaleTimeString([], {
+              hour: "2-digit",
+              minute: "2-digit",
+            }),
+          });
+        }
+
         // Increment by 2 hours
         slotTime.setHours(slotTime.getHours() + 2);
       }
 
-      next7DaysSlots.push(slots);
+      // Only add the day if it has available slots
+      if (slots.length > 0) {
+        next7DaysSlots.push(slots);
+      }
     }
 
     setTimeSlot(next7DaysSlots);
