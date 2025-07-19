@@ -102,190 +102,194 @@ const Navbar = () => {
             )}
           </button>
           {profileOpen && (
-            <ul className="absolute right-0 mt-2 w-56 text-black dark:text-white bg-white dark:bg-gray-700 border dark:border-gray-600 border-gray-200 rounded-xl shadow-lg p-2 z-50">
+            <ul className="absolute right-0 mt-3 w-64 text-gray-900 dark:text-gray-100 bg-white dark:bg-gray-800 border border-primary-100 dark:border-gray-600 rounded-2xl shadow-2xl p-4 z-50 backdrop-blur-sm">
               {isAdmin && (
                 <>
-                  <li>
+                  <li className="mb-2">
                     <Link
                       to="/dashboard/adminHome"
-                      className="flex items-center gap-3 px-2 py-2 rounded-lg hover:bg-primary-50"
+                      className="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-primary-50 dark:hover:bg-primary-900/30 transition-all duration-200 text-base font-medium"
                     >
-                      <FaHome className="text-lg" /> <span>Admin Home</span>
+                      <FaHome className="text-lg text-primary-600 dark:text-primary-400" />
+                      <span>Admin Home</span>
                     </Link>
                   </li>
-                  <li>
+                  <li className="mb-2">
                     <Link
                       to="/dashboard/addProviders"
-                      className="flex items-center gap-3 px-2 py-2 rounded-lg hover:bg-primary-50"
+                      className="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-primary-50 dark:hover:bg-primary-900/30 transition-all duration-200 text-base font-medium"
                     >
-                      <IoMdPersonAdd className="text-lg" />{" "}
+                      <IoMdPersonAdd className="text-lg text-primary-600 dark:text-primary-400" />
                       <span>Add Providers</span>
                     </Link>
                   </li>
-                  <li>
+                  <li className="mb-2">
                     <Link
                       to="/dashboard/AddCategory"
-                      className="flex items-center gap-3 px-2 py-2 rounded-lg hover:bg-primary-50"
+                      className="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-primary-50 dark:hover:bg-primary-900/30 transition-all duration-200 text-base font-medium"
                     >
-                      <TbCategoryPlus className="text-lg" />{" "}
+                      <TbCategoryPlus className="text-lg text-primary-600 dark:text-primary-400" />
                       <span>Add Category</span>
                     </Link>
                   </li>
-                  <li>
+                  <li className="mb-2">
                     <Link
                       to="/dashboard/manageProviders"
-                      className="flex items-center gap-3 px-2 py-2 rounded-lg hover:bg-primary-50"
+                      className="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-primary-50 dark:hover:bg-primary-900/30 transition-all duration-200 text-base font-medium"
                     >
-                      <MdOutlineMenuOpen className="text-lg" />{" "}
+                      <MdOutlineMenuOpen className="text-lg text-primary-600 dark:text-primary-400" />
                       <span>Manage Providers</span>
                     </Link>
                   </li>
-                  <li>
+                  <li className="mb-2">
                     <Link
                       to="/dashboard/manageReviews"
-                      className="flex items-center gap-3 px-2 py-2 rounded-lg hover:bg-primary-50"
+                      className="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-primary-50 dark:hover:bg-primary-900/30 transition-all duration-200 text-base font-medium"
                     >
-                      <BsEnvelopeExclamation className="text-lg" />{" "}
+                      <BsEnvelopeExclamation className="text-lg text-primary-600 dark:text-primary-400" />
                       <span>Manage Reviews</span>
                     </Link>
                   </li>
-                  <li>
+                  <li className="mb-2">
                     <Link
                       to="/dashboard/manageContact"
-                      className="flex items-center gap-3 px-2 py-2 rounded-lg hover:bg-primary-50"
+                      className="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-primary-50 dark:hover:bg-primary-900/30 transition-all duration-200 text-base font-medium"
                     >
-                      <BsEnvelopeExclamation className="text-lg" />{" "}
+                      <BsEnvelopeExclamation className="text-lg text-primary-600 dark:text-primary-400" />
                       <span>Manage Contacts</span>
                     </Link>
                   </li>
-                  <li>
+                  <li className="mb-2">
                     <Link
                       to="/dashboard/manageAppointments"
-                      className="flex items-center gap-3 px-2 py-2 rounded-lg hover:bg-primary-50"
+                      className="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-primary-50 dark:hover:bg-primary-900/30 transition-all duration-200 text-base font-medium"
                     >
-                      <FaCalendarCheck className="text-lg" />{" "}
+                      <FaCalendarCheck className="text-lg text-primary-600 dark:text-primary-400" />
                       <span>Manage Appointments</span>
                     </Link>
                   </li>
-                  <li>
+                  <li className="mb-2">
                     <Link
                       to="/dashboard/allUsers"
-                      className="flex items-center gap-3 px-2 py-2 rounded-lg hover:bg-primary-50"
+                      className="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-primary-50 dark:hover:bg-primary-900/30 transition-all duration-200 text-base font-medium"
                     >
-                      <FaUsers className="text-lg" /> <span>All Users</span>
+                      <FaUsers className="text-lg text-primary-600 dark:text-primary-400" />
+                      <span>All Users</span>
                     </Link>
                   </li>
                 </>
               )}
               {isProvider && (
                 <>
-                  <li>
+                  <li className="mb-2">
                     <Link
                       to="/dashboard/providerHome"
-                      className="flex items-center gap-3 px-2 py-2 rounded-lg hover:bg-primary-50"
+                      className="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-primary-50 dark:hover:bg-primary-900/30 transition-all duration-200 text-base font-medium"
                     >
-                      <FaHome className="text-lg" />{" "}
+                      <FaHome className="text-lg text-primary-600 dark:text-primary-400" />
                       <span>Provider Profile</span>
                     </Link>
                   </li>
-                  <li>
+                  <li className="mb-2">
                     <Link
                       to="/dashboard/myServices"
-                      className="flex items-center gap-3 px-2 py-2 rounded-lg hover:bg-primary-50"
+                      className="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-primary-50 dark:hover:bg-primary-900/30 transition-all duration-200 text-base font-medium"
                     >
-                      <FcServices className="text-lg" />{" "}
+                      <FcServices className="text-lg" />
                       <span>My Services</span>
                     </Link>
                   </li>
-                  <li>
+                  <li className="mb-2">
                     <Link
                       to="/dashboard/myAppointmentHistory"
-                      className="flex items-center gap-3 px-2 py-2 rounded-lg hover:bg-primary-50"
+                      className="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-primary-50 dark:hover:bg-primary-900/30 transition-all duration-200 text-base font-medium"
                     >
-                      <FaHistory className="text-lg" />{" "}
+                      <FaHistory className="text-lg text-primary-600 dark:text-primary-400" />
                       <span>My Appointment History</span>
                     </Link>
                   </li>
-                  <li>
+                  <li className="mb-2">
                     <Link
                       to="/dashboard/myBlogs"
-                      className="flex items-center gap-3 px-2 py-2 rounded-lg hover:bg-primary-50"
+                      className="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-primary-50 dark:hover:bg-primary-900/30 transition-all duration-200 text-base font-medium"
                     >
-                      <TbLogs className="text-lg" /> <span>My blogs</span>
+                      <TbLogs className="text-lg text-primary-600 dark:text-primary-400" />
+                      <span>My blogs</span>
                     </Link>
                   </li>
-                  <li>
+                  <li className="mb-2">
                     <Link
                       to="/dashboard/writeBlogs"
-                      className="flex items-center gap-3 px-2 py-2 rounded-lg hover:bg-primary-50"
+                      className="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-primary-50 dark:hover:bg-primary-900/30 transition-all duration-200 text-base font-medium"
                     >
-                      <FaEdit className="text-lg" /> <span>Write blogs</span>
+                      <FaEdit className="text-lg text-primary-600 dark:text-primary-400" />
+                      <span>Write blogs</span>
                     </Link>
                   </li>
                 </>
               )}
               {!isProvider && !isAdmin && (
                 <>
-                  <li>
+                  <li className="mb-2">
                     <Link
                       to="/dashboard/userProfile"
-                      className="flex items-center gap-3 px-2 py-2 rounded-lg hover:bg-primary-50"
+                      className="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-primary-50 dark:hover:bg-primary-900/30 transition-all duration-200 text-base font-medium"
                     >
-                      <CgProfile className="text-2xl" /> <span>Profile</span>
+                      <CgProfile className="text-xl text-primary-600 dark:text-primary-400" />
+                      <span>Profile</span>
                     </Link>
                   </li>
-                  <li>
+                  <li className="mb-2">
                     <Link
                       to="/dashboard/userContact"
-                      className="flex items-center gap-3 px-2 py-2 rounded-lg hover:bg-primary-50"
+                      className="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-primary-50 dark:hover:bg-primary-900/30 transition-all duration-200 text-base font-medium"
                     >
-                      <MdMessage className="text-2xl" />{" "}
+                      <MdMessage className="text-xl text-primary-600 dark:text-primary-400" />
                       <span>Contact Messages</span>
                     </Link>
                   </li>
-                  <li>
+                  <li className="mb-2">
                     <Link
                       to="/dashboard/appointmentHistory"
-                      className="flex items-center gap-3 px-2 py-2 rounded-lg hover:bg-primary-50"
+                      className="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-primary-50 dark:hover:bg-primary-900/30 transition-all duration-200 text-base font-medium"
                     >
-                      <FaHistory className="text-2xl" />{" "}
+                      <FaHistory className="text-xl text-primary-600 dark:text-primary-400" />
                       <span>Appointment History</span>
                     </Link>
                   </li>
-                  <li>
+                  <li className="mb-2">
                     <Link
                       to="/dashboard/myAppointment"
-                      className="flex items-center gap-3 px-2 py-2 rounded-lg hover:bg-primary-50"
+                      className="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-primary-50 dark:hover:bg-primary-900/30 transition-all duration-200 text-base font-medium"
                     >
-                      <FaRegCalendarCheck className="text-2xl" />{" "}
+                      <FaRegCalendarCheck className="text-xl text-primary-600 dark:text-primary-400" />
                       <span>My Appointment</span>
-                      <div className="badge badge-secondary ml-2">
+                      <div className="ml-auto bg-primary-600 text-white text-xs px-2 py-1 rounded-full font-semibold">
                         {appointment.length}
                       </div>
                     </Link>
                   </li>
                 </>
               )}
-              <>
-                <li>
-                  {user ? (
-                    <button
-                      onClick={handelLogout}
-                      className="flex items-center gap-3 px-2 py-2 rounded-lg hover:bg-primary-50 w-full text-left"
-                    >
-                      <CiLogout className="text-2xl font-semibold" />{" "}
-                      <span>Logout</span>
-                    </button>
-                  ) : (
-                    <Link
-                      to="/login"
-                      className="flex items-center gap-3 px-2 py-2 rounded-lg hover:bg-primary-50"
-                    >
-                      <FiLogIn className="text-2xl" /> <span>Login</span>
-                    </Link>
-                  )}
-                </li>
-              </>
+              <div className="border-t border-primary-100 dark:border-gray-600 mt-4 pt-4">
+                {user ? (
+                  <button
+                    onClick={handelLogout}
+                    className="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-red-50 dark:hover:bg-red-900/30 transition-all duration-200 text-base font-medium w-full text-left text-red-600 dark:text-red-400"
+                  >
+                    <CiLogout className="text-xl" />
+                    <span>Logout</span>
+                  </button>
+                ) : (
+                  <Link
+                    to="/login"
+                    className="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-primary-50 dark:hover:bg-primary-900/30 transition-all duration-200 text-base font-medium"
+                  >
+                    <FiLogIn className="text-xl text-primary-600 dark:text-primary-400" />
+                    <span>Login</span>
+                  </Link>
+                )}
+              </div>
             </ul>
           )}
         </div>
