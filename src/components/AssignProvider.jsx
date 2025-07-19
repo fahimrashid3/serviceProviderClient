@@ -37,22 +37,47 @@ const AssignProvider = () => {
     };
     console.log("appointment details ", appointmentUpdateInfo);
 
-    axiosSecure
-      .patch("/appointmentUpdateByAdmin", appointmentUpdateInfo)
-      .then((res) => {
-        if (res.data.modifiedCount > 0) {
-          reset();
-          refetch();
-          Swal.fire({
-            position: "top-end",
-            icon: "success",
-            title: `Appointment Placed to ${selectedProvider.name}`,
-            showConfirmButton: false,
-            timer: 1500,
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You want to assign this provider?",
+      icon: "question",
+      showCancelButton: true,
+      confirmButtonColor: "#2563eb",
+      cancelButtonColor: "#dc2626",
+      confirmButtonText: "Yes, assign!",
+      cancelButtonText: "Cancel",
+      background: "#ffffff",
+      color: "#1f2937",
+      backdrop: "rgba(0, 0, 0, 0.4)",
+      customClass: {
+        popup: "rounded-2xl shadow-2xl",
+        title: "text-xl font-bold text-gray-900",
+        content: "text-gray-700",
+        confirmButton:
+          "rounded-xl px-6 py-3 font-semibold shadow-lg hover:shadow-xl transition-all duration-200",
+        cancelButton:
+          "rounded-xl px-6 py-3 font-semibold shadow-lg hover:shadow-xl transition-all duration-200",
+      },
+    }).then((result) => {
+      if (result.isConfirmed) {
+        axiosSecure
+          .patch("/appointmentUpdateByAdmin", appointmentUpdateInfo)
+          .then((res) => {
+            if (res.data.modifiedCount > 0) {
+              reset();
+              refetch();
+              Swal.fire({
+                position: "top-end",
+                icon: "success",
+                title: `Appointment Placed to ${selectedProvider.name}`,
+                showConfirmButton: false,
+                timer: 1500,
+              });
+              navigate("/dashboard/manageAppointments");
+            }
           });
-          navigate("/dashboard/manageAppointments");
-        }
-      });
+      }
+    });
   };
 
   // Show loading if data is not ready

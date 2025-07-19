@@ -45,6 +45,20 @@ const AllUser = () => {
       cancelButtonText: "Cancel",
       showDenyButton: true,
       denyButtonText: "Make Provider",
+      background: "#ffffff",
+      color: "#1f2937",
+      backdrop: "rgba(0, 0, 0, 0.4)",
+      customClass: {
+        popup: "rounded-2xl shadow-2xl",
+        title: "text-xl font-bold text-gray-900",
+        content: "text-gray-700",
+        confirmButton:
+          "rounded-xl px-6 py-3 font-semibold shadow-lg hover:shadow-xl transition-all duration-200",
+        cancelButton:
+          "rounded-xl px-6 py-3 font-semibold shadow-lg hover:shadow-xl transition-all duration-200",
+        denyButton:
+          "rounded-xl px-6 py-3 font-semibold shadow-lg hover:shadow-xl transition-all duration-200",
+      },
     }).then((result) => {
       if (result.isConfirmed) {
         // Make Admin
@@ -56,7 +70,15 @@ const AllUser = () => {
               icon: "success",
               title: `${user.name} is now an Admin.`,
               showConfirmButton: false,
-              timer: 1500,
+              timer: 2000,
+              background: "#ffffff",
+              color: "#1f2937",
+              backdrop: "rgba(0, 0, 0, 0.1)",
+              customClass: {
+                popup: "rounded-xl shadow-xl border border-green-100",
+                title: "text-green-800 font-semibold",
+                icon: "text-green-500",
+              },
             });
           }
         });
@@ -70,8 +92,16 @@ const AllUser = () => {
         Swal.fire({
           title: "No changes made",
           icon: "info",
-          timer: 1500,
+          timer: 2000,
           showConfirmButton: false,
+          background: "#ffffff",
+          color: "#1f2937",
+          backdrop: "rgba(0, 0, 0, 0.1)",
+          customClass: {
+            popup: "rounded-xl shadow-xl border border-blue-100",
+            title: "text-blue-800 font-semibold",
+            icon: "text-blue-500",
+          },
         });
       }
     });

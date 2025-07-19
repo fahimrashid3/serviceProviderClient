@@ -43,6 +43,14 @@ const Login = () => {
           title: `welcome back ${user.displayName}`,
           showConfirmButton: false,
           timer: 2000,
+          background: "#ffffff",
+          color: "#1f2937",
+          backdrop: "rgba(0, 0, 0, 0.1)",
+          customClass: {
+            popup: "rounded-xl shadow-xl border border-green-100",
+            title: "text-green-800 font-semibold",
+            icon: "text-green-500",
+          },
         });
         navigate(form, { replace: true });
         scrollTo(0, 0);

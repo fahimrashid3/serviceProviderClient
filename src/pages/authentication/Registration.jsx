@@ -63,7 +63,15 @@ const Registration = () => {
           icon: "error",
           title: "Cloudinary configuration is missing",
           showConfirmButton: false,
-          timer: 1500,
+          timer: 2000,
+          background: "#ffffff",
+          color: "#1f2937",
+          backdrop: "rgba(0, 0, 0, 0.1)",
+          customClass: {
+            popup: "rounded-xl shadow-xl border border-red-100",
+            title: "text-red-800 font-semibold",
+            icon: "text-red-500",
+          },
         });
       }
 
@@ -101,7 +109,15 @@ const Registration = () => {
             icon: "success",
             title: "Account created successfully",
             showConfirmButton: false,
-            timer: 1500,
+            timer: 2000,
+            background: "#ffffff",
+            color: "#1f2937",
+            backdrop: "rgba(0, 0, 0, 0.1)",
+            customClass: {
+              popup: "rounded-xl shadow-xl border border-green-100",
+              title: "text-green-800 font-semibold",
+              icon: "text-green-500",
+            },
           });
           navigate("/");
           scrollTo(0, 0);
@@ -117,7 +133,15 @@ const Registration = () => {
         icon: "error",
         title: error.message || "Something went wrong",
         showConfirmButton: false,
-        timer: 1500,
+        timer: 2000,
+        background: "#ffffff",
+        color: "#1f2937",
+        backdrop: "rgba(0, 0, 0, 0.1)",
+        customClass: {
+          popup: "rounded-xl shadow-xl border border-red-100",
+          title: "text-red-800 font-semibold",
+          icon: "text-red-500",
+        },
       });
     } finally {
       setDisabled(false);

@@ -32,7 +32,18 @@ const MainNews = ({ blog }) => {
   }, [authorEmail, axiosPublic]);
 
   const handleSaveButton = () => {
-    Swal.fire("Feature not added!");
+    Swal.fire({
+      title: "Feature not added!",
+      icon: "info",
+      background: "#ffffff",
+      color: "#1f2937",
+      backdrop: "rgba(0, 0, 0, 0.1)",
+      customClass: {
+        popup: "rounded-xl shadow-xl border border-blue-100",
+        title: "text-blue-800 font-semibold",
+        icon: "text-blue-500",
+      },
+    });
   };
 
   return (
