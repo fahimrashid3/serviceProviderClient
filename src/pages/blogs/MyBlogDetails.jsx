@@ -2,6 +2,7 @@ import { useParams } from "react-router-dom";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
 import { useEffect, useState } from "react";
 import Loading from "../../components/Loading";
+import { Helmet } from "react-helmet";
 
 const MyBlogDetails = () => {
   const { _id } = useParams();
@@ -44,21 +45,26 @@ const MyBlogDetails = () => {
   }
 
   return (
-    <div className="lg:max-w-[90%] max-w-[95%] mx-auto min-h-screen py-10">
-      <div className="bg-white border border-gray-200 rounded-xl p-8 shadow-sm">
-        <h1 className="font-bold text-3xl mb-4 text-primary-700">
-          {blog.title}
-        </h1>
-        <img
-          className="w-full max-h-96 object-cover rounded-lg mb-6 border border-gray-100"
-          src={blog.img}
-          alt="Blog"
-        />
-        <p className="text-lg text-gray-800 mb-6 text-justify">
-          {blog.content}
-        </p>
+    <>
+      <Helmet>
+        <title>My Blog Details</title>
+      </Helmet>
+      <div className="lg:max-w-[90%] max-w-[95%] mx-auto min-h-screen py-10">
+        <div className="bg-white border border-gray-200 rounded-xl p-8 shadow-sm">
+          <h1 className="font-bold text-3xl mb-4 text-primary-700">
+            {blog.title}
+          </h1>
+          <img
+            className="w-full max-h-96 object-cover rounded-lg mb-6 border border-gray-100"
+            src={blog.img}
+            alt="Blog"
+          />
+          <p className="text-lg text-gray-800 mb-6 text-justify">
+            {blog.content}
+          </p>
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 

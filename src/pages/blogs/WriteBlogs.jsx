@@ -7,6 +7,7 @@ import axios from "axios";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
+import { Helmet } from "react-helmet";
 const WriteBlogs = () => {
   const [users, loading] = useUsers();
   const axiosSecure = useAxiosSecure();
@@ -112,78 +113,89 @@ const WriteBlogs = () => {
   }
 
   return (
-    <div className="max-w-2xl mx-auto py-10 px-4">
-      <div className="bg-white border border-gray-200 rounded-xl p-8 shadow-sm">
-        <h2 className="text-2xl font-bold mb-6 text-primary-700">
-          Write a New Blog
-        </h2>
-        <form
-          onSubmit={handleSubmit(onSubmit)}
-          encType="multipart/form-data"
-          className="flex flex-col gap-6"
-        >
-          <div>
-            <label className="block font-semibold text-lg mb-2" htmlFor="title">
-              Blog Title
-            </label>
-            <input
-              type="text"
-              id="title"
-              {...register("title", { required: "Title is required" })}
-              className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:border-primary-500 text-base"
-              placeholder="Enter blog title"
-            />
-            {errors.title && (
-              <span className="text-red-500 text-sm mt-1 block">
-                {errors.title.message}
-              </span>
-            )}
-          </div>
-
-          <div>
-            <label
-              className="block font-semibold text-lg mb-2"
-              htmlFor="content"
-            >
-              Blog Content
-            </label>
-            <textarea
-              id="content"
-              {...register("content", { required: "Content is required" })}
-              rows="6"
-              className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:border-primary-500 text-base"
-              placeholder="Write your blog content here"
-            />
-            {errors.content && (
-              <span className="text-red-500 text-sm mt-1 block">
-                {errors.content.message}
-              </span>
-            )}
-          </div>
-
-          <div>
-            <label className="block font-semibold text-lg mb-2" htmlFor="image">
-              Blog Image
-            </label>
-            <input
-              type="file"
-              id="image"
-              onChange={handleImageChange}
-              accept="image/*"
-              className="w-full p-2 border border-gray-300 rounded-lg mt-2"
-            />
-          </div>
-          <button
-            type="submit"
-            className="w-full py-3 rounded-lg bg-primary-600 text-white font-bold text-lg hover:bg-primary-700 transition-colors"
+    <>
+      <Helmet>
+        <title>Write Blog</title>
+      </Helmet>
+      <div className="max-w-2xl mx-auto py-10 px-4">
+        <div className="bg-white border border-gray-200 rounded-xl p-8 shadow-sm">
+          <h2 className="text-2xl font-bold mb-6 text-primary-700">
+            Write a New Blog
+          </h2>
+          <form
+            onSubmit={handleSubmit(onSubmit)}
+            encType="multipart/form-data"
+            className="flex flex-col gap-6"
           >
-            Submit Blog
-          </button>
+            <div>
+              <label
+                className="block font-semibold text-lg mb-2"
+                htmlFor="title"
+              >
+                Blog Title
+              </label>
+              <input
+                type="text"
+                id="title"
+                {...register("title", { required: "Title is required" })}
+                className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:border-primary-500 text-base"
+                placeholder="Enter blog title"
+              />
+              {errors.title && (
+                <span className="text-red-500 text-sm mt-1 block">
+                  {errors.title.message}
+                </span>
+              )}
+            </div>
 
-          {error && <p className="text-red-500 mt-2">{error}</p>}
-        </form>
+            <div>
+              <label
+                className="block font-semibold text-lg mb-2"
+                htmlFor="content"
+              >
+                Blog Content
+              </label>
+              <textarea
+                id="content"
+                {...register("content", { required: "Content is required" })}
+                rows="6"
+                className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:border-primary-500 text-base"
+                placeholder="Write your blog content here"
+              />
+              {errors.content && (
+                <span className="text-red-500 text-sm mt-1 block">
+                  {errors.content.message}
+                </span>
+              )}
+            </div>
+
+            <div>
+              <label
+                className="block font-semibold text-lg mb-2"
+                htmlFor="image"
+              >
+                Blog Image
+              </label>
+              <input
+                type="file"
+                id="image"
+                onChange={handleImageChange}
+                accept="image/*"
+                className="w-full p-2 border border-gray-300 rounded-lg mt-2"
+              />
+            </div>
+            <button
+              type="submit"
+              className="w-full py-3 rounded-lg bg-primary-600 text-white font-bold text-lg hover:bg-primary-700 transition-colors"
+            >
+              Submit Blog
+            </button>
+
+            {error && <p className="text-red-500 mt-2">{error}</p>}
+          </form>
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 
