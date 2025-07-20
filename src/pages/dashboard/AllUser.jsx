@@ -6,6 +6,10 @@ import useAxiosSecure from "../../hooks/useAxiosSecure";
 import { useNavigate } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 
+// SVG data URI for a generic user avatar
+const DEFAULT_AVATAR =
+  "data:image/svg+xml,%3Csvg width='48' height='48' viewBox='0 0 48 48' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='24' cy='24' r='24' fill='%23E5E7EB'/%3E%3Cpath d='M24 24c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm0 3c-4.418 0-13 2.239-13 6.667V38h26v-4.333C37 29.239 28.418 27 24 27z' fill='%239CA3AF'/%3E%3C/svg%3E";
+
 const AllUser = () => {
   const axiosSecure = useAxiosSecure();
   const navigate = useNavigate();
@@ -203,12 +207,18 @@ const AllUser = () => {
                       <div className="flex items-center">
                         <div className="h-12 w-12 rounded-full overflow-hidden ring-2 ring-gray-200 dark:ring-gray-600">
                           <img
-                            src={user.photoUrl}
+                            src={
+                              user.photoUrl && user.photoUrl.trim() !== ""
+                                ? user.photoUrl
+                                : DEFAULT_AVATAR
+                            }
                             alt={`${user.name} avatar`}
                             className="h-full w-full object-cover"
                             onError={(e) => {
-                              e.target.src =
-                                "https://via.placeholder.com/48x48?text=User";
+                              if (e.target.src !== DEFAULT_AVATAR) {
+                                e.target.onerror = null;
+                                e.target.src = DEFAULT_AVATAR;
+                              }
                             }}
                           />
                         </div>
