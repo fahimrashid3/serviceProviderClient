@@ -1,11 +1,20 @@
 import { NavLink } from "react-router-dom";
 
+const scrollToTop = () => {
+  window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+};
+
 const NavLinks = ({ onClick }) => {
+  // Compose the onClick handler to scroll to top and call any parent handler
+  const handleClick = (e) => {
+    scrollToTop();
+    if (onClick) onClick(e);
+  };
   return (
     <ul className="list-none flex flex-col sm:flex-row items-start sm:items-center gap-1 m-0 p-0 overflow-x-auto sm:overflow-x-visible whitespace-nowrap scrollbar-thin scrollbar-thumb-primary-200 scrollbar-track-transparent w-full">
       <li className="w-full sm:w-auto">
         <NavLink
-          onClick={onClick}
+          onClick={handleClick}
           className={({ isActive }) =>
             `transition-all duration-150 px-3 sm:px-5 py-2 font-normal tracking-wide text-sm sm:text-base flex items-center justify-start sm:justify-center w-full sm:w-auto
             ${
@@ -21,7 +30,7 @@ const NavLinks = ({ onClick }) => {
       </li>
       <li className="w-full sm:w-auto">
         <NavLink
-          onClick={onClick}
+          onClick={handleClick}
           className={({ isActive }) =>
             `transition-all duration-150 px-3 sm:px-5 py-2 font-normal tracking-wide text-sm sm:text-base flex items-center justify-start sm:justify-center w-full sm:w-auto
             ${
@@ -37,7 +46,7 @@ const NavLinks = ({ onClick }) => {
       </li>
       <li className="w-full sm:w-auto">
         <NavLink
-          onClick={onClick}
+          onClick={handleClick}
           className={({ isActive }) =>
             `transition-all duration-150 px-3 sm:px-5 py-2 font-normal tracking-wide text-sm sm:text-base flex items-center justify-start sm:justify-center w-full sm:w-auto
             ${
@@ -53,7 +62,7 @@ const NavLinks = ({ onClick }) => {
       </li>
       <li className="w-full sm:w-auto">
         <NavLink
-          onClick={onClick}
+          onClick={handleClick}
           className={({ isActive }) =>
             `transition-all duration-150 px-3 sm:px-5 py-2 font-normal tracking-wide text-sm sm:text-base flex items-center justify-start sm:justify-center w-full sm:w-auto
             ${
@@ -69,7 +78,7 @@ const NavLinks = ({ onClick }) => {
       </li>
       <li className="w-full sm:w-auto">
         <NavLink
-          onClick={onClick}
+          onClick={handleClick}
           className={({ isActive }) =>
             `transition-all duration-150 px-3 sm:px-5 py-2 font-normal tracking-wide text-sm sm:text-base flex items-center justify-start sm:justify-center w-full sm:w-auto
             ${
@@ -85,7 +94,7 @@ const NavLinks = ({ onClick }) => {
       </li>
       <li className="w-full sm:w-auto">
         <NavLink
-          onClick={onClick}
+          onClick={handleClick}
           className={({ isActive }) =>
             `transition-all duration-150 px-3 sm:px-5 py-2 font-normal tracking-wide text-sm sm:text-base flex items-center justify-start sm:justify-center w-full sm:w-auto
             ${

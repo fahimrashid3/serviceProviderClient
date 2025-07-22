@@ -21,7 +21,7 @@ import useProvider from "../../../hooks/useProvider";
 import { TbCategoryPlus, TbLogs } from "react-icons/tb";
 import { FcServices } from "react-icons/fc";
 import useUsers from "../../../hooks/useUser";
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import NavLinks from "./NavLinks";
 
 const Navbar = () => {
@@ -32,6 +32,24 @@ const Navbar = () => {
   const { user, logOut } = useAuth();
   const [profileOpen, setProfileOpen] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [showNavbar, setShowNavbar] = useState(true);
+  const lastScrollY = useRef(window.scrollY);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+      if (currentScrollY <= 0) {
+        setShowNavbar(true);
+      } else if (currentScrollY > lastScrollY.current) {
+        setShowNavbar(false);
+      } else {
+        setShowNavbar(true);
+      }
+      lastScrollY.current = currentScrollY;
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   const handelLogout = () => {
     Swal.fire({
@@ -81,7 +99,11 @@ const Navbar = () => {
   };
 
   return (
-    <div className="px-4 sm:px-8 md:px-20 navbar bg-base-100 shadow-sm fixed top-0 left-0 w-full z-[50] flex flex-wrap justify-between items-center">
+    <div
+      className={`px-4 sm:px-8 md:px-20 navbar bg-base-100 shadow-sm fixed top-0 left-0 w-full z-[50] flex flex-wrap justify-between items-center transition-transform duration-300 ${
+        showNavbar ? "translate-y-0" : "-translate-y-full"
+      }`}
+    >
       <div className="flex items-center gap-2 min-w-0">
         <Link to="/" className="flex items-center gap-2 ml-2 min-w-0">
           <img
