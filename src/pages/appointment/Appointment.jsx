@@ -230,7 +230,7 @@ const Appointment = () => {
                         category.time
                       )
                     }
-                    className={`border-2 p-6 rounded-2xl cursor-pointer transition-all duration-200 shadow-lg hover:shadow-primary-400 hover:scale-105 hover:bg-primary-100/60 dark:hover:bg-primary-900/30
+                    className={`border-2 p-6 rounded-2xl cursor-pointer transition-all duration-200 shadow-lg hover:shadow-primary-400 hover:scale-105 hover:bg-primary-100/60 dark:hover:bg-primary-900/30 min-w-[120px] inline-flex items-center justify-center
                       ${
                         selectedCategory === category._id
                           ? "bg-primary-300 text-primary-800 border-primary-800"
@@ -238,7 +238,7 @@ const Appointment = () => {
                       }
                     `}
                   >
-                    <p className="text-xl md:text-2xl font-bold text-center">
+                    <p className="text-xl md:text-2xl font-bold text-center px-2">
                       {category.serviceProviderType}
                     </p>
                   </div>
