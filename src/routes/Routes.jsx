@@ -42,6 +42,9 @@ import ManageContact from "../pages/dashboard/contacts/ManageContact";
 import UpdateProviderProfile from "../pages/dashboard/profile/UpdateProviderProfile";
 import CompleteAppointmentHistory from "../pages/dashboard/CompleteAppointmentHistory";
 import AddCategory from "../pages/dashboard/AddCategory";
+import TermsOfUse from "../pages/legal/TermsOfUse";
+import PrivacyPolicy from "../pages/legal/PrivacyPolicy";
+import CookiePolicy from "../pages/legal/CookiePolicy";
 export const router = createBrowserRouter([
   {
     path: "/",
@@ -119,6 +122,18 @@ export const router = createBrowserRouter([
       {
         path: "/room/:roomId",
         element: <Room />,
+      },
+      {
+        path: "/terms",
+        element: <TermsOfUse />,
+      },
+      {
+        path: "/privacy",
+        element: <PrivacyPolicy />,
+      },
+      {
+        path: "/cookies",
+        element: <CookiePolicy />,
       },
     ],
   },

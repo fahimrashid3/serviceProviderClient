@@ -10,9 +10,11 @@ const Main = () => {
   const isRoomPage = location.pathname.includes("/room/");
 
   return (
-    <div>
+    <div className="flex flex-col min-h-screen">
       {!isRoomPage && <Navbar />}
-      <Outlet />
+      <main className="flex-1">
+        <Outlet />
+      </main>
       {!isBlogsPage && <Footer />} {/* Conditionally render Footer */}
     </div>
   );

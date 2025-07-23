@@ -95,28 +95,28 @@ const Footer = () => {
               </h6>
               <ul className="flex flex-col gap-2">
                 <li>
-                  <a
+                  <Link
                     className="hover:text-primary-500 transition-colors"
-                    href="#"
+                    to="/terms"
                   >
                     Terms of use
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a
+                  <Link
                     className="hover:text-primary-500 transition-colors"
-                    href="#"
+                    to="/privacy"
                   >
                     Privacy policy
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a
+                  <Link
                     className="hover:text-primary-500 transition-colors"
-                    href="#"
+                    to="/cookies"
                   >
                     Cookie policy
-                  </a>
+                  </Link>
                 </li>
               </ul>
             </nav>

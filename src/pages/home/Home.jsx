@@ -2,7 +2,7 @@ import SectionBanner from "../../components/SectionBanner";
 import Banner from "./Banner";
 import Categories from "./Categories";
 import PopularServicesProviders from "./PopularServicesProviders";
-import Featured from "./Featured";
+// import Featured from "./Featured";
 import Reviews from "./Reviews";
 import { Helmet } from "react-helmet";
 import { useNavigate } from "react-router-dom";
@@ -36,7 +36,7 @@ const Home = () => {
       </div>
 
       <PopularServicesProviders></PopularServicesProviders>
-      <Featured></Featured>
+      {/* <Featured></Featured> */}
       {/* TODO: filter the reviews according to the rating(star) */}
       <Reviews></Reviews>
     </div>

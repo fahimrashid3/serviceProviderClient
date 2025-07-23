@@ -39,9 +39,9 @@ const Featured = () => {
               Each of our experts is handpicked, skilled, and on call to help
               you — anywhere, anytime.
             </span>
-            <button className="mt-4 w-max px-8 py-3 bg-primary-600 text-white font-semibold rounded-xl shadow hover:bg-primary-700 transition-all duration-300">
+            {/* <button className="mt-4 w-max px-8 py-3 bg-primary-600 text-white font-semibold rounded-xl shadow hover:bg-primary-700 transition-all duration-300">
               Schedule Your Session
-            </button>
+            </button> */}
           </div>
         </div>
       </div>

@@ -271,7 +271,7 @@ const Navbar = () => {
                   </li>
                 </>
               )}
-              {!isProvider && !isAdmin && (
+              {!isProvider && !isAdmin && user && (
                 <>
                   <li className="mb-2">
                     <Link
